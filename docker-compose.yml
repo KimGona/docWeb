@@ -1,0 +1,42 @@
+version: "3.8"
+
+networks:
+  docapp-network:
+    name: docapp-network
+    driver: bridge
+
+services:
+  mysql_db:
+    image: "mysql:8.0"
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_DATABASE: java_to_dev_app_db
+      MYSQL_USER: java_to_dev
+      MYSQL_PASSWORD: nE5kMc7JCGNqwDQM
+      MYSQL_ROOT_PASSWORD: nE5kMc7JCGNqwDQN
+
+  docapp-system:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    networks:
+      - docapp-network
+    depends_on:
+      - mysql_db
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+
+  docapp:
+    build:
+      context: ./frontend/docweb
+      dockerfile: Dockerfile
+    networks:
+      - docapp-network
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
