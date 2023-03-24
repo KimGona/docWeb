@@ -9,6 +9,7 @@ public class Appointment {
     private Long id;
     private String date;
     private Long hour;
+    private boolean hasHealthResultWritten;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_id")
