@@ -2,6 +2,8 @@ package com.example.docweb.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 
@@ -22,4 +24,6 @@ public class HealthResult {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
+
+
 }

@@ -10,7 +10,6 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    //@OneToOne(mappedBy = "user");
+    //private User user;
 }
