@@ -15,7 +15,6 @@ public class Patient {
     private String city;
     private Long streetNumber;
     private String gender;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id")
-    private User user;
+    //@OneToOne(mappedBy = "user")
+    //private User user;
 }

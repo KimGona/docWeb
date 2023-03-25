@@ -21,7 +21,7 @@ public class User {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "admin_id")
+    @OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="admin_id")
     private Admin admin;
 }
