@@ -1,6 +1,7 @@
 package com.example.docweb.entity;
 import jakarta.persistence.*;
 import lombok.Data;
+
 @Entity
 @Data
 public class Appointment {
@@ -19,7 +20,7 @@ public class Appointment {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "visit_type_id")
-    private VisitType visit_type;
+    private VisitType visitType;
 }

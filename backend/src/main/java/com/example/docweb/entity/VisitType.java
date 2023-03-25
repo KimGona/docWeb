@@ -9,6 +9,4 @@ public class VisitType {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String description;
-
-
 }

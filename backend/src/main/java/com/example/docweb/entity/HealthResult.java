@@ -11,10 +11,10 @@ public class HealthResult {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String date_added;
-    private Long heart_rate;
-    private String blood_pressure;
-    private Long blood_sugar;
+    private String dateAdded;
+    private Long heartRate;
+    private String bloodPressure;
+    private Long bloodSugar;
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL)

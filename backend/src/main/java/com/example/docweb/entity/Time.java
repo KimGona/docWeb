@@ -9,5 +9,5 @@ public class Time {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private Long hour;
+    private int hour;
 }

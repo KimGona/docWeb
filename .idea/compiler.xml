@@ -11,7 +11,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="docWeb" target="17" />
+      <module name="docWeb" target="19" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

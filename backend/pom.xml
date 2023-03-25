@@ -14,7 +14,7 @@
     <name>docWeb</name>
     <description>docWeb</description>
     <properties>
-        <java.version>19</java.version>
+        <java.version>17</java.version>
     </properties>
     <dependencies>
         <dependency>
@@ -24,7 +24,12 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.0.7.Final</version>
+            <version>6.1.7.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>6.0.6.Final</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

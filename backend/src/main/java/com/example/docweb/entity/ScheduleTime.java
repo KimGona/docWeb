@@ -2,6 +2,8 @@ package com.example.docweb.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 
@@ -14,5 +16,5 @@ public class ScheduleTime {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "time_id")
-    private Time time_id;
+    private List<Time> timeList;
 }
