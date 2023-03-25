@@ -1,8 +1,7 @@
 package com.example.docweb.repository;
 
-import com.example.docweb.entity.Doctor;
-import com.example.docweb.entity.ScheduleItem;
+import com.example.docweb.entity.ScheduleTime;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ScheduleItemRepository extends JpaRepository<ScheduleItem,Long> {
+public interface ScheduleItemRepository extends JpaRepository<ScheduleTime,Long> {
 }

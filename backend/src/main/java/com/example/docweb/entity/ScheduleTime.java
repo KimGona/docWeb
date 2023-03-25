@@ -5,7 +5,7 @@ import lombok.Data;
 @Entity
 @Data
 
-public class ScheduleItem {
+public class ScheduleTime {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;

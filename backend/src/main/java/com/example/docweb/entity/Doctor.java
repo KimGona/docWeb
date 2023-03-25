@@ -30,7 +30,7 @@ public class Doctor {
 
     @OneToMany
     @JoinColumn(name="schedule_time_id")
-    private List<ScheduleItem> scheduleTimes;
+    private List<ScheduleTime> scheduleTimes;
 
     @OneToMany
     @JoinColumn(name="free_time_id")
