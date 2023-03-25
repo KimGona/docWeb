@@ -13,6 +13,11 @@ public class User {
     private String username;
     private String password;
     private Role role;
+
+    @ManyToOne
+    @JoinColumn(name = "admin_id", insertable=false, updatable=false)
+    private Admin createdBy;  // admin id
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_id")
     private Patient patient;

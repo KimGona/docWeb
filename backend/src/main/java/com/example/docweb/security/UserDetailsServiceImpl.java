@@ -1,6 +1,8 @@
 package com.example.docweb.security;
 
+import com.example.docweb.entity.Doctor;
 import com.example.docweb.entity.User;
+import com.example.docweb.repository.DoctorRepository;
 import com.example.docweb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "patients")
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,6 +16,7 @@ public class Patient {
     private String city;
     private Long streetNumber;
     private String gender;
+
     //@OneToOne(mappedBy = "user")
     //private User user;
 }

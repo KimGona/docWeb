@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Data
+@Table(name = "doctors")
 public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,18 +25,12 @@ public class Doctor {
     //@OneToOne(mappedBy = "user");
     //private User user;
 
-    @OneToMany
-    @JoinColumn(name = "visit_type_id")
+    @OneToMany(mappedBy = "doctor")
     private List<VisitType> visitTypes;
 
-    @OneToMany
-    @JoinColumn(name="schedule_time_id")
+    @OneToMany(mappedBy = "doctor")
     private List<ScheduleTime> scheduleTimes;
 
-    @OneToMany
-    @JoinColumn(name="free_time_id")
+    @OneToMany(mappedBy = "doctor")
     private List<FreeTime> freeTimes;
-
-
-
 }

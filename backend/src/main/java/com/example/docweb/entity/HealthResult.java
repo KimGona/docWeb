@@ -6,7 +6,7 @@ import java.util.List;
 
 @Entity
 @Data
-
+@Table(name = "health_results")
 public class HealthResult {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,6 +24,4 @@ public class HealthResult {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
-
-
 }

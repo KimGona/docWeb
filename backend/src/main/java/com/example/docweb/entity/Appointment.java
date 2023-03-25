@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name="Appointment")
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
