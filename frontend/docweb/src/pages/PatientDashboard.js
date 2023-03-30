@@ -11,7 +11,7 @@ export default function PatientDashboard({}) {
             <Button label="Button" color="pink outline"></Button>
             <Button label="Button" color="green outline"></Button>
             <Button label="Button" color="pink big"></Button>
-            <InputField></InputField>
+            <InputField>Input</InputField>
           </div>
         </PageContainer>
       );
