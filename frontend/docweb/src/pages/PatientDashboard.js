@@ -2,6 +2,12 @@ import React from "react";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import PageContainer from "../components/PageContainer";
+import Appointment from "../components/Appointment";
+import AppointmentDark from "../components/AppointmentDark";
+
+
+
+
 
 export default function PatientDashboard({}) {
     return (
@@ -11,7 +17,11 @@ export default function PatientDashboard({}) {
             <Button label="Button" color="pink outline"></Button>
             <Button label="Button" color="green outline"></Button>
             <Button label="Button" color="pink big"></Button>
+              <Appointment></Appointment>
+              <AppointmentDark></AppointmentDark>
             <InputField>Input</InputField>
+
+
           </div>
         </PageContainer>
       );
