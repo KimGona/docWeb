@@ -1,8 +1,12 @@
 package com.example.docweb.entity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 @Data
 @Table(name = "times")
 public class Time {

@@ -1,11 +1,15 @@
 package com.example.docweb.entity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.print.Doc;
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Data
 @Table(name = "schedule_times")
 public class ScheduleTime {

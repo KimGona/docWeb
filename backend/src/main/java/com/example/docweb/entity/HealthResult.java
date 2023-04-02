@@ -1,10 +1,14 @@
 package com.example.docweb.entity;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Data
 @Table(name = "health_results")
 public class HealthResult {
