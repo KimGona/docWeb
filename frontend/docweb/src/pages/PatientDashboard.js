@@ -17,8 +17,8 @@ export default function PatientDashboard({}) {
             <Button label="Button" color="pink outline"></Button>
             <Button label="Button" color="green outline"></Button>
             <Button label="Button" color="pink big"></Button>
-              <Appointment></Appointment>
-              <AppointmentDark></AppointmentDark>
+              <Appointment isDark={true} isDoctor={true} date={"18.03.2020"} hour={"8:00"} personName={"Doctor Mary Wilson"} visitType="Regular checkup"></Appointment>
+              <AppointmentDark date={"18.03.2020"} hour={"8:00"} personName={"Doctor Mary Wilson"} visitType="Regular checkup"></AppointmentDark>
             <InputField>Input</InputField>
 
 
