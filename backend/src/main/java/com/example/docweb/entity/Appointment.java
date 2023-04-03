@@ -2,6 +2,8 @@ package com.example.docweb.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Entity
 @Data
 @Table(name="Appointment")
@@ -9,7 +11,7 @@ public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String date;
+    private Date date;
     private Long hour;
     private boolean hasHealthResultWritten;
 
