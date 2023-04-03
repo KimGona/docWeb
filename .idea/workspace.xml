@@ -5,22 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b2d31644-712b-4313-be53-49c2826fc2f9" name="Changes" comment="just for test">
-      <change afterPath="$PROJECT_DIR$/frontend/docweb/src/components/Appointment.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/docweb/src/components/AppointmentDark.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/exception/ElementNotFoundException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/exception/OperationFailedException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/AdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/AppointmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_03_2023_11_32_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_25_03_2023_11_32__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/DocWebApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/Admin.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/Appointment.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/Doctor.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/FreeTime.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/HealthResult.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/Patient.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/ScheduleItem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/Time.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/docweb/entity/VisitType.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/AppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/AppointmentRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,15 +27,15 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="demo6" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -82,17 +75,9 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "spring.configuration.checksum": "7acd422109cf4620ab5e8d6a364c0789",
-    "vue.rearranger.settings.migration": "true"
-  }
-}]]></component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+  </component>
   <component name="RunManager" selected="Application.DocWebApplication">
     <configuration name="DocWebApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.example.docweb.DocWebApplication" />
@@ -181,6 +166,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added docker" />
