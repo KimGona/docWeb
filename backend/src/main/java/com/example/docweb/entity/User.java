@@ -15,8 +15,8 @@ public class User {
     private Role role;
 
     @ManyToOne
-    @JoinColumn(name = "admin_id", insertable=false, updatable=false)
-    private Admin createdBy;  // admin id
+    @JoinColumn(name = "user_id", insertable=false, updatable=false)
+    private User createdBy;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_id")
@@ -25,8 +25,4 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
-
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="admin_id")
-    private Admin admin;
 }

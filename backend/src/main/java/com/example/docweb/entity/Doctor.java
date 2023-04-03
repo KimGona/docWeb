@@ -22,15 +22,12 @@ public class Doctor {
     private String phone;
     private String gender;
 
-    //@OneToOne(mappedBy = "user");
-    //private User user;
-
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<VisitType> visitTypes;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<ScheduleTime> scheduleTimes;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<FreeTime> freeTimes;
 }
