@@ -12,4 +12,8 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
     List<Appointment> findByPatientIdAndDate(Long patientId, String date);
     List<Appointment> findByDoctorId(Long doctorId);
     List<Appointment> findByDoctorIdAndDate(Long doctorId, String date);
+    @Query("SELECT a FROM Appointment WHERE a.id = ?1 AND a.date > ?2")
+    List<Appointment> findByDoctorIdAndDateFrom(Long doctorId, String date);
+    @Query("SELECT a FROM Appointment WHERE a.id = ?1 AND MONTH(a.date) = ?2")
+    List<Appointment> findByDoctorIdAndMonth(Long doctorId, int month);
 }
