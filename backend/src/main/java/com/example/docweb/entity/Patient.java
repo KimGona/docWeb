@@ -2,6 +2,8 @@ package com.example.docweb.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Entity
 @Data
 @Table(name = "patients")
@@ -11,12 +13,11 @@ public class Patient {
     private Long id;
     private String name;
     private String surname;
-    private String dateOfBirth;
+    private Date dateOfBirth;
+    @Embedded
+    private Address address;
     private String street;
     private String city;
     private Long streetNumber;
     private String gender;
-
-    //@OneToOne(mappedBy = "user")
-    //private User user;
 }

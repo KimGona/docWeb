@@ -18,6 +18,10 @@ public class HealthResult {
     private String description;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "appointment_id")
+    private Appointment appointment;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
