@@ -16,8 +16,5 @@ public class Patient {
     private Date dateOfBirth;
     @Embedded
     private Address address;
-    private String street;
-    private String city;
-    private Long streetNumber;
     private String gender;
 }
