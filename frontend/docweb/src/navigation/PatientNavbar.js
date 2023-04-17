@@ -5,16 +5,16 @@ import NavItemDocapp from "../components/navigation_components/NavItemDocapp";
 
 const navRow = (
     <div className="flex items-baseline">
-        <NavItemDiv path="/patient_all_appointments" text="View all appointments" />
-        <NavItemDiv path="/patient_health_results" text="View health results" />
-        <NavButton path="/patient_add_appointment" text="Add appointment" />
-        <NavItemDiv path="/patient_account" text="Account" />
+        <NavItemDiv path="/view_appointments" text="View all appointments" />
+        <NavItemDiv path="/view_results" text="View health results" />
+        <NavButton path="/add_appointment" text="Add appointment" />
+        <NavItemDiv path="/account" text="Account" />
     </div>
 );
 
 export default function PatientNavbar({}) {
     return (
-        <div className="w-screen flex justify-between">
+        <div className=" flex justify-between">
             <NavItemDocapp path="/" text="Docapp" />
             <div>{navRow}</div>
         </div>

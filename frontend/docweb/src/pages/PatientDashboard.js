@@ -4,15 +4,8 @@ import InputField from "../components/InputField";
 import PageContainer from "../components/PageContainer";
 import Appointment from "../components/Appointment";
 import AppointmentDark from "../components/AppointmentDark";
-import PatientNavbar from "../navigation/PatientNavbar";
-import DoctorNavbar from "../navigation/DoctorNavbar";
-import AdminNavbar from "../navigation/AdminNavbar";
 
-
-
-
-
-export default function PatientDashboard({}) {
+export default function PatientDashboard() {
     return (
         <PageContainer title="All appointments">
           <div className="mb-4 flex flex-col space-y-5">
@@ -23,11 +16,6 @@ export default function PatientDashboard({}) {
               <Appointment isDark={true} isDoctor={false} date={"18.03.2020"} hour={"8:00"} personName={"Doctor Mary Wilson"} visitType="Regular checkup"></Appointment>
               <AppointmentDark date={"18.03.2020"} hour={"8:00"} personName={"Doctor Mary Wilson"} visitType="Regular checkup"></AppointmentDark>
             <InputField>Input</InputField>
-            <PatientNavbar></PatientNavbar>
-            <DoctorNavbar></DoctorNavbar>
-            <AdminNavbar />
-
-
           </div>
         </PageContainer>
       );

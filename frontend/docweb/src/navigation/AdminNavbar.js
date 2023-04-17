@@ -4,8 +4,8 @@ import NavItemDocapp from "../components/navigation_components/NavItemDocapp";
 
 const navRow = (
     <div className="flex items-baseline">
-        <NavItemDiv path="/admin_register_admin" text="Register admin" />
-        <NavItemDiv path="/doctor_register_doctor" text="Register doctor" />
+        <NavItemDiv path="/register_admin" text="Register admin" />
+        <NavItemDiv path="/register_doctor" text="Register doctor" />
         <NavItemDiv path="/log_out" text="Log out" />
     </div>
 );
