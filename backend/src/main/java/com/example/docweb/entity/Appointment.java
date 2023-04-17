@@ -23,7 +23,7 @@ public class Appointment {
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL) ///Is it right OneToOne??
     @JoinColumn(name = "visit_type_id")
     private VisitType visitType;
 }
