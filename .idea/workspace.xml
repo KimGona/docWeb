@@ -4,10 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b2d31644-712b-4313-be53-49c2826fc2f9" name="Changes" comment="added all services + fix to repository (added queries) + added address + deleted admin">
+    <list default="true" id="b2d31644-712b-4313-be53-49c2826fc2f9" name="Changes" comment="add patient,admin,doctor Service">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/Dto/AddressDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/Dto/AppoinmentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/Dto/DoctorDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/Dto/FreetimeDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/Dto/HealthResultDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/Dto/PatientDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/Dto/SchedultTimeDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/Dto/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/Dto/VisitTypeDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Patient.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Patient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +50,9 @@
       <filtered-out-file-type name="TAG" />
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Patient.java" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="JpbToolWindowState">
     <option name="myId2FirstActivated">
@@ -167,7 +179,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added docker" />

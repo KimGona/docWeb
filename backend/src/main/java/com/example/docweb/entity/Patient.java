@@ -6,7 +6,7 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name = "patients")
+@Table(name = "Patient")
 public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,6 +14,7 @@ public class Patient {
     private String name;
     private String surname;
     private Date dateOfBirth;
+
     @Embedded
     private Address address;
     private String gender;
