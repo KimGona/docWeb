@@ -1,5 +1,7 @@
 package com.example.docweb.entity;
 
+import com.example.docweb.dto.AppoinmentDto;
+import com.example.docweb.dto.DoctorDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Entity
 @Data
@@ -30,4 +33,18 @@ public class Doctor {
 
     @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<FreeTime> freeTimes;
+
+    static DoctorDto toDto(Doctor doctor) {
+        DoctorDto doctorDto = new DoctorDto();
+        doctorDto.setId(doctor.getId());
+        doctorDto.setName(doctor.getName());
+        doctorDto.setSurname(doctor.getSurname());
+        doctorDto.setSpeciality(doctor.getSpeciality());
+        doctorDto.setPhone(doctor.getPhone());
+        doctorDto.setGender(doctor.getGender());
+        doctorDto.setVisitTypes(doctor.getVisitTypes().stream().map(VisitType::toDto).collect(Collectors.toList()));
+        doctorDto.setScheduleTimes(doctor.getScheduleTimes().stream().map(ScheduleTime::toDto).collect(Collectors.toList()));
+        doctorDto.setFreeTimes(doctor.getFreeTimes().stream().map(FreeTime::toDto).collect(Collectors.toList()));
+        return doctorDto;
+    }
 }
