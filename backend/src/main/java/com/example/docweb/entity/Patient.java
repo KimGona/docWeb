@@ -1,4 +1,5 @@
 package com.example.docweb.entity;
+import com.example.docweb.dto.PatientDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,4 +19,15 @@ public class Patient {
     @Embedded
     private Address address;
     private String gender;
+
+    static PatientDto toDto(Patient patient) {
+        PatientDto patientDto = new PatientDto();
+        patientDto.setId(patient.getId());
+        patientDto.setName(patient.getName());
+        patientDto.setSurname(patient.getSurname());
+        patientDto.setDateOfBirth(patient.getDateOfBirth());
+        patientDto.setAddress(Address.toDto(patient.getAddress()));
+        patientDto.setGender(patient.getGender());
+        return patientDto;
+    }
 }
