@@ -7,7 +7,7 @@ import lombok.Data;
 import java.util.Date;
 
 @Data
-public class AppoinmentDto {
+public class AppointmentDto {
     private Long id;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;

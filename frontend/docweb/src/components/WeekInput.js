@@ -1,7 +1,7 @@
 export default function WeekInput({id,label,value,type="text",onValueChange}) {
   return (
     <div
-      className={`gap-0 flex p-0 text-left w-[757px] h-[885px] font-['Lato']`}
+      className={`gap-0 flex p-0 text-left w-[757px] h-[885px]`}
     >
       <div className="relative bg-white flex items-start w-[757px] h-[885px] pt-[34px] pb-[816px] pl-[680px] pr-[42px] rounded-[25px]">
 

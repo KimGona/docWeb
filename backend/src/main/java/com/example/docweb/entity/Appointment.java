@@ -1,5 +1,5 @@
 package com.example.docweb.entity;
-import com.example.docweb.dto.AppoinmentDto;
+import com.example.docweb.dto.AppointmentDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -28,8 +28,8 @@ public class Appointment {
     @JoinColumn(name = "visit_type_id")
     private VisitType visitType;
 
-    static AppoinmentDto toDto(Appointment appointment) {
-        AppoinmentDto appointmentDto = new AppoinmentDto();
+    static AppointmentDto toDto(Appointment appointment) {
+        AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setDate(appointmentDto.getDate());
         appointmentDto.setHour(appointment.getHour());

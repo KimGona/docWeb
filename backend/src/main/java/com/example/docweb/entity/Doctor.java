@@ -1,6 +1,5 @@
 package com.example.docweb.entity;
 
-import com.example.docweb.dto.AppoinmentDto;
 import com.example.docweb.dto.DoctorDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.*;
