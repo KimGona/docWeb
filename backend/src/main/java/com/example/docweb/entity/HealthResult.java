@@ -18,19 +18,19 @@ public class HealthResult {
     private Long bloodSugar;
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "appointment_id")
     private Appointment appointment;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    static HealthResultDto toDto(HealthResult healthResult) {
+    public static HealthResultDto toDto(HealthResult healthResult) {
         HealthResultDto healthResultDto = new HealthResultDto();
         healthResultDto.setId(healthResult.getId());
         healthResultDto.setDateAdded(healthResult.getDateAdded());

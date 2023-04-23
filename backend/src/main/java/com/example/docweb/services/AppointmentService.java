@@ -1,6 +1,7 @@
 package com.example.docweb.services;
 
 import com.example.docweb.entity.Appointment;
+import com.example.docweb.exception.ElementNotFoundException;
 import com.example.docweb.exception.OperationFailedException;
 import com.example.docweb.repository.AppointmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AppointmentService {
@@ -36,8 +38,28 @@ public class AppointmentService {
         return appointmentRepository.findByPatientId(id);
     }
 
+    public Appointment getAppointmentsByAppointmentId(long id) {
+        return appointmentRepository.findById(id).orElseThrow(ElementNotFoundException::new);
+    }
+
     public Appointment saveAppointment(Appointment appointment) {
-        return appointmentRepository.save(appointment);
+        Optional<Appointment> foundAppointment = appointmentRepository.findById(appointment.getId());
+        Appointment newAppointment;
+
+        if (foundAppointment.isEmpty()) {
+            newAppointment = new Appointment();
+        } else {
+            newAppointment = foundAppointment.get();
+            newAppointment.setId(appointment.getId());
+        }
+        newAppointment.setDate(appointment.getDate());
+        newAppointment.setHour(appointment.getHour());
+        newAppointment.setHasHealthResultWritten(appointment.isHasHealthResultWritten());
+        newAppointment.setPatient(appointment.getPatient());
+        newAppointment.setDoctor(appointment.getDoctor());
+        newAppointment.setVisitType(appointment.getVisitType());
+
+        return appointmentRepository.save(newAppointment);
     }
 
     public void deleteAppointmentById(long id) {

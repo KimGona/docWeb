@@ -1,6 +1,7 @@
 package com.example.docweb.dto;
 
 
+import com.example.docweb.entity.Doctor;
 import com.example.docweb.entity.FreeTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
@@ -15,12 +16,14 @@ public class FreeTimeDto {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
     private List<TimeDto> timeList;
+    private DoctorDto doctor;
 
-    static FreeTime toFreeTime(FreeTimeDto freeTimeDto) {
+    public static FreeTime toFreeTime(FreeTimeDto freeTimeDto) {
         FreeTime freeTime = new FreeTime();
         freeTime.setId(freeTimeDto.getId());
         freeTime.setDate(freeTimeDto.getDate());
         freeTime.setTimeList(freeTimeDto.getTimeList().stream().map(TimeDto::toTime).collect(Collectors.toList()));
+        freeTime.setDoctor(DoctorDto.toDoctor(freeTimeDto.getDoctor()));
         return freeTime;
     }
 }

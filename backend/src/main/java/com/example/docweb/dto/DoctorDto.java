@@ -1,8 +1,10 @@
 package com.example.docweb.dto;
 
+import com.example.docweb.entity.Doctor;
 import lombok.Data;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class DoctorDto {
@@ -13,6 +15,14 @@ public class DoctorDto {
     private String phone;
     private String gender;
     private List<VisitTypeDto> visitTypes;
-    private List<ScheduleTimeDto> scheduleTimes;
-    private List<FreeTimeDto> freeTimes;
+
+    public static Doctor toDoctor(DoctorDto doctorDto) {
+        Doctor doctor = new Doctor();
+        doctor.setId(doctorDto.getId());
+        doctor.setName(doctorDto.getName());
+        doctor.setSurname(doctorDto.getSurname());
+        doctor.setSpeciality(doctorDto.getSpeciality());
+        doctor.setVisitTypes(doctorDto.getVisitTypes().stream().map(VisitTypeDto::toVisitType).collect(Collectors.toList()));
+        return doctor;
+    }
 }

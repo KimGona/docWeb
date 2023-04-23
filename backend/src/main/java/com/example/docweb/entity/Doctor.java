@@ -24,16 +24,10 @@ public class Doctor {
     private String phone;
     private String gender;
 
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
+    @OneToMany
     private List<VisitType> visitTypes;
 
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    private List<ScheduleTime> scheduleTimes;
-
-    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
-    private List<FreeTime> freeTimes;
-
-    static DoctorDto toDto(Doctor doctor) {
+    public static DoctorDto toDto(Doctor doctor) {
         DoctorDto doctorDto = new DoctorDto();
         doctorDto.setId(doctor.getId());
         doctorDto.setName(doctor.getName());
@@ -42,8 +36,6 @@ public class Doctor {
         doctorDto.setPhone(doctor.getPhone());
         doctorDto.setGender(doctor.getGender());
         doctorDto.setVisitTypes(doctor.getVisitTypes().stream().map(VisitType::toDto).collect(Collectors.toList()));
-        doctorDto.setScheduleTimes(doctor.getScheduleTimes().stream().map(ScheduleTime::toDto).collect(Collectors.toList()));
-        doctorDto.setFreeTimes(doctor.getFreeTimes().stream().map(FreeTime::toDto).collect(Collectors.toList()));
         return doctorDto;
     }
 }

@@ -12,13 +12,15 @@ public class ScheduleTimeDto {
     private int day;
     private String dayName;
     private List<TimeDto> timeList;
+    private DoctorDto doctor;
 
-    static ScheduleTime toScheduleTime(ScheduleTimeDto scheduleTimeDto) {
+    public static ScheduleTime toScheduleTime(ScheduleTimeDto scheduleTimeDto) {
         ScheduleTime scheduleTime = new ScheduleTime();
         scheduleTime.setId(scheduleTimeDto.getId());
         scheduleTime.setDay(scheduleTimeDto.getDay());
         scheduleTime.setDayName(scheduleTimeDto.getDayName());
         scheduleTime.setTimeList(scheduleTimeDto.getTimeList().stream().map(TimeDto::toTime).collect(Collectors.toList()));
+        scheduleTime.setDoctor(DoctorDto.toDoctor(scheduleTimeDto.getDoctor()));
         return scheduleTime;
     }
 }

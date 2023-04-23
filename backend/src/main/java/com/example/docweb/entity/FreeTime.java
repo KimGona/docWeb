@@ -17,18 +17,18 @@ public class FreeTime {
     private Long id;
     private Date date;
 
-    @OneToMany(mappedBy = "freeTime", cascade = CascadeType.ALL)
+    @OneToMany
     private List<Time> timeList;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    static FreeTimeDto toDto(FreeTime freeTime) {
+    public static FreeTimeDto toDto(FreeTime freeTime) {
         FreeTimeDto freeTimeDto = new FreeTimeDto();
         freeTimeDto.setId(freeTime.getId());
         freeTimeDto.setDate(freeTime.getDate());
         freeTimeDto.setTimeList(freeTime.getTimeList().stream().map(Time::toDto).collect(Collectors.toList()));
+        freeTimeDto.setDoctor(Doctor.toDto(freeTime.getDoctor()));
         return freeTimeDto;
     }
 }
