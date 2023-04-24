@@ -22,6 +22,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
     public List<User> getRegisteredUsersByUserId(long createdById) {
         return userRepository.findByCreatedBy(createdById);
     }

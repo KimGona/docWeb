@@ -19,10 +19,6 @@ public class User {
     private Role role;
     private Long createdBy;
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id", insertable=false, updatable=false)
-//    private User createdBy;
-
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "patient_id")
     private Patient patient;
@@ -38,8 +34,10 @@ public class User {
         userDto.setPassword(user.getPassword());
         userDto.setRole(user.getRole());
         userDto.setCreatedBy(user.getCreatedBy());
-        userDto.setPatient(Patient.toDto(user.getPatient()));
-        userDto.setDoctor(Doctor.toDto(user.getDoctor()));
+        if (user.getPatient() != null)
+            userDto.setPatient(Patient.toDto(user.getPatient()));
+        if (user.getDoctor() != null)
+            userDto.setDoctor(Doctor.toDto(user.getDoctor()));
         return userDto;
     }
 }

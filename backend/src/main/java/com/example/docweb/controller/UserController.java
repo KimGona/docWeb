@@ -26,6 +26,12 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping
+    public ResponseEntity<List<UserDto>> getAllUsers() {
+        List<User> users = userService.getAllUsers();
+        return new ResponseEntity<>(users.stream().map(User::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<List<UserDto>> getRegisteredUsersByUserId(@PathVariable long id) {
         List<User> users = userService.getRegisteredUsersByUserId(id);

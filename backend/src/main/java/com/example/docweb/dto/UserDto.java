@@ -21,8 +21,10 @@ public class UserDto {
         user.setPassword(userDto.getPassword());
         user.setRole(userDto.getRole());
         user.setCreatedBy(userDto.getCreatedBy());
-        user.setPatient(PatientDto.toPatient(userDto.getPatient()));
-        user.setDoctor(DoctorDto.toDoctor(userDto.getDoctor()));
+        if (userDto.getPatient() != null)
+            user.setPatient(PatientDto.toPatient(userDto.getPatient()));
+        if (userDto.getDoctor() != null)
+            user.setDoctor(DoctorDto.toDoctor(userDto.getDoctor()));
         return user;
     }
 }
