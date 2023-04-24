@@ -30,7 +30,8 @@ public class HealthResultService {
     }
 
     public HealthResult saveHealthResult(HealthResult healthResult) {
-        if (healthResult.getAppointment().isHasHealthResultWritten()) {
+        // No update allowed.
+        if (healthResult.getAppointment().isHasHealthResultWritten() || healthResultRepository.existsById(healthResult.getId())) {
             throw new OperationFailedException();
         }
         // mark that related appointment has health result
@@ -38,6 +39,16 @@ public class HealthResultService {
         appointment.setHasHealthResultWritten(true);
         appointmentRepository.save(appointment);
 
-        return healthResultRepository.save(healthResult);
+        HealthResult newHealthResult = new HealthResult();
+        newHealthResult.setDateAdded(healthResult.getDateAdded());
+        newHealthResult.setDescription(healthResult.getDescription());
+        newHealthResult.setHeartRate(healthResult.getHeartRate());
+        newHealthResult.setBloodSugar(healthResult.getBloodSugar());
+        newHealthResult.setBloodPressure(healthResult.getBloodPressure());
+        newHealthResult.setPatient(healthResult.getPatient());
+        newHealthResult.setDoctor(healthResult.getDoctor());
+        newHealthResult.setAppointment(healthResult.getAppointment());
+
+        return healthResultRepository.save(newHealthResult);
     }
 }

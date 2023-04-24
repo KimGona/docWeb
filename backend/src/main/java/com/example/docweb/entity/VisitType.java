@@ -12,11 +12,7 @@ public class VisitType {
     private Long id;
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "doctor_id")
-    private Doctor doctor;
-
-    static VisitTypeDto toDto(VisitType visitType) {
+    public static VisitTypeDto toDto(VisitType visitType) {
         VisitTypeDto visitTypeDto = new VisitTypeDto();
         visitTypeDto.setId(visitType.getId());
         visitTypeDto.setDescription(visitType.getDescription());

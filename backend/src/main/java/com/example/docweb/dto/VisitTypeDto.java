@@ -8,7 +8,7 @@ public class VisitTypeDto {
     private Long id;
     private String description;
 
-    static VisitType toVisitType(VisitTypeDto visitTypeDto) {
+    public static VisitType toVisitType(VisitTypeDto visitTypeDto) {
         VisitType visitType = new VisitType();
         visitType.setId(visitTypeDto.getId());
         visitType.setDescription(visitTypeDto.getDescription());

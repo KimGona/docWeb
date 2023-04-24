@@ -16,19 +16,19 @@ public class Appointment {
     private Long hour;
     private boolean hasHealthResultWritten;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "patient_id")
     private Patient patient;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "visit_type_id")
     private VisitType visitType;
 
-    static AppointmentDto toDto(Appointment appointment) {
+    public static AppointmentDto toDto(Appointment appointment) {
         AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
         appointmentDto.setDate(appointmentDto.getDate());

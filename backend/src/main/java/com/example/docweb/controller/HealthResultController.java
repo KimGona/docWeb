@@ -1,0 +1,49 @@
+package com.example.docweb.controller;
+
+import com.example.docweb.dto.AppointmentDto;
+import com.example.docweb.dto.HealthResultDto;
+import com.example.docweb.entity.Appointment;
+import com.example.docweb.entity.HealthResult;
+import com.example.docweb.services.HealthResultService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+@Controller
+@RequestMapping("/health-results")
+public class HealthResultController {
+    HealthResultService healthResultService;
+
+    @Autowired
+    public HealthResultController(HealthResultService healthResultService) {
+        this.healthResultService = healthResultService;
+    }
+
+    @GetMapping("/patient/{id}")
+    ResponseEntity<List<HealthResultDto>> getHealthResultsByPatientId(@PathVariable long id) {
+        List<HealthResult> healthResults = healthResultService.getHealthResultsByPatientId(id);
+        return new ResponseEntity<>(healthResults.stream().map(HealthResult::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/doctor/{id}")
+    ResponseEntity<List<HealthResultDto>> getHealthResultsByDoctorId(@PathVariable long id) {
+        List<HealthResult> healthResults = healthResultService.getHealthResultsByDoctorId(id);
+        return new ResponseEntity<>(healthResults.stream().map(HealthResult::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @Transactional
+    @PostMapping
+    @PreAuthorize("hasRole('ROLE_DOCTOR')")
+    public ResponseEntity<HealthResultDto> saveHealthResult(@RequestBody HealthResultDto healthResultDto) {
+        HealthResult healthResult = healthResultService.saveHealthResult(HealthResultDto.toHealthResult(healthResultDto));
+        return new ResponseEntity<>(HealthResult.toDto(healthResult), HttpStatus.OK);
+    }
+}

@@ -1,6 +1,7 @@
 package com.example.docweb.dto;
 
 
+import com.example.docweb.entity.Appointment;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
@@ -16,4 +17,16 @@ public class AppointmentDto {
     private PatientDto patient;
     private DoctorDto doctor;
     private VisitTypeDto visitType;
+
+    public static Appointment toAppointment(AppointmentDto appointmentDto) {
+        Appointment appointment = new Appointment();
+        appointment.setId(appointmentDto.getId());
+        appointment.setDate(appointmentDto.getDate());
+        appointment.setHour(appointmentDto.getHour());
+        appointment.setHasHealthResultWritten(appointmentDto.isHasHealthResultWritten());
+        appointment.setPatient(PatientDto.toPatient(appointmentDto.getPatient()));
+        appointment.setDoctor(DoctorDto.toDoctor(appointmentDto.getDoctor()));
+        appointment.setVisitType(VisitTypeDto.toVisitType(appointmentDto.getVisitType()));
+        return appointment;
+    }
 }

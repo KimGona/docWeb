@@ -22,12 +22,16 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
+    }
+
     public List<User> getRegisteredUsersByUserId(long createdById) {
         return userRepository.findByCreatedBy(createdById);
     }
 
     public User addUserAdmin(User user) {
-        if (userRepository.existsByUsername(user.getUsername()))
+        if (userRepository.existsByUsername(user.getUsername()) || (user.getId() != null && userRepository.existsById(user.getId())))
             throw new OperationFailedException();
 
         user.setPassword(passwordEncoder.encode(user.getPassword()));
@@ -35,7 +39,7 @@ public class UserService {
     }
 
     public User addUserDoctor(User user, Doctor doctor) {
-        if (userRepository.existsByUsername(user.getUsername()))
+        if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsById(user.getId()))
             throw new OperationFailedException();
 
         user.setDoctor(doctor);
@@ -44,7 +48,7 @@ public class UserService {
     }
 
     public User addUserPatient(User user, Patient patient) {
-        if (userRepository.existsByUsername(user.getUsername()))
+        if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsById(user.getId()))
             throw new OperationFailedException();
 
         user.setPatient(patient);

@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface FreeTimeRepository extends JpaRepository<FreeTime,Long> {
     FreeTime findByDoctorIdAndDate(Long doctorId, Date date);
+    List<FreeTime> findByDoctorId(long doctorId);
 }

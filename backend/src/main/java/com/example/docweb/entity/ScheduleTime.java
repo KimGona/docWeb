@@ -18,19 +18,19 @@ public class ScheduleTime {
     private int day; // 1-7 where 1 is Monday and 7 is Sunday
     private String dayName; // "Monday"
 
-    @OneToMany(mappedBy = "scheduleTime")
+    @OneToMany
     private List<Time> timeList;
 
     @ManyToOne
-    @JoinColumn(name = "doctor_id")
     private Doctor doctor;
 
-    static ScheduleTimeDto toDto(ScheduleTime scheduleTime) {
+    public static ScheduleTimeDto toDto(ScheduleTime scheduleTime) {
         ScheduleTimeDto scheduleTimeDto = new ScheduleTimeDto();
         scheduleTimeDto.setId(scheduleTime.getId());
         scheduleTimeDto.setDay(scheduleTime.getDay());
         scheduleTimeDto.setDayName(scheduleTime.getDayName());
         scheduleTimeDto.setTimeList(scheduleTime.getTimeList().stream().map(Time::toDto).collect(Collectors.toList()));
+        scheduleTimeDto.setDoctor(Doctor.toDto(scheduleTime.getDoctor()));
         return scheduleTimeDto;
     }
 }

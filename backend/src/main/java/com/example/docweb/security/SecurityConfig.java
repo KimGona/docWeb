@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -24,10 +25,16 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final AuthenticationFailureHandler authenticationFailureHandler;
+    private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
-    public SecurityConfig(@Lazy UserDetailsService userDetailsService, AuthenticationFailureHandler authenticationFailureHandler) {
+    public SecurityConfig(
+            @Lazy UserDetailsService userDetailsService,
+            AuthenticationFailureHandler authenticationFailureHandler,
+            AuthenticationSuccessHandler authenticationSuccessHandler
+    ) {
         this.userDetailsService = userDetailsService;
         this.authenticationFailureHandler = authenticationFailureHandler;
+        this.authenticationSuccessHandler = authenticationSuccessHandler;
     }
 
     @Bean
@@ -47,9 +54,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .formLogin( form ->
-                        form.successForwardUrl("/success").failureHandler(authenticationFailureHandler))
+                        form.successHandler(authenticationSuccessHandler).failureHandler(authenticationFailureHandler))
                 .authorizeHttpRequests()
-                .requestMatchers("/user/**").permitAll()
+                .requestMatchers("/users/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .authenticationProvider(authenticationProvider())
@@ -57,7 +64,8 @@ public class SecurityConfig {
                 .cors().and()
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
-                .and().build();
+                .and()
+                .build();
     }
 
     @Bean
