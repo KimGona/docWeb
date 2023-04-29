@@ -7,6 +7,8 @@ import AdminDashboard from './pages/AdminDashboard';
 import PatientAppointments from './pages/PatientAppointments';
 import DoctorAppointments from './pages/DoctorAppointments';
 import JoinUs from './pages/JoinUs';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -38,7 +40,12 @@ function App() {
     <Router>
       <Routes>
         <Route element={<ProtectedRoutes user={user}/>}>
+          {/*Logged out screens*/}
           <Route exact path="/join_us" element={getLoggedOutScreen(user, <JoinUs />)} />
+          <Route exact path="/login" element={getLoggedOutScreen(user, <Login />)} />
+          <Route exact path="/sign_up" element={getLoggedOutScreen(user, <Signup />)} />
+
+          {/*Logged in screens*/}
           <Route exact path='/' element={getScreen(user, <PatientDashboard />, <DoctorDashboard />, <AdminDashboard />) } />
           <Route exact path='/view_appointments' element={getScreen(user, <PatientAppointments />, <DoctorAppointments />, <Navigate to="/" replace/>) } />
         </Route>
