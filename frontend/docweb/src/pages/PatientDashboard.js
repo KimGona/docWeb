@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../components/Button";
 import InputField from "../components/InputField";
 import PageContainer from "../components/PageContainer";
@@ -10,10 +10,29 @@ import ClosableHealthResult from "../components/ClosableHealthResult"
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers';
-import RadioButton from "../components/RadioButton";
+import RadioButtonList from "../components/RadioButton";
 
 
 export default function PatientDashboard({}) {
+    const [doctorList, setDoctorList] = useState(
+      [
+        {
+          "id": 1,
+          "name": "Dr Andy"
+        },
+        {
+          "id": 2,
+          "name": "Dr Bruck"
+        },
+        {
+          "id": 3,
+          "name": "Dr Mellon"
+        },
+      ]
+    );
+
+    const [chosenDoctorId, setChosenDoctorId] = useState(1);
+
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <PageContainer title="All appointments">
@@ -34,7 +53,7 @@ export default function PatientDashboard({}) {
               // value={value}
               // onChange={(newValue) => setValue(newValue)}
             />
-            <RadioButton chosenButtonId={1}/>
+            <RadioButtonList list={doctorList} chosenButtonId={chosenDoctorId} onButtonChosen={(id) => setChosenDoctorId(id)}/>
           </div>
         </PageContainer>
       </LocalizationProvider>

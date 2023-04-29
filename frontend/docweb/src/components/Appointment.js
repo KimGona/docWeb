@@ -20,7 +20,7 @@ export default function Appointment({isDoctor=false, date, hour, personName, vis
             <p className="absolute text-base font-light text-black inline m-0 h-[27px] w-[182px] left-[2.33%] right-[69.41%] top-[46%] bottom-[36%] leading-[normal]">
                 {personName}
             </p>
-            <p onCLick={onLinkClick(isDoctor, onCancelClick, onEditClick)} className="underline hover:text-pink-500 right-0 absolute text-sm font-light text-black inline m-0 h-[27px] w-[123px] left-[80.9%] top-[76.67%] bottom-[5.33%] leading-[normal]">
+            <p onClick={onLinkClick(isDoctor, onCancelClick, onEditClick)} className="underline hover:text-pink-500 right-0 absolute text-sm font-light text-black inline m-0 h-[27px] w-[123px] left-[80.9%] top-[76.67%] bottom-[5.33%] leading-[normal]">
                 {cancelOrEditText(isDoctor)}
             </p>
             <p className="absolute text-base font-normal text-black inline m-0 h-[27px] w-[237px] left-[2.33%] right-[60.87%] top-[66%] bottom-[16%] leading-[normal]">

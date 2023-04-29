@@ -10,25 +10,22 @@ function getIcon(id, chosenId) {
     }
 }
 
-export default function RadioButton({
+export default function RadioButtonList({
+    list,
     chosenButtonId,
     onButtonChosen
 }) {
     return (
-        // TODO: make into dynamic list
         <div className='flex flex-col space-y-4'>
-            <div 
-                className='border border-2 border-lime-500 rounded-md py-4 px-8  w-full flex flex-row space-x-4 items-center'
-                onClick={onButtonChosen} >
-                <img src={getIcon(1, chosenButtonId)} alt="radio button" />
-                <p className='font-semibold text-lg'>Doctor</p>
+            {list.map( item =>
+            <div
+                key={item.id}
+                className='border border-2 border-lime-500 rounded-md py-4 px-8  w-full flex flex-row space-x-4 items-center  transition duration-150 ease-in-out active:bg-neutral-200'
+                onClick={() => onButtonChosen(item.id)} >
+                <img src={getIcon(item.id, chosenButtonId)} alt="radio button" />
+                <p className='font-semibold text-lg'>{item.name}</p>
             </div>
-            <div 
-                className='border border-2 border-lime-500 rounded-md py-4 px-8  w-full flex flex-row space-x-4 items-center'
-                onClick={onButtonChosen} >
-                <img src={getIcon(2, chosenButtonId)} alt="radio button" />
-                <p className='font-semibold text-lg'>Doctor 2</p>
-            </div>
+            ) }
         </div>
     );
 };
