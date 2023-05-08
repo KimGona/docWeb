@@ -7,11 +7,14 @@ export default function JoinUs({}) {
       <div className="w-full flex flex-col items-start ">
             <div className="w-full h-[700px] flex flex-col justify-center align-middle items-center bg-gradient-to-r from-purple-500 to-pink-500">
               <p className="pb-10 text-7xl text-white font-bold">Join us now!</p>
-              <div className="bg-transparent hover:bg-pink-500 active:bg-pink-500 border border-4 border-pink-300 py-3 px-14 rounded-md text-pink-300 text-2xl font-bold transition duration-150 ease-in-out">
+
+              {/* Button */}
+              <div className="bg-transparent hover:bg-pink-500 active:bg-pink-500 border border-4 border-white py-3 px-14 rounded-md text-white text-2xl font-bold transition duration-150 ease-in-out">
                 <a href="/sign_up">
                     Sign up
                 </a>
               </div>
+
             </div>
 
             <div className="grid grid-cols-2 gap-20 py-20 px-20">
