@@ -3,6 +3,7 @@ import { Navigate, Outlet } from "react-router-dom";
 import PatientNavbar from "./PatientNavbar";
 import DoctorNavbar from "./DoctorNavbar";
 import AdminNavbar from "./AdminNavbar";
+import DefaultNavbar from "./DefaultNavbar";
 
 const NavLayout = ({children}) => {
     return <>
@@ -20,6 +21,7 @@ export default function ProtectedRoutes({user}) {
         case "ROLE_ADMIN":
             return <NavLayout><AdminNavbar/></NavLayout>;
         default:
-            return <Navigate to="/login" replace/>;
+            return <NavLayout><DefaultNavbar/></NavLayout>
+            // return <Navigate to="/login" replace/>;
         }
 };

@@ -5,8 +5,13 @@ module.exports = {
   ],
   theme: {
     extend: {
-        colors: { darkseagreen: { "100": "#aac184", "200": "rgba(170, 193, 132, 0.1)" }, }
-        },
+        colors: { 
+          darkseagreen: { "100": "#aac184", "200": "rgba(170, 193, 132, 0.1)" }, 
+          "greenPrimary": '#94A875',
+          "greenSecondary": "#5B654B",
+          "greenLight": "#F7F9F3",
+        }
+      },
   },
   plugins: [],
 }
