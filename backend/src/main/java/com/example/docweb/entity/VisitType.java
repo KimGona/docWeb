@@ -10,6 +10,7 @@ public class VisitType {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private String description;
 
     public static VisitTypeDto toDto(VisitType visitType) {

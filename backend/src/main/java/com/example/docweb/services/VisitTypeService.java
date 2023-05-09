@@ -22,11 +22,6 @@ public class VisitTypeService {
     }
 
     public VisitType saveVisitType(VisitType visitType) {
-        if (visitTypeRepository.existsById(visitType.getId())
-                || visitTypeRepository.existsByDescription(visitType.getDescription())
-        ) {
-            throw new OperationFailedException();
-        }
         return visitTypeRepository.save(visitType);
     }
 }
