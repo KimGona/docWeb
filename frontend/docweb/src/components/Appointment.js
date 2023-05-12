@@ -1,4 +1,4 @@
-export default function Appointment({isDoctor=false, date, hour, personName, visitType, onCancelClick, onEditClick}) {
+export default function Appointment({isDoctor=false, date, hour, name, visitType, onCancelClick, onEditClick}) {
     return (
         <div
             className={`relative text-left w-[644px] h-[150px]`}
@@ -18,7 +18,7 @@ export default function Appointment({isDoctor=false, date, hour, personName, vis
                 <p className="text-xl font-bold inline m-0 leading-[normal]">{hour}</p>
             </div>
             <p className="absolute text-base font-light text-black inline m-0 h-[27px] w-[182px] left-[2.33%] right-[69.41%] top-[46%] bottom-[36%] leading-[normal]">
-                {personName}
+                {name}
             </p>
             <p onClick={onLinkClick(isDoctor, onCancelClick, onEditClick)} className="underline hover:text-pink-500 right-0 absolute text-sm font-light text-black inline m-0 h-[27px] w-[123px] left-[80.9%] top-[76.67%] bottom-[5.33%] leading-[normal]">
                 {cancelOrEditText(isDoctor)}
