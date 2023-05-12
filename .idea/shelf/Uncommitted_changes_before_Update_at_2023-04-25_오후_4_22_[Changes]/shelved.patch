@@ -1,0 +1,112 @@
+Index: frontend/docweb/src/pages/PatientDashboard.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from \"react\";\r\nimport Button from \"../components/Button\";\r\nimport InputField from \"../components/InputField\";\r\nimport PageContainer from \"../components/PageContainer\";\r\nimport Appointment from \"../components/Appointment\";\r\nimport AppointmentDark from \"../components/AppointmentDark\";\r\nimport WeekInput from \"../components/WeekInput\";\r\nimport AccountDetail from \"../components/AccountDetail\";\r\nimport ClosableHealthResult from \"../components/ClosableHealthResult\"\r\n\r\n\r\nexport default function PatientDashboard({}) {\r\n    return (\r\n        <PageContainer title=\"All appointments\">\r\n          <div className=\"mb-4 flex flex-col space-y-5\">\r\n            <Button label=\"Button\"></Button>\r\n            <Button label=\"Button\" color=\"pink outline\"></Button>\r\n            <Button label=\"Button\" color=\"green outline\"></Button>\r\n            <Button label=\"Button\" color=\"pink big\"></Button>\r\n              <Appointment isDark={true} isDoctor={false} date={\"18.03.2020\"} hour={\"8:00\"} personName={\"Doctor Mary Wilson\"} visitType=\"Regular checkup\"></Appointment>\r\n              <AppointmentDark date={\"18.03.2020\"} hour={\"8:00\"} personName={\"Doctor Mary Wilson\"} visitType=\"Regular checkup\"></AppointmentDark>\r\n              <WeekInput></WeekInput>\r\n            <InputField>Input</InputField>\r\n            <AccountDetail name={\"Alan\"} surName={\"Walker\"} userName={\"Alan234\"} gender={\"Male\"} phoneNumber={\"+48 123 456 789\"} specialty={\"neurologist\"}></AccountDetail>\r\n            <ClosableHealthResult num={1} date={\"10.03.2022\"} patientName={\"Walker\"} bloodSugar={123} heartRate={98} bloodPressure={71}\r\n            description={\"Lorem Ipsum is simply dummy text of the printing and typesettin industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially.\"}></ClosableHealthResult>\r\n          </div>\r\n        </PageContainer>\r\n      );\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/docweb/src/pages/PatientDashboard.js b/frontend/docweb/src/pages/PatientDashboard.js
+--- a/frontend/docweb/src/pages/PatientDashboard.js	(revision eccd6d7d606c0e0d0bba2ca09041ea6bbf69af20)
++++ b/frontend/docweb/src/pages/PatientDashboard.js	(date 1682374985684)
+@@ -7,6 +7,7 @@
+ import WeekInput from "../components/WeekInput";
+ import AccountDetail from "../components/AccountDetail";
+ import ClosableHealthResult from "../components/ClosableHealthResult"
++import Calendar from "../components/Calendar";
+ 
+ 
+ export default function PatientDashboard({}) {
+@@ -24,6 +25,7 @@
+             <AccountDetail name={"Alan"} surName={"Walker"} userName={"Alan234"} gender={"Male"} phoneNumber={"+48 123 456 789"} specialty={"neurologist"}></AccountDetail>
+             <ClosableHealthResult num={1} date={"10.03.2022"} patientName={"Walker"} bloodSugar={123} heartRate={98} bloodPressure={71}
+             description={"Lorem Ipsum is simply dummy text of the printing and typesettin industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially."}></ClosableHealthResult>
++            <Calendar label="Calendar"></Calendar>
+           </div>
+         </PageContainer>
+       );
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5fa2c3e7-3a15-4633-b48f-0809dd9b35bc\" name=\"Changes\" comment=\"just for test\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/AppoinmentDto.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/AppointmentDto.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/HealthResultDto.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/HealthResultDto.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Appointment.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Appointment.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Doctor.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Doctor.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/frontend/docweb/src/components/WeekInput.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/docweb/src/components/WeekInput.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeStyleSettingsInfer\">\r\n    <option name=\"done\" value=\"true\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/backend/src/main/java/com/example/docweb/DocWebApplication.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"JpbToolWindowState\">\r\n    <option name=\"myId2FirstActivated\">\r\n      <map>\r\n        <entry key=\"com.haulmont.jpb.jpaInspector\" value=\"true\" />\r\n        <entry key=\"com.haulmont.jpb.jpaPalette\" value=\"true\" />\r\n        <entry key=\"com.haulmont.jpb.jpaStructure\" value=\"true\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"myId2Visible\">\r\n      <map>\r\n        <entry key=\"com.haulmont.jpb.jpaInspector\" value=\"false\" />\r\n        <entry key=\"com.haulmont.jpb.jpaPalette\" value=\"false\" />\r\n        <entry key=\"com.haulmont.jpb.jpaStructure\" value=\"false\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2OZespTS3TVkvr7ySNIAmH50HA3\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$PROJECT_DIR$/../..\" />\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5fa2c3e7-3a15-4633-b48f-0809dd9b35bc\" name=\"Changes\" comment=\"\" />\r\n      <created>1681772743737</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1681772743737</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"fixed dtos and addeed mappers\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"fixed dtos and addeed mappers\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision eccd6d7d606c0e0d0bba2ca09041ea6bbf69af20)
++++ b/.idea/workspace.xml	(date 1682374986239)
+@@ -4,13 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="just for test">
++    <list default="true" id="b2d31644-712b-4313-be53-49c2826fc2f9" name="Changes" comment="added all services + fix to repository (added queries) + added address + deleted admin">
++      <change afterPath="$PROJECT_DIR$/frontend/docweb/src/components/Calendar.js" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/AppoinmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/AppointmentDto.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/HealthResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/HealthResultDto.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Appointment.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Doctor.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/WeekInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/WeekInput.js" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -28,10 +25,16 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="HighlightingSettingsPerFile">
+     <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/example/docweb/DocWebApplication.java" root0="FORCE_HIGHLIGHTING" />
++    <setting file="file://$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Patient.java" root0="FORCE_HIGHLIGHTING" />
+   </component>
+   <component name="JpbToolWindowState">
+     <option name="myId2FirstActivated">
+@@ -57,12 +60,11 @@
+   <component name="ProjectViewState">
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">
+-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../.." />
+-  </component>
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "last_opened_file_path": "D:/docWeb"
++  }
++}]]></component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+Index: frontend/docweb/src/components/Calendar.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/docweb/src/components/Calendar.js b/frontend/docweb/src/components/Calendar.js
+new file mode 100644
+--- /dev/null	(date 1682374985695)
++++ b/frontend/docweb/src/components/Calendar.js	(date 1682374985695)
+@@ -0,0 +1,13 @@
++import React, { useState } from 'react';
++import Calendar from 'react-calendar';
++import 'react-calendar/dist/Calendar.css'; // css import
++
++export default function Calendar() {
++  const [value, onChange] = useState(new Date());
++
++  return (
++    <div>
++      <Calendar onChange={onChange} value={value} />
++    </div>
++  );
++}
+\ No newline at end of file

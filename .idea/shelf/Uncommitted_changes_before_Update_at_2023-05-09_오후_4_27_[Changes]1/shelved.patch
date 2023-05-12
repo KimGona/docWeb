@@ -1,0 +1,24 @@
+Index: frontend/docweb/src/components/Calendar.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/docweb/src/components/Calendar.js b/frontend/docweb/src/components/Calendar.js
+new file mode 100644
+--- /dev/null	
++++ b/frontend/docweb/src/components/Calendar.js	
+@@ -0,0 +1,13 @@
++import React, { useState } from 'react';
++import Calendar from 'react-calendar';
++import 'react-calendar/dist/Calendar.css'; // css import
++
++export default function Calendar() {
++  const [value, onChange] = useState(new Date());
++
++  return (
++    <div>
++      <Calendar onChange={onChange} value={value} />
++    </div>
++  );
++}
+\ No newline at end of file

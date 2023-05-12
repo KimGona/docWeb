@@ -1,0 +1,45 @@
+Index: .idea/runConfigurations.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/runConfigurations.xml b/.idea/runConfigurations.xml
+deleted file mode 100644
+--- a/.idea/runConfigurations.xml	
++++ /dev/null	
+@@ -1,10 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<project version="4">
+-  <component name="RunConfigurationProducerService">
+-    <option name="ignoredProducers">
+-      <set>
+-        <option value="com.android.tools.idea.compose.preview.runconfiguration.ComposePreviewRunConfigurationProducer" />
+-      </set>
+-    </option>
+-  </component>
+-</project>
+\ No newline at end of file
+Index: frontend/docweb/src/pages/PatientDashboard.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/docweb/src/pages/PatientDashboard.js b/frontend/docweb/src/pages/PatientDashboard.js
+--- a/frontend/docweb/src/pages/PatientDashboard.js	
++++ b/frontend/docweb/src/pages/PatientDashboard.js	
+@@ -7,6 +7,7 @@
+ import WeekInput from "../components/WeekInput";
+ import AccountDetail from "../components/AccountDetail";
+ import ClosableHealthResult from "../components/ClosableHealthResult"
++import Calendar from "../components/Calendar";
+ 
+ 
+ export default function PatientDashboard({}) {
+@@ -24,6 +25,7 @@
+             <AccountDetail name={"Alan"} surName={"Walker"} userName={"Alan234"} gender={"Male"} phoneNumber={"+48 123 456 789"} specialty={"neurologist"}></AccountDetail>
+             <ClosableHealthResult num={1} date={"10.03.2022"} patientName={"Walker"} bloodSugar={123} heartRate={98} bloodPressure={71}
+             description={"Lorem Ipsum is simply dummy text of the printing and typesettin industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially."}></ClosableHealthResult>
++            <Calendar label="Calendar"></Calendar>
+           </div>
+         </PageContainer>
+       );
