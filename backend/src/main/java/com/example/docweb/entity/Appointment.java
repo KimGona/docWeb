@@ -5,7 +5,6 @@ import lombok.Data;
 
 import java.util.Date;
 
-@Entity
 @Data
 @Table(name="Appointment")
 public class Appointment {

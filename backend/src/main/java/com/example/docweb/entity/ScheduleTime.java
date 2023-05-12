@@ -4,11 +4,9 @@ import com.example.docweb.dto.TimeDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.print.Doc;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Entity
 @Data
 @Table(name = "schedule_times")
 public class ScheduleTime {

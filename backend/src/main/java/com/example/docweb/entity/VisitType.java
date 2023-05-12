@@ -3,7 +3,6 @@ import com.example.docweb.dto.VisitTypeDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
 @Data
 @Table(name = "visit_types")
 public class VisitType {

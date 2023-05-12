@@ -37,6 +37,7 @@ export default function PatientDashboard({}) {
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <PageContainer title="All appointments">
           <div className="mb-4 flex flex-col space-y-5">
+          <p>test</p>
             <Button label="Button"></Button>
             <Button label="Button" color="pink outline"></Button>
             <Button label="Button" color="green outline"></Button>

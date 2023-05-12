@@ -3,9 +3,6 @@ import com.example.docweb.dto.HealthResultDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
-@Entity
 @Data
 @Table(name = "health_results")
 public class HealthResult {

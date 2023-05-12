@@ -8,7 +8,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Entity
 @Data
 @Table(name = "free_times")
 public class FreeTime {

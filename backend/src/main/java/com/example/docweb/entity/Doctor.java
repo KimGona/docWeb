@@ -11,7 +11,6 @@ import lombok.Data;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Entity
 @Data
 @Table(name = "doctors")
 public class Doctor {

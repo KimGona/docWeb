@@ -11,6 +11,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import RegisterDoctor from './pages/RegisterDoctor';
 import RegisterAdmin from './pages/RegisterAdmin';
+import DoctorAccount from './pages/DoctorAccount';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -54,9 +55,18 @@ function getDoctorScreen (user, screen){
   }
 }
 
+function getAccountScreen(user,screen){
+    switch (user){
+        case "ROLE_DOCTOR":
+            return screen;
+        default:
+            return <navigate to="/" replace/>;
+    }
+}
+
 function App() {
   const userList = ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'];
-  const [user, setUser] = useState('ROLE_ADMIN');
+  const [user, setUser] = useState('ROLE_DOCTOR');
 
   return (
     <Router>
@@ -72,6 +82,7 @@ function App() {
           <Route exact path='/view_appointments' element={getScreen(user, <PatientAppointments />, <DoctorAppointments />, <Navigate to="/" replace/>) } />
           <Route exact path='/register_admin' element={getAdminScreen(user, <RegisterAdmin />)} />
           <Route exact path="/register_doctor" element={getAdminScreen(user, <RegisterDoctor />)} />
+          <Route exact path="/account" element={getAccountScreen(user, <DoctorAccount />)} />
         </Route>
       </Routes>
     </Router>

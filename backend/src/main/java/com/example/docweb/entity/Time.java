@@ -3,7 +3,6 @@ import com.example.docweb.dto.TimeDto;
 import jakarta.persistence.*;
 import lombok.Data;
 
-@Entity
 @Data
 @Table(name = "times")
 public class Time {
