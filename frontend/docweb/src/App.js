@@ -56,7 +56,7 @@ function getDoctorScreen (user, screen){
 
 function App() {
   const userList = ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'];
-  const [user, setUser] = useState('ROLE_ADMIN');
+  const [user, setUser] = useState('ROLE_PATIENT');
 
   return (
     <Router>

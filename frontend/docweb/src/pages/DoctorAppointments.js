@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PageContainer from "../components/PageContainer";
 import Calendar from "../components/Calendar";
-import AppointmentWide from "../components/AppointmentWide";
+import AppointmentWideDoctor from "../components/AppointmentWideDoctor";
 
 export default function DoctorAppointments() {
   const [appointments, setAppointments] = useState([{
@@ -27,7 +27,7 @@ export default function DoctorAppointments() {
         <div className="justify-self-stretch space-y-8">
           {
             appointments.map( appointment =>
-              <AppointmentWide date={appointment.date} hour={appointment.hour} personName={appointment.name + " " + appointment.surname} visitType={appointment.visitType} />
+              <AppointmentWideDoctor date={appointment.date} hour={appointment.hour} personName={appointment.name + " " + appointment.surname} visitType={appointment.visitType} />
             )
           }
         </div>

@@ -1,5 +1,5 @@
 
-export default function AppointmentWide({date, hour, name, visitType, onClick}) {
+export default function AppointmentWideDoctor({date, hour, name, visitType, onClick}) {
     return (
         <div className="w-full border border-[3px] border-greenPrimary rounded-xl">
             <div className="w-full h-[50px] border border-[3px] border-greenPrimary bg-greenPrimary rounded-t-md flex flex-row space-x-6 items-center">
