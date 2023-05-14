@@ -1,12 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SimpleDialog from "./SimpleDialog";
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Button from "../Button";
 
-export default function VisitTypesDialog({open, onClose, onConfirm, visitTypes}) {
-    const [chosenArr, setChosenArr] = useState([]);
+function isChecked(visitType, chosen) {
+    if (chosen.includes(visitType)) return true;
+    else return false;
+}
+
+export default function VisitTypesDialog({open, onClose, onConfirm, visitTypes, selected}) {
+    const [chosenArr, setChosenArr] = useState(selected);
+
+    useEffect(()=>{
+        setChosenArr(selected)
+    },[selected])
 
     return (
         <SimpleDialog open={open} handleClose={onClose} title="Pick visit types">
@@ -27,7 +36,7 @@ export default function VisitTypesDialog({open, onClose, onConfirm, visitTypes})
                                 }
                                 setChosenArr(newArr);
                             }
-                        } name={visitType} />}
+                        } name={visitType} checked={isChecked(visitType, chosenArr)} />}
                         label={visitType}
                     />
                 )
