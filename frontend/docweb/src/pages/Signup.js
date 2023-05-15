@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GreenBackground from "../resources/green-background.png";
 import Button from "../components/Button";
 import InputFieldWithTitle from "../components/InputFieldWithTitle";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers';
+import RadioButtonGenderList from "../components/RadioButtonGender";
 
 
 export default function Signup({}) {
+    const [gender, setGender] = useState("female");
+
+    const onGenderChange = (event) => {
+        setGender(event)
+    } 
+
+
     return (
         <LocalizationProvider dateAdapter={AdapterDayjs}>
         <div className="w-full flex flex-col items-start ">
@@ -19,21 +27,21 @@ export default function Signup({}) {
                     <div className="grid grid-cols-2 gap-x-8 gap-y-4">
                         <InputFieldWithTitle title="Name" />
                         <InputFieldWithTitle title="Surname" />
-                        <div className="flex flex-row gap-4 items-center justify-center">
-                            {/* TODO: as date picker */}
-                            <div className="pt-2">
-                                <p className="pb-2">Birth date</p>
-                                <DatePicker
-                                    label="Date picker"
-                                    // value={value}
-                                    // onChange={(newValue) => setValue(newValue)}
-                                />
-                            </div>
-                            {/* TODO: as Dropdown */}
-                            <InputFieldWithTitle title="Gender" width="w-[50px]" />
-
-                        </div>
                         <InputFieldWithTitle title="Address" />
+                        <div>    
+                            <p className="pb-2">Gender</p>
+                            <RadioButtonGenderList chosenValue={gender} onButtonChosen={onGenderChange}/>
+                        </div>
+                        <div className="pt-2">
+                            <p className="pb-2">Birth date</p>
+                            <DatePicker
+                                label="Date picker"
+                                // value={value}
+                                // onChange={(newValue) => setValue(newValue)}
+                            />
+                        </div>
+                        
+                        <div></div>
                         <InputFieldWithTitle title="Username" />
                         <div></div>
                         <InputFieldWithTitle title="Password" />

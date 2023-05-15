@@ -12,7 +12,9 @@ const NavLayout = ({children}) => {
     </>
 };
 
-export default function ProtectedRoutes({user}) {
+export default function ProtectedRoutes({user, isHidden}) {
+    if (isHidden) return <NavLayout></NavLayout>;
+    
     switch(user) {
         case "ROLE_PATIENT":
             return <NavLayout><PatientNavbar/></NavLayout>;

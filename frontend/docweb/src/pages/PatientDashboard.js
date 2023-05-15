@@ -62,7 +62,7 @@ export default function PatientDashboard({}) {
             <div className="justify-self-stretch space-y-8">
                 <div className="grid grid-cols-1 justify-items-start space-y-8">
                 <Appointments appointments={appointments} />
-                <NavButton path="/add-appointment" text="+ Add new appointment" />
+                <NavButton path="/appointment_doctors" text="+ Add new appointment" />
                 </div>
             </div>
             <div className="justify-self-center px-20 py-14 bg-greenLight border border-2 border-greenPrimary space-y-6">
