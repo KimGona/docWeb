@@ -12,7 +12,7 @@ const navRow = (
 
 export default function AdminNavbar({}) {
     return (
-        <div className="w-screen flex justify-between">
+        <div className="w-screen flex justify-between pr-4">
             <NavItemDocapp path="/" text="Docapp" />
             <div>{navRow}</div>
         </div>

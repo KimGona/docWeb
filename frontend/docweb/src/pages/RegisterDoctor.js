@@ -25,11 +25,7 @@ export default function RegisterDoctor({}) {
     const handleOpen = (value) => setOpen(value);
 
     const onConfirm = (newVisitTypes) => {
-        const set = new Set(addedVisitTypes);
-        const extendedSet = new Set([ ...set, ...newVisitTypes ]);
-        console.log("on confirm new array");
-        console.log([...extendedSet]);
-        setAddedVisitTypes([...extendedSet]);
+        setAddedVisitTypes(newVisitTypes);
     };
 
     const removeItem = (visitType) => {
@@ -92,7 +88,13 @@ export default function RegisterDoctor({}) {
                         <p className="text-xl font-medium">Visit types</p>
                         <VisitTypes visitTypes={addedVisitTypes} onClick={(visitType) => removeItem(visitType)} />
                         <Button color="pink outline" label="+ Add visit type" onClick={() => handleOpen(true)} />
-                        <VisitTypesDialog title="hello" open={open} onClose={() => handleOpen(false)} onConfirm={(newVisitTypes) => onConfirm(newVisitTypes)} visitTypes={allVisitTypes} />
+                        <VisitTypesDialog 
+                            title="hello" 
+                            open={open} 
+                            onClose={() => handleOpen(false)} 
+                            onConfirm={(newVisitTypes) => onConfirm(newVisitTypes)} 
+                            visitTypes={allVisitTypes} 
+                            selected={addedVisitTypes}/>
                     </div>
         
                     <Button color="pink xl" label="Create account" />

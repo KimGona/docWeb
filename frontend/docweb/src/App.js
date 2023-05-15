@@ -11,6 +11,9 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import RegisterDoctor from './pages/RegisterDoctor';
 import RegisterAdmin from './pages/RegisterAdmin';
+import DoctorAccount from './pages/DoctorAccount';
+import AppointmentDoctors from './pages/AppointmentDoctors';
+import AppointmentVisitTypes from './pages/AppointmentVisitTypes';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -56,12 +59,16 @@ function getDoctorScreen (user, screen){
 
 function App() {
   const userList = ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'];
-  const [user, setUser] = useState('ROLE_ADMIN');
+  const [user, setUser] = useState('ROLE_PATIENT');
+  
+  const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time"]
 
+  console.log(window.location.pathname)
+  
   return (
     <Router>
       <Routes>
-        <Route element={<ProtectedRoutes user={user}/>}>
+        <Route element={<ProtectedRoutes user={user} isHidden={hiddenNavbarRoutes.includes(window.location.pathname)}/>}>
           {/*Logged out screens*/}
           <Route exact path="/join_us" element={getLoggedOutScreen(user, <JoinUs />)} />
           <Route exact path="/login" element={getLoggedOutScreen(user, <Login />)} />
@@ -70,6 +77,12 @@ function App() {
           {/*Logged in screens*/}
           <Route exact path='/' element={getScreen(user, <PatientDashboard />, <DoctorDashboard />, <AdminDashboard />) } />
           <Route exact path='/view_appointments' element={getScreen(user, <PatientAppointments />, <DoctorAppointments />, <Navigate to="/" replace/>) } />
+          <Route exact path='/account' element={getScreen(user, <Navigate to="/" replace/>, <DoctorAccount />, <Navigate to="/" replace/>) } />
+          <Route exact path='/appointment_doctors' element={getScreen(user, <AppointmentDoctors />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
+          <Route exact path='/appointment_visit_types' element={getScreen(user, <AppointmentVisitTypes />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
+          <Route exact path='/appointment_time' element={getScreen(user, <Navigate to="/" replace/>, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
+
+          {/*Admin only*/}
           <Route exact path='/register_admin' element={getAdminScreen(user, <RegisterAdmin />)} />
           <Route exact path="/register_doctor" element={getAdminScreen(user, <RegisterDoctor />)} />
         </Route>

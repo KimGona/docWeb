@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PageContainer from "../components/PageContainer";
-import AppointmentWide from "../components/AppointmentWide";
+import AppointmentWideDoctor from "../components/AppointmentWideDoctor";
 import CalendarWithVisits from "../components/CalendarWithVisits";
 
 export default function DoctorDashboard() {
@@ -27,7 +27,7 @@ export default function DoctorDashboard() {
             <div className="justify-self-stretch space-y-8">
               {
                 appointments.map( appointment =>
-                  <AppointmentWide date={appointment.date} hour={appointment.hour} personName={appointment.name + " " + appointment.surname} visitType={appointment.visitType} />
+                  <AppointmentWideDoctor date={appointment.date} hour={appointment.hour} name={appointment.name + " " + appointment.surname} visitType={appointment.visitType} />
                 )
               }
             </div>

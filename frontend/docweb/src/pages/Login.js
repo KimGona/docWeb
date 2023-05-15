@@ -3,9 +3,17 @@ import GreenBackground from "../resources/green-background.png";
 import InputField from "../components/InputField";
 import Button from "../components/Button";
 import HorizontalLineWithText from "../components/HorizontalLineWithText";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Login({}) {
+    const navigate = useNavigate();
+
+    const openSignUp = () => {
+        navigate('/sign_up')
+        window.location.reload();
+    }
+
     return (
         <div className="w-full flex flex-col items-start ">
             <img className="absolute object-contain" src={GreenBackground} alt="radio button" />
@@ -27,7 +35,7 @@ export default function Login({}) {
                     <div className="pt-5">
                         <HorizontalLineWithText />
                     </div>
-                    <Button color="green outline xl" label="Create account" />
+                    <Button color="green outline xl" label="Create account" onClick={openSignUp}/>
                 </div>
             </div>
         </div>
