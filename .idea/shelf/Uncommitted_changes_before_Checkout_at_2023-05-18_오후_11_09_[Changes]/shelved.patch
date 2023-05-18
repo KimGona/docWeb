@@ -1,0 +1,125 @@
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09_오후_4_27_[Changes]1/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09_오후_4_27_[Changes]1/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09_오후_4_27_[Changes]1/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09_오후_4_27_[Changes]1/shelved.patch	(revision 0e0d397c3a68b05c55fd59a1597d77c8601debfd)
++++ /dev/null	(revision 0e0d397c3a68b05c55fd59a1597d77c8601debfd)
+@@ -1,24 +0,0 @@
+-Index: frontend/docweb/src/components/Calendar.js
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/frontend/docweb/src/components/Calendar.js b/frontend/docweb/src/components/Calendar.js
+-new file mode 100644
+---- /dev/null	
+-+++ b/frontend/docweb/src/components/Calendar.js	
+-@@ -0,0 +1,13 @@
+-+import React, { useState } from 'react';
+-+import Calendar from 'react-calendar';
+-+import 'react-calendar/dist/Calendar.css'; // css import
+-+
+-+export default function Calendar() {
+-+  const [value, onChange] = useState(new Date());
+-+
+-+  return (
+-+    <div>
+-+      <Calendar onChange={onChange} value={value} />
+-+    </div>
+-+  );
+-+}
+-\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09__4_27__Changes_1.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09__4_27__Changes_1.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09__4_27__Changes_1.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09__4_27__Changes_1.xml	(revision 0e0d397c3a68b05c55fd59a1597d77c8601debfd)
++++ /dev/null	(revision 0e0d397c3a68b05c55fd59a1597d77c8601debfd)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_2023-05-09_오후_4_27_[Changes]1" date="1683617240945" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09_오후_4_27_[Changes]1/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 2023-05-09 오후 4:27 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"5fa2c3e7-3a15-4633-b48f-0809dd9b35bc\" name=\"Changes\" comment=\"user endpoint fix\">\r\n      <change afterPath=\"$PROJECT_DIR$/frontend/docweb/src/components/CalendarForPatient.js\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/frontend/docweb/src/components/dialogs/NewAppointmentDialog.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/runConfigurations.xml\" beforeDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/frontend/docweb/src/App.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/docweb/src/App.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/frontend/docweb/src/components/Appointment.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/docweb/src/components/Appointment.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/frontend/docweb/src/pages/PatientAppointments.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/docweb/src/pages/PatientAppointments.js\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CodeStyleSettingsInfer\">\r\n    <option name=\"done\" value=\"true\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Kotlin Class\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\r\n      <map>\r\n        <entry key=\"$PROJECT_DIR$\" value=\"main\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/backend/src/main/java/com/example/docweb/DocWebApplication.java\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"JpbToolWindowState\">\r\n    <option name=\"myId2FirstActivated\">\r\n      <map>\r\n        <entry key=\"com.haulmont.jpb.jpaInspector\" value=\"true\" />\r\n        <entry key=\"com.haulmont.jpb.jpaPalette\" value=\"true\" />\r\n        <entry key=\"com.haulmont.jpb.jpaStructure\" value=\"true\" />\r\n      </map>\r\n    </option>\r\n    <option name=\"myId2Visible\">\r\n      <map>\r\n        <entry key=\"com.haulmont.jpb.jpaInspector\" value=\"false\" />\r\n        <entry key=\"com.haulmont.jpb.jpaPalette\" value=\"false\" />\r\n        <entry key=\"com.haulmont.jpb.jpaStructure\" value=\"false\" />\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectCodeStyleSettingsMigration\">\r\n    <option name=\"version\" value=\"2\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2OZespTS3TVkvr7ySNIAmH50HA3\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"last_opened_file_path\": \"D:/docWeb\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\docWeb\\frontend\\docweb\\src\\components\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"5fa2c3e7-3a15-4633-b48f-0809dd9b35bc\" name=\"Changes\" comment=\"\" />\r\n      <created>1681772743737</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1681772743737</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"typo fix\">\r\n      <created>1681803531486</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1681803531486</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"added controller + fixed whole backend + login works\">\r\n      <created>1682278631100</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1682278631100</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"3\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"fixed dtos and addeed mappers\" />\r\n    <MESSAGE value=\"typo fix\" />\r\n    <MESSAGE value=\"added controller + fixed whole backend + login works\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"added controller + fixed whole backend + login works\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 0e0d397c3a68b05c55fd59a1597d77c8601debfd)
++++ b/.idea/workspace.xml	(date 1684418684774)
+@@ -4,15 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="user endpoint fix">
+-      <change afterPath="$PROJECT_DIR$/frontend/docweb/src/components/CalendarForPatient.js" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/NewAppointmentDialog.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
++    <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="added Patient Dashboard and Patient Appointment Page">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09__4_27__Changes_1.xml" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2023-05-09_오후_4_27_[Changes]1/shelved.patch" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/App.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/Appointment.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/Appointment.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAppointments.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAppointments.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -68,13 +63,13 @@
+   <component name="ProjectViewState">
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "last_opened_file_path": "D:/docWeb"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;D:/docWeb&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="MoveFile.RECENT_KEYS">
+       <recent name="D:\docWeb\frontend\docweb\src\components" />
+@@ -103,7 +98,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1682278631100</updated>
+     </task>
+-    <option name="localTasksCounter" value="3" />
++    <task id="LOCAL-00003" summary="added Patient Dashboard and Patient Appointment Page">
++      <created>1683927563132</created>
++      <option name="number" value="00003" />
++      <option name="presentableId" value="LOCAL-00003" />
++      <option name="project" value="LOCAL" />
++      <updated>1683927563133</updated>
++    </task>
++    <task id="LOCAL-00004" summary="added Patient Dashboard and Patient Appointment Page">
++      <created>1683927643451</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1683927643451</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -121,6 +130,7 @@
+     <MESSAGE value="fixed dtos and addeed mappers" />
+     <MESSAGE value="typo fix" />
+     <MESSAGE value="added controller + fixed whole backend + login works" />
+-    <option name="LAST_COMMIT_MESSAGE" value="added controller + fixed whole backend + login works" />
++    <MESSAGE value="added Patient Dashboard and Patient Appointment Page" />
++    <option name="LAST_COMMIT_MESSAGE" value="added Patient Dashboard and Patient Appointment Page" />
+   </component>
+ </project>
+\ No newline at end of file
