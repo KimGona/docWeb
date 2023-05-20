@@ -44,6 +44,7 @@ export default function AppointmentSummary() {
 
   const onConfirmAppointment = () => {
     navigate('/appointment_confirmation');
+    window.location.reload();
   };
 
     return (
