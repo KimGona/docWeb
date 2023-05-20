@@ -3,27 +3,40 @@ import PageContainer from "../components/PageContainer";
 import SearchField from "../components/SearchField";
 import Button from "../components/Button";
 import RadioButtonDoctorList from "../components/RadioButton";
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 export default function AppointmentDoctors() {
+  const {state} = useLocation();
+  const { appointment } = state;
+  
+  const getInitialId = () => {
+    if (appointment.doctor.id !== 0)
+      return appointment.doctor.id;
+    else return doctors[0].id;
+  };
+
   const [doctors, setDoctors] = useState([
     {
       "id": 1,
       "name": "Ellen",
+      "surname": "Walker",
       "specialty": "Neuroseurgon"
     },
     {
       "id": 2,
       "name": "Hellen",
+      "surname": "Mocker",
       "specialty": "Neuroseurgon"
     },
     {
       "id": 3,
       "name": "Melon",
+      "surname": "Pucker",
       "specialty": "Neuroseurgon"
     },
   ]);
-  const [selectedDoctorId, setSelectedDoctorId] = useState(doctors[0].id)
+  const [selectedDoctorId, setSelectedDoctorId] = useState(getInitialId())
 
   const onDoctorChosen = (event) => {
     console.log(event)
@@ -35,7 +48,12 @@ export default function AppointmentDoctors() {
   const navigate = useNavigate();
   
   const onNextClick = () => {
-    navigate('/appointment_visit_types', { state: { doctor: doctorChosen } });
+    let app = {...appointment}
+    app.doctor = doctorChosen
+    navigate('/appointment_visit_types', { state: { 
+      appointment: app
+    } });
+    // navigate('/appointment_visit_types', { state: { doctor: doctorChosen } });
   };
 
     return (

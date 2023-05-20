@@ -14,6 +14,9 @@ import RegisterAdmin from './pages/RegisterAdmin';
 import DoctorAccount from './pages/DoctorAccount';
 import AppointmentDoctors from './pages/AppointmentDoctors';
 import AppointmentVisitTypes from './pages/AppointmentVisitTypes';
+import AppointmentTime from './pages/AppointmentTime';
+import AppointmentConfirmation from './pages/AppointmentConfirmation';
+import AppointmentSummary from './pages/AppointmentSummary';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -80,7 +83,9 @@ function App() {
           <Route exact path='/account' element={getScreen(user, <Navigate to="/" replace/>, <DoctorAccount />, <Navigate to="/" replace/>) } />
           <Route exact path='/appointment_doctors' element={getScreen(user, <AppointmentDoctors />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_visit_types' element={getScreen(user, <AppointmentVisitTypes />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
-          <Route exact path='/appointment_time' element={getScreen(user, <Navigate to="/" replace/>, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
+          <Route exact path='/appointment_time' element={getScreen(user, <AppointmentTime />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
+          <Route exact path='/appointment_summary' element={getScreen(user, <AppointmentSummary />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
+          <Route exact path='/appointment_confirmation' element={getScreen(user, <AppointmentConfirmation />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
 
           {/*Admin only*/}
           <Route exact path='/register_admin' element={getAdminScreen(user, <RegisterAdmin />)} />
