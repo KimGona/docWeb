@@ -5,6 +5,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Calendar from "../components/Calendar";
 import AppointmentWidePatient from "../components/AppointmentWidePatient";
 import NavButton from "../components/navigation_components/NavButton";
+import { useNavigate } from "react-router-dom";
+import Button from "../components/Button";
 
 function Appointments({appointments}) {
   if (appointments.length <= 0)
@@ -36,24 +38,28 @@ export default function PatientDashboard({}) {
   const [chosenDate, setChosenDate] = useState();
   const [highlightedDays, setHighlightedDays] = React.useState([0, 2, 4, 15, 16, 17]);
 
-    const [doctorList, setDoctorList] = useState(
-      [
-        {
-          "id": 1,
-          "name": "Dr Andy"
-        },
-        {
-          "id": 2,
-          "name": "Dr Bruck"
-        },
-        {
-          "id": 3,
-          "name": "Dr Mellon"
-        },
-      ]
-    );
-
-    const [chosenDoctorId, setChosenDoctorId] = useState(1);
+  const navigate = useNavigate();
+  
+  const onAddNewAppointement = () => {
+    let app = {
+      "doctor": {
+        "id": 0,
+        "name": "",
+        "surname": "",
+        "specialty": "",
+      },
+      "visitType": {
+        "id": 0,
+        "name": "",
+      },
+      "date": "",
+      "hour": 0,
+    }
+    navigate('/appointment_doctors', { state: { 
+      appointment: app
+    } });
+    window.location.reload();
+  };
 
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -62,7 +68,7 @@ export default function PatientDashboard({}) {
             <div className="justify-self-stretch space-y-8">
                 <div className="grid grid-cols-1 justify-items-start space-y-8">
                 <Appointments appointments={appointments} />
-                <NavButton path="/appointment_doctors" text="+ Add new appointment" />
+                <Button color="pink" label="+ Add new appointment" onClick={onAddNewAppointement}/>
                 </div>
             </div>
             <div className="justify-self-center px-20 py-14 bg-greenLight border border-2 border-greenPrimary space-y-6">

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PageContainer from "../components/PageContainer";
-import SearchField from "../components/SearchField";
 import Button from "../components/Button";
 import RadioButtonVisitTypeList from "../components/RadioButtonVisitTypeList";
 import { useLocation } from 'react-router-dom';
@@ -8,7 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function AppointmentVisitTypes() {
   const {state} = useLocation();
-  const { doctor } = state;
+  const { appointment } = state;
+
+  const getInitialId = () => {
+    if (appointment.visitType.name !== "")
+      return appointment.visitType.id;
+    else return visitTypes[0].id;
+  };
 
   const [visitTypes, setVisitTypes] = useState([
     {
@@ -24,7 +29,7 @@ export default function AppointmentVisitTypes() {
       "name": "Sudden appointment",
     },
   ]);
-  const [selectedVisitTypeId, setVisitTypeId] = useState(visitTypes[0].id)
+  const [selectedVisitTypeId, setVisitTypeId] = useState(getInitialId());
 
   const onVisitTypeChosen = (event) => {
     console.log(event)
@@ -36,9 +41,10 @@ export default function AppointmentVisitTypes() {
   const navigate = useNavigate();
   
   const onNextClick = () => {
+    let app = {...appointment}
+    app.visitType = visitTypeChosen
     navigate('/appointment_time', { state: { 
-        doctor: doctor,
-        visitType: visitTypeChosen
+      appointment: app
     } });
   };
 
@@ -54,18 +60,17 @@ export default function AppointmentVisitTypes() {
               <p className="text-zinc-700 font-semibold text-3xl">Summary</p>
               <div>
                 <p className="text-zinc-700 text-thin text-xl">Chosen doctor</p>
-                <p className="text-black text-medium text-2xl">{doctor.name}</p>
+                <p className="text-black text-medium text-2xl">{appointment.doctor.name}</p>
               </div>
               
               <div>
-                <p className="text-zinc-700 text-thin text-xl">Chosen doctor</p>
+                <p className="text-zinc-700 text-thin text-xl">Visit type</p>
                 <p className="text-black text-medium text-2xl">{visitTypeChosen.name}</p>
               </div>
             </div>
 
             <div className="fixed right-20 bottom-10">
               <div className="relative">
-                {/* for later screens */}
                 <div className="flex flex-col items-center gap-y-4">
                 <Button color="green outline big" label="Return" onClick={onReturnClick}/>
                 <Button color="pink big" label="Next" onClick={onNextClick}/>
@@ -77,11 +82,12 @@ export default function AppointmentVisitTypes() {
           {/* Screen content */}
           </div>
           <div className="pr-80 pt-10 w-full flex flex-col space-y-6">
-            <p className="text-2xl font-medium">Find a doctor</p>
-            <div className="flex flex-row space-x-10 items-center pb-10">
-              <SearchField />
-              <Button color="green" label="Search" />
-            </div>
+              <div className="w-full pb-10">
+                <p className="text-2xl font-medium pb-6">Your specialist</p>
+                <h1 className="text-4xl font-semibold">Dr {appointment.doctor.name}</h1>
+                <p className="text-2xl font-normal text-zinc-700 pb-10">{appointment.doctor.specialty}</p>
+                <hr className="border-1"></hr>
+              </div>
             <RadioButtonVisitTypeList list={visitTypes} chosenButtonId={selectedVisitTypeId} onButtonChosen={onVisitTypeChosen}/>
           </div>
         </PageContainer>
