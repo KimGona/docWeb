@@ -17,6 +17,7 @@ import AppointmentVisitTypes from './pages/AppointmentVisitTypes';
 import AppointmentTime from './pages/AppointmentTime';
 import AppointmentConfirmation from './pages/AppointmentConfirmation';
 import AppointmentSummary from './pages/AppointmentSummary';
+import DoctorOffTime from './pages/DoctorOffTime';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -60,13 +61,17 @@ function getDoctorScreen (user, screen){
   }
 }
 
+function getSingleScreen (chosenUser, user, screen) {
+  if (chosenUser === user)
+    return screen;
+  else return <Navigate to="/" replace/>;
+}
+
 function App() {
   const userList = ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'];
-  const [user, setUser] = useState('ROLE_PATIENT');
+  const [user, setUser] = useState('ROLE_DOCTOR');
   
   const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time"]
-
-  console.log(window.location.pathname)
   
   return (
     <Router>
@@ -86,6 +91,9 @@ function App() {
           <Route exact path='/appointment_time' element={getScreen(user, <AppointmentTime />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_summary' element={getScreen(user, <AppointmentSummary />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_confirmation' element={getScreen(user, <AppointmentConfirmation />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
+
+          {/*Doctor only*/}
+          <Route exact path='/check_off_time' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorOffTime />)} />
 
           {/*Admin only*/}
           <Route exact path='/register_admin' element={getAdminScreen(user, <RegisterAdmin />)} />
