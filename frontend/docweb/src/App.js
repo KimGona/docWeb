@@ -18,6 +18,7 @@ import AppointmentTime from './pages/AppointmentTime';
 import AppointmentConfirmation from './pages/AppointmentConfirmation';
 import AppointmentSummary from './pages/AppointmentSummary';
 import DoctorOffTime from './pages/DoctorOffTime';
+import PatientChangeAppointment from './pages/PatientChangeAppointment';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -43,24 +44,6 @@ function getLoggedOutScreen (user, screen){
   }
 }
 
-function getAdminScreen (user, screen){
-  switch(user) {
-    case "ROLE_ADMIN":
-      return screen;
-    default:
-      return <Navigate to="/" replace/>;
-  }
-}
-
-function getDoctorScreen (user, screen){
-  switch(user) {
-    case "ROLE_DOCTOR":
-      return screen;
-    default:
-      return <Navigate to="/" replace/>;
-  }
-}
-
 function getSingleScreen (chosenUser, user, screen) {
   if (chosenUser === user)
     return screen;
@@ -69,9 +52,9 @@ function getSingleScreen (chosenUser, user, screen) {
 
 function App() {
   const userList = ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'];
-  const [user, setUser] = useState('ROLE_DOCTOR');
+  const [user, setUser] = useState('ROLE_PATIENT');
   
-  const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time"]
+  const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time", "/edit_appointment"]
   
   return (
     <Router>
@@ -94,10 +77,13 @@ function App() {
 
           {/*Doctor only*/}
           <Route exact path='/check_off_time' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorOffTime />)} />
+          
+          {/*Patient only*/}
+          <Route exact path='/edit_appointment' element={getSingleScreen("ROLE_PATIENT", user, <PatientChangeAppointment />)} />
 
           {/*Admin only*/}
-          <Route exact path='/register_admin' element={getAdminScreen(user, <RegisterAdmin />)} />
-          <Route exact path="/register_doctor" element={getAdminScreen(user, <RegisterDoctor />)} />
+          <Route exact path='/register_admin' element={getSingleScreen("ROLE_ADMIN", user, <RegisterAdmin />)} />
+          <Route exact path="/register_doctor" element={getSingleScreen("ROLE_ADMIN", <RegisterDoctor />)} />
         </Route>
       </Routes>
     </Router>

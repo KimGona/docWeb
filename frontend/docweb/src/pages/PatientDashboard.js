@@ -8,13 +8,13 @@ import NavButton from "../components/navigation_components/NavButton";
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 
-function Appointments({appointments}) {
+function Appointments({appointments, onClick}) {
   if (appointments.length <= 0)
       return <p className="text-zinc-500">You have no upcoming appointments.</p>;
   else 
       return (
         appointments.map( appointment =>
-          <AppointmentWidePatient date={appointment.date} hour={appointment.hour} name={appointment.name + " " + appointment.surname} visitType={appointment.visitType} />
+          <AppointmentWidePatient date={appointment.date} hour={appointment.hour} name={appointment.doctor.name + " " + appointment.doctor.surname} visitType={appointment.visitType.name} onClick={() => onClick(appointment)} />
         )
       );
 }
@@ -22,18 +22,32 @@ function Appointments({appointments}) {
 export default function PatientDashboard({}) {
   
   const [appointments, setAppointments] = useState([{
-    date: "10.04.23",
-    hour: "9:00",
-    name: "Allen",
-    surname: "Walker",
-    visitType: "Regular checkup"
+    "doctor": {
+      "id": 1,
+      "name": "Allen",
+      "surname": "Walker",
+      "specialty": "Endocrinologist",
+    },
+    "visitType": {
+      "id": 1,
+      "name": "RegularCheckup",
+    },
+    "date": "2023-05-10",
+    "hour": 9,
   }, 
   {
-    date: "10.04.23",
-    hour: "9:00",
-    name: "Allen",
-    surname: "Walker",
-    visitType: "Regular checkup"
+    "doctor": {
+      "id": 1,
+      "name": "Allen",
+      "surname": "Walker",
+      "specialty": "Endocrinologist",
+    },
+    "visitType": {
+      "id": 1,
+      "name": "RegularCheckup",
+    },
+    "date": "2023-05-10",
+    "hour": 9,
   }]);
   const [chosenDate, setChosenDate] = useState();
   const [highlightedDays, setHighlightedDays] = React.useState([0, 2, 4, 15, 16, 17]);
@@ -61,13 +75,20 @@ export default function PatientDashboard({}) {
     window.location.reload();
   };
 
+  const onEditClick = (app) => {
+    navigate('/edit_appointment', { state: { 
+      appointment: app
+    } });
+    window.location.reload();
+  };
+
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <PageContainer title="Upcoming appointments">
           <div className="w-full pt-10 grid grid-cols-2 place-start justify-items-start">
             <div className="justify-self-stretch space-y-8">
                 <div className="grid grid-cols-1 justify-items-start space-y-8">
-                <Appointments appointments={appointments} />
+                <Appointments appointments={appointments} onClick={onEditClick}/>
                 <Button color="pink" label="+ Add new appointment" onClick={onAddNewAppointement}/>
                 </div>
             </div>
