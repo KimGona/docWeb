@@ -22,7 +22,9 @@ function buttonStyle(color) {
             return "bg-transparent w-[300px] hover:bg-zinc-200 active:bg-zinc-300 border border-2 border-greenPrimary py-2 px-8 rounded-md text-greenPrimary text-xl font-semibold transition duration-150 ease-in-out";
         case "pink outline xl": 
             return "bg-transparent w-[300px] hover:bg-zinc-200 active:bg-zinc-300 border border-2 border-pink-400 py-2 px-8 rounded-md text-pink-400 text-xl font-semibold transition duration-150 ease-in-out";
-        
+        case "blue outline big":
+            return "bg-transparent hover:bg-zinc-200 active:bg-aqua border border-[3px] border-aqua py-[12px] px-8 rounded-md text-black text-xl font-semibold transition duration-150 ease-in-out";
+
     };
 }
 
