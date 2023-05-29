@@ -1,8 +1,13 @@
-export default function ClosableHealthResult({num,date, patientName,bloodSugar, bloodPressure,heartRate,description}) {
+function getTitle(isForPatient) {
+  if (isForPatient) return "Doctor"
+  else return "Patient"
+}
+
+export default function ClosableHealthResult({num,date, name,bloodSugar, bloodPressure,heartRate,description, isForPatient=true}) {
     return (
      <div className="relative w-[871px] h-[443px] text-left text-xl text-black font-lato">
-     <div className="absolute top-[0px] left-[0px] rounded-3xs bg-white box-border w-[871px] h-[443px] border-[3px] border-solid border-darkseagreen-100" />
-           <div className="absolute top-[0px] left-[0px] rounded-3xs bg-darkseagreen-100 w-[871px] h-[68px]" />
+     <div className="absolute top-[0px] left-[0px] rounded-md bg-white box-border w-[871px] h-[443px] border-[3px] border-solid border-greenPrimary" />
+           <div className="absolute top-[0px] left-[0px] rounded-md bg-greenPrimary w-[871px] h-[68px]" />
                 <b className="absolute top-[18px] left-[28.4px] text-10xl inline-block text-white w-[279.96px]">
                   Health result {num}
                 </b>
@@ -13,11 +18,11 @@ export default function ClosableHealthResult({num,date, patientName,bloodSugar, 
             <div className="absolute top-[96px] left-[31px] w-52 h-[53px]">
             <div className="absolute top-[0px] left-[0px] w-[61px] h-6">
                      <div className="absolute top-[0px] left-[0px] font-light">
-                       Patient
+                       {getTitle(isForPatient)}
                      </div>
                    </div>
                    <div className="absolute top-[24px] left-[0px] text-10xl inline-block w-52">
-                     {patientName}
+                     {name}
                    </div>
             </div>
             <div className="absolute top-[179px] left-[31px] w-52 h-[53px]">
