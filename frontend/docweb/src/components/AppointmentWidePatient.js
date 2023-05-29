@@ -15,7 +15,7 @@ function getStyle2(isDark) {
 
 function getEdit(isDark, onClick) {
     if (!isDark) {
-        return <p className="underline hover:text-pink-500" onClick={onClick}>edit appointment</p>
+        return <p className="underline hover:cursor-pointer hover:text-pink-400" onClick={onClick}>edit appointment</p>
     } else 
         return <div className="p-2"></div>
 }

@@ -13,7 +13,7 @@ export default function AppointmentWideDoctor({date, hour, name, visitType, onCl
                 <p className="text-lg font-medium ">Visit type: {visitType}</p>
             </div>
             <div className="w-full grid justify-items-end pr-4 pb-2">
-                <p className="underline" onClick={onClick}>cancel appointment</p>
+                <p className="underline hover:cursor-pointer hover:text-pink-400" onClick={onClick}>cancel appointment</p>
             </div>
         </div>
     );

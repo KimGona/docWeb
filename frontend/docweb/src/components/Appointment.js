@@ -47,5 +47,5 @@ function cancelOrEditText(isDoctor) {
 
 function cancelButton(isDoctor, onCancelClick) {
     if (!isDoctor)
-        return <div onClick={onCancelClick} className="w-5 absolute left-[93.79%] right-[3.11%] top-[8%] bottom-[78.67%] [background:url(https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/a1547176849379cd5d6ffbf2c49c6896753941a0.webp)_center_/_cover]" />
+        return <div onClick={onCancelClick} className="w-5 hover:cursor-pointer hover:text-pink-400 absolute left-[93.79%] right-[3.11%] top-[8%] bottom-[78.67%] [background:url(https://uortjlczjmucmpaqqhqm.supabase.co/storage/v1/object/public/firejet-converted-images/images/a1547176849379cd5d6ffbf2c49c6896753941a0.webp)_center_/_cover]" />
 }
