@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageContainer from "../components/PageContainer";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Calendar from "../components/Calendar";
 import AppointmentWidePatient from "../components/AppointmentWidePatient";
-import NavButton from "../components/navigation_components/NavButton";
+import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
 
@@ -81,6 +81,12 @@ export default function PatientDashboard({}) {
     } });
     window.location.reload();
   };
+
+  // const location = useLocation()
+
+  // useEffect(() => {
+  //   navigate(0);
+  // }, [location.key])
 
     return (
       <LocalizationProvider dateAdapter={AdapterDayjs}>

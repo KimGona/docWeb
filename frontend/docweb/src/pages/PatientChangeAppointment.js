@@ -50,6 +50,10 @@ export default function PatientChangeAppointment() {
         window.location.reload();
     };
 
+    const onReturn = () => {
+        navigate(-1);
+    };
+
     return (
         <PageContainer title="Add appointment">
           <div className="pr-[700px] w-full flex flex-col gap-x-10 justify-items-start">
@@ -76,8 +80,9 @@ export default function PatientChangeAppointment() {
                     <AvailableHours hours={hours} selectedHour={selectedHour} setSelectedHour={onHourChosen}/>
                 </div>
             </div>
-            <div className="py-6">
+            <div className="py-6 flex flex-row gap-x-6 align-center items-center">
                 <Button color="pink big" label="Confirm" onClick={onConfirmChange} />
+                <Button color="pink outline big" label="Cancel" onClick={onReturn} />
             </div>
           </div>
         </PageContainer>

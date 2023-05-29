@@ -53,7 +53,7 @@ function getSingleScreen (chosenUser, user, screen) {
 
 function App() {
   const userList = ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'];
-  const [user, setUser] = useState('ROLE_PATIENT');
+  const [user, setUser] = useState('ROLE_DOCTOR');
   
   const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time", "/edit_appointment"]
   
