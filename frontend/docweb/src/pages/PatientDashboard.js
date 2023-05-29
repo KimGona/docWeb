@@ -7,6 +7,27 @@ import AppointmentWidePatient from "../components/AppointmentWidePatient";
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
+import LineChart from "../components/LineChart";
+import LineChartBloodSugar from "../components/LineChartBloodSugar";
+import LineChartBloodPressure from "../components/LineChartBloodPressure";
+
+const data = {
+  labels: ['Red', 'Orange', 'Blue'],
+  // datasets is an array of objects where each object represents a set of data to display corresponding to the labels above. for brevity, we'll keep it at one object
+  datasets: [
+      {
+        label: 'Popularity of colours',
+        data: [55, 23, 96],
+        // you can set indiviual colors for each bar
+        backgroundColor: [
+          'rgba(255, 255, 255, 0.6)',
+          'rgba(255, 255, 255, 0.6)',
+          'rgba(255, 255, 255, 0.6)'
+        ],
+        borderWidth: 1,
+      }
+  ]
+}
 
 function Appointments({appointments, onClick}) {
   if (appointments.length <= 0)
@@ -93,14 +114,19 @@ export default function PatientDashboard({}) {
         <PageContainer title="Upcoming appointments">
           <div className="w-full pt-10 grid grid-cols-2 place-start justify-items-start">
             <div className="justify-self-stretch space-y-8">
-                <div className="grid grid-cols-1 justify-items-start space-y-8">
+                <div className="grid grid-cols-1 justify-items-start space-y-8 pb-20">
                 <Appointments appointments={appointments} onClick={onEditClick}/>
                 <Button color="pink" label="+ Add new appointment" onClick={onAddNewAppointement}/>
+                <h1 className="text-2xl font-semibold pt-10 pb-6">Your health</h1>
+                <LineChartBloodSugar />
+                <LineChartBloodPressure />
                 </div>
             </div>
-            <div className="justify-self-center px-20 py-14 bg-greenLight border border-2 border-greenPrimary space-y-6">
+            <div className="justify-self-center">
+            <div className="px-20 py-14 bg-greenLight border border-2 border-greenPrimary space-y-6">
               <p className="text-3xl font-bold text-greenPrimary">Calendar</p>
               <Calendar highlightedDays={highlightedDays} chosenDate={chosenDate} onChosenDate={(value) => setChosenDate(value)} />
+            </div>
             </div>
           </div>
         </PageContainer>
