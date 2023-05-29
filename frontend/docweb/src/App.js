@@ -20,6 +20,9 @@ import AppointmentSummary from './pages/AppointmentSummary';
 import DoctorOffTime from './pages/DoctorOffTime';
 import PatientChangeAppointment from './pages/PatientChangeAppointment';
 import PatientAccount from './pages/PatientAccount';
+import PatientHealthResult from './pages/PatientHealthResult';
+import DoctorHealthResult from './pages/DoctorHealthResult';
+
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -75,6 +78,7 @@ function App() {
           <Route exact path='/appointment_time' element={getScreen(user, <AppointmentTime />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_summary' element={getScreen(user, <AppointmentSummary />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_confirmation' element={getScreen(user, <AppointmentConfirmation />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
+          <Route exact path='/view_results' element={getScreen(user, <PatientHealthResult />,<DoctorHealthResult /> ,<Navigate to="/" replace/>) } />
 
           {/*Doctor only*/}
           <Route exact path='/check_off_time' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorOffTime />)} />

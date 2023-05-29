@@ -1,4 +1,4 @@
-export default function ClosableHealthResult({num,date, doctorName,bloodSugar, bloodPressure,heartRate,description}) {
+export default function ClosableHealthResult({num,date, patientName,bloodSugar, bloodPressure,heartRate,description}) {
     return (
      <div className="relative w-[871px] h-[443px] text-left text-xl text-black font-lato">
      <div className="absolute top-[0px] left-[0px] rounded-3xs bg-white box-border w-[871px] h-[443px] border-[3px] border-solid border-darkseagreen-100" />
@@ -13,11 +13,11 @@ export default function ClosableHealthResult({num,date, doctorName,bloodSugar, b
             <div className="absolute top-[96px] left-[31px] w-52 h-[53px]">
             <div className="absolute top-[0px] left-[0px] w-[61px] h-6">
                      <div className="absolute top-[0px] left-[0px] font-light">
-                       Doctor
+                       Patient
                      </div>
                    </div>
                    <div className="absolute top-[24px] left-[0px] text-10xl inline-block w-[600px]">
-                     {doctorName}
+                     {patientName}
                    </div>
             </div>
             <div className="absolute top-[179px] left-[31px] w-52 h-[53px]">
