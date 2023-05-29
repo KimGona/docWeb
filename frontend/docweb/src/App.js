@@ -20,6 +20,8 @@ import AppointmentSummary from './pages/AppointmentSummary';
 import DoctorOffTime from './pages/DoctorOffTime';
 import PatientChangeAppointment from './pages/PatientChangeAppointment';
 import PatientAccount from './pages/PatientAccount';
+import DoctorAddResult from './pages/DoctorAddResult';
+import DoctorWriteResult from './pages/DoctorWriteResult';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -53,7 +55,7 @@ function getSingleScreen (chosenUser, user, screen) {
 
 function App() {
   const userList = ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'];
-  const [user, setUser] = useState('ROLE_PATIENT');
+  const [user, setUser] = useState('ROLE_DOCTOR');
   
   const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time", "/edit_appointment"]
   
@@ -78,6 +80,8 @@ function App() {
 
           {/*Doctor only*/}
           <Route exact path='/check_off_time' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorOffTime />)} />
+          <Route exact path='/write_results' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorWriteResult />)} />
+          <Route exact path='/add_result' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorAddResult />)} />
           
           {/*Patient only*/}
           <Route exact path='/edit_appointment' element={getSingleScreen("ROLE_PATIENT", user, <PatientChangeAppointment />)} />
