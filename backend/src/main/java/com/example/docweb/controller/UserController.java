@@ -60,4 +60,10 @@ public class UserController {
         User user = userService.addUserPatient(UserDto.toUser(userDto), PatientDto.toPatient(userDto.getPatient()));
         return new ResponseEntity<>(User.toDto(user), HttpStatus.OK);
     }
+
+    @GetMapping("/role")
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<String> getRole() {
+        return new ResponseEntity<>(userService.getRole(), HttpStatus.OK);
+    }
 }

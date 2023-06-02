@@ -24,6 +24,7 @@ import DoctorAddResult from './pages/DoctorAddResult';
 import DoctorWriteResult from './pages/DoctorWriteResult';
 import PatientHealthResult from './pages/PatientHealthResult';
 import DoctorHealthResult from './pages/DoctorHealthResult';
+import useLocalStorage, { userRoleKey, userIDKey} from './hooks/LocalStorageHook';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -57,7 +58,14 @@ function getSingleScreen (chosenUser, user, screen) {
 
 function App() {
   const userList = ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'];
-  const [user, setUser] = useState('ROLE_DOCTOR');
+  
+  const [user, setUser, removeUser] = useLocalStorage(userRoleKey, "");
+  const onUserChange = (usern) => setUser(usern);
+  const onRemoveUser = () => removeUser();
+  
+  const [userId, setUserId, removeUserId] = useLocalStorage(userIDKey, "");
+  const onUserIdChange = (id) => setUserId(id);
+  const onRemovedUserId = () => removeUserId();
   
   const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time", "/edit_appointment"]
   
@@ -67,7 +75,7 @@ function App() {
         <Route element={<ProtectedRoutes user={user} isHidden={hiddenNavbarRoutes.includes(window.location.pathname)}/>}>
           {/*Logged out screens*/}
           <Route exact path="/join_us" element={getLoggedOutScreen(user, <JoinUs />)} />
-          <Route exact path="/login" element={getLoggedOutScreen(user, <Login />)} />
+          <Route exact path="/login" element={getLoggedOutScreen(user, <Login  onUserChange={onUserChange} onUserIdChange={onUserIdChange} />)} />
           <Route exact path="/sign_up" element={getLoggedOutScreen(user, <Signup />)} />
 
           {/*Logged in screens*/}

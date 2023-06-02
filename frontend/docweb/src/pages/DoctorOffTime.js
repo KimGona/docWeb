@@ -32,7 +32,7 @@ export default function DoctorOffTime() {
 
     return (
         <PageContainer title="My schedule">
-          <div className="pr-[700px] pt-10 w-full grid grid-cols-2 gap-x-60 justify-items-start">
+          <div className="pt-10 w-full grid grid-cols-2 gap-x-60 justify-items-start">
             <div className="flex flex-col gap-4">
                 <p className="text-xl font-normal pb-10">Choose a day</p>
                 <div className="justify-self-center px-20 py-14 bg-greenLight border border-2 border-greenPrimary space-y-6">
@@ -44,7 +44,7 @@ export default function DoctorOffTime() {
                 </div>
             </div>
 
-            <div>
+            <div className="justify-self-start">
                 <p className="text-xl font-normal pb-10">Schedule for {chosenDate}</p>
                 <p className="text-lg font-medium pb-6">Select hours to check off</p>
                 <FormGroup>

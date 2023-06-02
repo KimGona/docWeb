@@ -6,6 +6,8 @@ import com.example.docweb.entity.User;
 import com.example.docweb.exception.OperationFailedException;
 import com.example.docweb.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -54,5 +56,10 @@ public class UserService {
         user.setPatient(patient);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
+    }
+
+    public String getRole(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getAuthorities().stream().findFirst().orElseThrow().getAuthority();
     }
 }
