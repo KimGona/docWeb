@@ -162,7 +162,7 @@ export default function Signup({ }) {
             <div className="w-full flex flex-col items-start ">
                 <img className="absolute object-contain" src={GreenBackground} />
                 <div className="relative w-full h-screen flex justify-center align-middle items-center">
-                    <div>
+                    <div className="flex flex-col justify-center items-center space-y-6">
                     <TranslateAlert isVisible={result.isVisible} type={result.value} message={result.message} onClose={resetResult} />
                     <div className="relative px-12 py-12 bg-white flex flex-col justify-center items-center space-y-10">
                         <p className="text-3xl font-bold">Sign up</p>

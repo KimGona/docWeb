@@ -68,21 +68,9 @@ public class UserController {
         return new ResponseEntity<>(userService.getRole(), HttpStatus.OK);
     }
 
-    @GetMapping("/patient-id")
+    @GetMapping("/user-id")
     @PreAuthorize("permitAll()")
     public ResponseEntity<Long> getPatientId() {
-        return new ResponseEntity<>(userService.getPatientId(), HttpStatus.OK);
-    }
-
-    @GetMapping("/doctor-id")
-    @PreAuthorize("permitAll()")
-    public ResponseEntity<Long> getDoctorId() {
-        return new ResponseEntity<>(userService.getDoctorId(), HttpStatus.OK);
-    }
-
-    @GetMapping("/admin-id")
-    @PreAuthorize("permitAll()")
-    public ResponseEntity<Long> getAdminId() {
-        return new ResponseEntity<>(userService.getAdminId(), HttpStatus.OK);
+        return new ResponseEntity<>(userService.getUserId(), HttpStatus.OK);
     }
 }

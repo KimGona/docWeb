@@ -65,20 +65,15 @@ public class UserService {
         return authentication.getAuthorities().stream().findFirst().orElseThrow().getAuthority();
     }
 
-    public long getPatientId(){
+    public long getUserId(){
+        String role = getRole();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         User user = userRepository.findById(((UserDetailsImpl)authentication.getPrincipal()).getId()).orElseThrow(ElementNotFoundException::new);
-        return user.getPatient().getId();
-    }
-
-    public long getDoctorId(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findById(((UserDetailsImpl)authentication.getPrincipal()).getId()).orElseThrow(ElementNotFoundException::new);
-        return user.getDoctor().getId();
-    }
-
-    public long getAdminId(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return ((UserDetailsImpl)authentication.getPrincipal()).getId();
+        return switch (role) {
+            case "ROLE_PATIENT" -> user.getPatient().getId();
+            case "ROLE_DOCTOR" -> user.getDoctor().getId();
+            case "ROLE_ADMIN" -> user.getId();
+            default -> throw new OperationFailedException();
+        };
     }
 }

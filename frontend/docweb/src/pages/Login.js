@@ -71,7 +71,8 @@ export default function Login({ onUserChange, onUserIdChange }) {
                     setAlert("error", "Could not login.");
                 }
 
-                let userId = await fetch('http://localhost:8080/users/patient-id', {
+                // todo: change to get userIs based on role
+                let userId = await fetch('http://localhost:8080/users/user-id', {
                     method: 'GET',
                     credentials: 'include',
                     mode: 'cors',
@@ -128,7 +129,7 @@ export default function Login({ onUserChange, onUserIdChange }) {
         <div className="w-full flex flex-col items-start ">
             <img className="absolute object-contain" src={GreenBackground} alt="radio button" />
             <div className="relative w-full h-screen flex justify-center align-middle items-center">
-                <div>
+                <div className="flex flex-col justify-center items-center space-y-6">
                 <TranslateAlert isVisible={result.isVisible} type={result.value} message={result.message} onClose={resetResult} />
                 <div className="relative px-8 py-10 bg-white flex flex-col justify-center items-center space-y-10">
                     <p className="text-3xl font-bold">Login</p>

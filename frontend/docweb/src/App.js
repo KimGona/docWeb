@@ -70,13 +70,9 @@ function App() {
   const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time", "/edit_appointment"]
 
   const onLogout = () => {
-    console.log("before user: " + user);
-    console.log("before user id: " + userId);
-    console.log("on logout pressed")
-    onRemoveUser()
-    onRemovedUserId()
-    console.log("user: " + user);
-    console.log("user id: " + userId);
+    onRemoveUser();
+    onRemovedUserId();
+    window.location.reload();
   }
   
   return (
