@@ -1,20 +1,23 @@
 import React from "react";
 import NavItemDiv from "../components/navigation_components/NavItemDiv";
 import NavItemDocapp from "../components/navigation_components/NavItemDocapp";
+import NavItemButton from "../components/navigation_components/NavItemButton";
 
-const navRow = (
-    <div className="flex items-baseline">
-        <NavItemDiv path="/register_admin" text="Register admin" />
-        <NavItemDiv path="/register_doctor" text="Register doctor" />
-        <NavItemDiv path="/log_out" text="Log out" />
-    </div>
-);
+function NavRow({onLogout}) {
+    return (
+        <div className="flex items-baseline">
+            <NavItemDiv path="/register_admin" text="Register admin" />
+            <NavItemDiv path="/register_doctor" text="Register doctor" />
+            <NavItemButton text="Log out" onClick={onLogout} />
+        </div>
+    );
+}
 
-export default function AdminNavbar({}) {
+export default function AdminNavbar({ onLogout }) {
     return (
         <div className="w-screen flex justify-between pr-4">
             <NavItemDocapp path="/" text="Docapp" />
-            <div>{navRow}</div>
+            <NavRow onLogout={onLogout} />
         </div>
     );
 };

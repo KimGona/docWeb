@@ -3,8 +3,10 @@ package com.example.docweb.services;
 import com.example.docweb.entity.Doctor;
 import com.example.docweb.entity.Patient;
 import com.example.docweb.entity.User;
+import com.example.docweb.exception.ElementNotFoundException;
 import com.example.docweb.exception.OperationFailedException;
 import com.example.docweb.repository.UserRepository;
+import com.example.docweb.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -41,7 +43,7 @@ public class UserService {
     }
 
     public User addUserDoctor(User user, Doctor doctor) {
-        if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsById(user.getId()))
+        if (userRepository.existsByUsername(user.getUsername()))
             throw new OperationFailedException();
 
         user.setDoctor(doctor);
@@ -50,7 +52,7 @@ public class UserService {
     }
 
     public User addUserPatient(User user, Patient patient) {
-        if (userRepository.existsByUsername(user.getUsername()) || userRepository.existsById(user.getId()))
+        if (userRepository.existsByUsername(user.getUsername()))
             throw new OperationFailedException();
 
         user.setPatient(patient);
@@ -61,5 +63,22 @@ public class UserService {
     public String getRole(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         return authentication.getAuthorities().stream().findFirst().orElseThrow().getAuthority();
+    }
+
+    public long getPatientId(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findById(((UserDetailsImpl)authentication.getPrincipal()).getId()).orElseThrow(ElementNotFoundException::new);
+        return user.getPatient().getId();
+    }
+
+    public long getDoctorId(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        User user = userRepository.findById(((UserDetailsImpl)authentication.getPrincipal()).getId()).orElseThrow(ElementNotFoundException::new);
+        return user.getDoctor().getId();
+    }
+
+    public long getAdminId(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return ((UserDetailsImpl)authentication.getPrincipal()).getId();
     }
 }

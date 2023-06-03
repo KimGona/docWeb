@@ -68,11 +68,21 @@ function App() {
   const onRemovedUserId = () => removeUserId();
   
   const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time", "/edit_appointment"]
+
+  const onLogout = () => {
+    console.log("before user: " + user);
+    console.log("before user id: " + userId);
+    console.log("on logout pressed")
+    onRemoveUser()
+    onRemovedUserId()
+    console.log("user: " + user);
+    console.log("user id: " + userId);
+  }
   
   return (
     <Router>
       <Routes>
-        <Route element={<ProtectedRoutes user={user} isHidden={hiddenNavbarRoutes.includes(window.location.pathname)}/>}>
+        <Route element={<ProtectedRoutes user={user} isHidden={hiddenNavbarRoutes.includes(window.location.pathname)} onLogout={() => onLogout()}/>}>
           {/*Logged out screens*/}
           <Route exact path="/join_us" element={getLoggedOutScreen(user, <JoinUs />)} />
           <Route exact path="/login" element={getLoggedOutScreen(user, <Login  onUserChange={onUserChange} onUserIdChange={onUserIdChange} />)} />
@@ -81,7 +91,7 @@ function App() {
           {/*Logged in screens*/}
           <Route exact path='/' element={getScreen(user, <PatientDashboard />, <DoctorDashboard />, <AdminDashboard />) } />
           <Route exact path='/view_appointments' element={getScreen(user, <PatientAppointments />, <DoctorAppointments />, <Navigate to="/" replace/>) } />
-          <Route exact path='/account' element={getScreen(user, <PatientAccount />, <DoctorAccount />, <Navigate to="/" replace/>) } />
+          <Route exact path='/account' element={getScreen(user, <PatientAccount onLogout={() => onLogout()}/>, <DoctorAccount />, <Navigate to="/" replace/>) } />
           <Route exact path='/appointment_doctors' element={getScreen(user, <AppointmentDoctors />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_visit_types' element={getScreen(user, <AppointmentVisitTypes />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_time' element={getScreen(user, <AppointmentTime />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />

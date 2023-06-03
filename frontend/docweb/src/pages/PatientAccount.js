@@ -3,15 +3,11 @@ import PageContainer from "../components/PageContainer";
 import TextWithTitle from "../components/TextWithTitle";
 import Button from "../components/Button";
 
-export default function PatientAccount({}) {
-    const onLogOut = () => {
-        // TODO
-    };
-    
+export default function PatientAccount({onLogout}) {
     return (
         <PageContainer title="Your account details">
             <div className="absolute right-0 pr-10">
-                <Button color="pink outline" label="Log out" onClick={onLogOut}/>
+                <Button color="pink outline" label="Log out" onClick={onLogout}/>
             </div>
             <div>
                 <p className="text-2xl font-medium py-4">Personal details</p>

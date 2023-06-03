@@ -4,7 +4,7 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import HorizontalLineWithText from "../components/HorizontalLineWithText";
 import { useNavigate } from "react-router-dom";
-
+import TranslateAlert from "../components/alerts/TranslateAlert";
 
 export default function Login({ onUserChange, onUserIdChange }) {
     const navigate = useNavigate();
@@ -65,39 +65,71 @@ export default function Login({ onUserChange, onUserIdChange }) {
 
                 if (userRole.status === 200) {
                     let role = await userRole.text();
-                    navigate("/");
                     onUserChange(role);
                 } else {
                     console.log("user role failed, status: " + userRole.status);
-                    // onError();
+                    setAlert("error", "Could not login.");
                 }
 
-                // let userId = await fetch('http://localhost:8080/user/employee', {
-                //     method: 'GET',
-                //     credentials: 'include',
-                //     mode: 'cors',
-                //     referrerPolicy: 'no-referrer',
-                //     origin: "http://localhost:3000/",
-                // });
+                let userId = await fetch('http://localhost:8080/users/patient-id', {
+                    method: 'GET',
+                    credentials: 'include',
+                    mode: 'cors',
+                    referrerPolicy: 'no-referrer',
+                    origin: "http://localhost:3000/",
+                });
 
-                // if (userId.status === 200) {
-                //     let id = await userId.text();
-                //     console.log("userId");
-                //     console.log(id);
-                //     onUserIdChange(id);
-                // }
+                if (userId.status === 200) {
+                    let id = await userId.text();
+                    console.log("userId: " + id);
+                    onUserIdChange(id);
+                    navigate("/");
+                }
             } else {
                 console.log("login failed");
+                setAlert("error", "Could not login.");
             }
         } catch (error) {
             console.log(error);
+            setAlert("error", "Could not login.");
         }
+    }
+
+    const [result, setResult] = useState({
+        value: "",  // 'success' or 'error'
+        isVisible: false,
+        message: "",
+    });
+
+    const onResultChange = (obj) => setResult(obj);
+    const resetResult = () => {
+        let obj = {
+            value: "",
+            isVisible: false,
+            message: "",
+        };
+        onResultChange(obj);
+    }
+
+    function getResult(type, message) {
+        let obj = {
+            value: type,
+            isVisible: true,
+            message: message
+        };
+        return obj;
+    }
+
+    const setAlert = (type, isVisible, message) => {
+        onResultChange(getResult(type, isVisible, message));
     }
 
     return (
         <div className="w-full flex flex-col items-start ">
             <img className="absolute object-contain" src={GreenBackground} alt="radio button" />
             <div className="relative w-full h-screen flex justify-center align-middle items-center">
+                <div>
+                <TranslateAlert isVisible={result.isVisible} type={result.value} message={result.message} onClose={resetResult} />
                 <div className="relative px-8 py-10 bg-white flex flex-col justify-center items-center space-y-10">
                     <p className="text-3xl font-bold">Login</p>
 
@@ -109,7 +141,7 @@ export default function Login({ onUserChange, onUserIdChange }) {
 
                         <div>
                             <p>Password</p>
-                            <InputField value={data.password} onValueChange={(e) => onPasswordChange(e)} />
+                            <InputField type="password" value={data.password} onValueChange={(e) => onPasswordChange(e)} />
                         </div>
                     </div>
 
@@ -118,6 +150,7 @@ export default function Login({ onUserChange, onUserIdChange }) {
                         <HorizontalLineWithText />
                     </div>
                     <Button color="green outline xl" label="Create account" onClick={openSignUp} />
+                </div>
                 </div>
             </div>
         </div>

@@ -56,6 +56,7 @@ public class UserController {
 
     @Transactional
     @PostMapping("/patient")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<UserDto> addUserPatient(@RequestBody UserDto userDto) {
         User user = userService.addUserPatient(UserDto.toUser(userDto), PatientDto.toPatient(userDto.getPatient()));
         return new ResponseEntity<>(User.toDto(user), HttpStatus.OK);
@@ -65,5 +66,23 @@ public class UserController {
     @PreAuthorize("permitAll()")
     public ResponseEntity<String> getRole() {
         return new ResponseEntity<>(userService.getRole(), HttpStatus.OK);
+    }
+
+    @GetMapping("/patient-id")
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<Long> getPatientId() {
+        return new ResponseEntity<>(userService.getPatientId(), HttpStatus.OK);
+    }
+
+    @GetMapping("/doctor-id")
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<Long> getDoctorId() {
+        return new ResponseEntity<>(userService.getDoctorId(), HttpStatus.OK);
+    }
+
+    @GetMapping("/admin-id")
+    @PreAuthorize("permitAll()")
+    public ResponseEntity<Long> getAdminId() {
+        return new ResponseEntity<>(userService.getAdminId(), HttpStatus.OK);
     }
 }
