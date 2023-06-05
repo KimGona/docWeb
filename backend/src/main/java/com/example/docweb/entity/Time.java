@@ -10,6 +10,7 @@ public class Time {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column(unique = true)
     private int hour;
 
     static TimeDto toDto(Time time) {

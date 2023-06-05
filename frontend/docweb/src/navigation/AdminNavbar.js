@@ -8,6 +8,7 @@ function NavRow({onLogout}) {
         <div className="flex items-baseline">
             <NavItemDiv path="/register_admin" text="Register admin" />
             <NavItemDiv path="/register_doctor" text="Register doctor" />
+            <NavItemDiv path="/add_visit_types" text="Add visit types" />
             <NavItemButton text="Log out" onClick={onLogout} />
         </div>
     );

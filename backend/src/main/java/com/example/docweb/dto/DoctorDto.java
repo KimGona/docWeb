@@ -22,6 +22,8 @@ public class DoctorDto {
         doctor.setName(doctorDto.getName());
         doctor.setSurname(doctorDto.getSurname());
         doctor.setSpeciality(doctorDto.getSpeciality());
+        doctor.setPhone(doctorDto.getPhone());
+        doctor.setGender(doctorDto.getGender());
         doctor.setVisitTypes(doctorDto.getVisitTypes().stream().map(VisitTypeDto::toVisitType).collect(Collectors.toList()));
         return doctor;
     }

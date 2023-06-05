@@ -10,6 +10,10 @@ function isChecked(visitType, chosen) {
     else return false;
 }
 
+function isEqual(object1, object2) {
+    return object1.description === object2.description;
+  }
+
 export default function VisitTypesDialog({open, onClose, onConfirm, visitTypes, selected}) {
     const [chosenArr, setChosenArr] = useState(selected);
 
@@ -23,21 +27,24 @@ export default function VisitTypesDialog({open, onClose, onConfirm, visitTypes, 
             {
                 visitTypes.map( visitType =>
                     <FormControlLabel
-                        key={visitType}
-                        control={<Checkbox value={visitType} onClick={ (event) =>
+                        key={visitType.description}
+                        control={<Checkbox value={visitType.description} onClick={ (event) =>
                             {
-                                const newElem = event.target.value
+                                let indexMain = visitTypes.map(l => l.description).indexOf(event.target.value) 
+                                const newElem = visitTypes[indexMain] 
                                 const newArr = [...chosenArr]
-                                if (newArr.includes(newElem)) {
-                                    const index = chosenArr.indexOf(newElem);
+
+                                const descriptions = [...chosenArr].map(l => l.description)
+                                if (descriptions.length > 0 && descriptions.includes(newElem.description)) {
+                                    const index = descriptions.indexOf(newElem.description);
                                     newArr.splice(index, 1);
                                 } else {
                                     newArr.push(newElem);
                                 }
                                 setChosenArr(newArr);
                             }
-                        } name={visitType} checked={isChecked(visitType, chosenArr)} />}
-                        label={visitType}
+                        } name={visitType.description} checked={isChecked(visitType.description, [...chosenArr].map(l => l.description))} />}
+                        label={visitType.description}
                     />
                 )
             }
@@ -47,7 +54,6 @@ export default function VisitTypesDialog({open, onClose, onConfirm, visitTypes, 
                 <div className="flex flex-row space-x-4 pt-4">
                 <Button label="Close" color="pink outline" onClick={() => onClose()} />
                 <Button label="Confirm" onClick={() => {
-                    console.log(chosenArr);
                     onConfirm(chosenArr)
                     onClose()
                 }} />

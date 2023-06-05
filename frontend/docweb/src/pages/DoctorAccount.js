@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageContainer from "../components/PageContainer";
 import TextWithTitle from "../components/TextWithTitle";
 import WorkSchedule from "../components/WorkSchedule";
@@ -14,7 +14,7 @@ function VisitTypes({visitTypes, onClick}) {
         return <VisitTypesGrid visitTypes={visitTypes} onClick={onClick}/>
 }
 
-export default function DoctorAccount({}) {
+export default function DoctorAccount({userId, onLogout}) {
     const [addedVisitTypes, setAddedVisitTypes] = useState([]);
     const [allVisitTypes, setAllVisitTypes] = useState(["regular checkup", "blood tests", "allergy tests", "dentist consultation"]);
 
@@ -23,26 +23,31 @@ export default function DoctorAccount({}) {
 
     const [schedule, setSchedule] = useState([
         {
+            "day": 1,
             "dayName": "Monday",
             "start": "9",
             "end": "15",
         },
         {
+            "day": 2,
             "dayName": "Tuesday",
             "start": "9",
             "end": "15",
         },
         {
+            "day": 3,
             "dayName": "Wednesday",
             "start": "9",
             "end": "15",
         },
         {
+            "day": 4,
             "dayName": "Thursday",
             "start": "9",
             "end": "15",
         },
         {
+            "day": 5,
             "dayName": "Friday",
             "start": "9",
             "end": "15",
@@ -65,8 +70,68 @@ export default function DoctorAccount({}) {
         }
         setAddedVisitTypes(newArr);
     }
+
+    function getScheduleObj(s) {
+        let start = 0;
+        let end = 0;
+        if (s.timeList.length > 1) {
+            start = s.timeList[0];
+            end = s.timeList[s.timeList.length - 1];
+        }
+
+        return {
+            day: s.day,
+            dayName: s.dayName,
+            start: start,
+            end: end,
+        }
+    }
+
+    function getMappedSchedule(sch) {
+        return sch.map(s => getScheduleObj(s));
+    }
+
+    const [isShown, setIsShown] = useState(false);
+
+    useEffect(()=>{
+        getSchedule();
+        setIsShown(true);
+    },[isShown])
+
+    const getSchedule = async () => {
+        try {
+            let res = await fetch('http://localhost:8080/schedule-times/doctor/' + userId, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                mode: 'cors',
+                referrerPolicy: 'no-referrer',
+                origin: "http://localhost:3000/",
+            });
+            console.log("res code: " + res.status.toString());
+
+            if (res.status === 200) {
+                console.log("success - addidng time schedule")
+                console.log(await res.text())
+                let obj = await res.json();
+                console.log(obj)
+                setSchedule(getMappedSchedule(obj));
+            } else {
+                console.log("adding time schedule failed")
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
     return (
         <PageContainer title="Your account details">
+            <div className="absolute right-0 pr-10">
+                <Button color="pink outline" label="Log out" onClick={onLogout}/>
+            </div>
             <div className="grid grid-cols-2 gap-y-20 gap-x-40 pt-4">
                 <div>
                 <p className="text-2xl font-medium pb-4">Personal details</p>
@@ -91,8 +156,9 @@ export default function DoctorAccount({}) {
                 <WorkScheduleDialog 
                     open={openWorkSchedule}
                     schedule={schedule}
+                    setIsShown={setIsShown}
                     onClose={() => handleOpenWorkSchedules(false)}
-                    onConfirm={(newS) => setSchedule(newS)}
+                    userId={userId}
                 />
                 </div>
 

@@ -17,7 +17,12 @@ public class FreeTime {
     private Long id;
     private Date date;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "free_time_time",
+            joinColumns = @JoinColumn(name = "free_time_id"),
+            inverseJoinColumns = @JoinColumn(name = "time_id")
+    )
     private List<Time> timeList;
 
     @ManyToOne

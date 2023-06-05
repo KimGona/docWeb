@@ -18,7 +18,12 @@ public class ScheduleTime {
     private int day; // 1-7 where 1 is Monday and 7 is Sunday
     private String dayName; // "Monday"
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "schedule_time_time",
+            joinColumns = @JoinColumn(name = "schedule_time_id"),
+            inverseJoinColumns = @JoinColumn(name = "time_id")
+    )
     private List<Time> timeList;
 
     @ManyToOne

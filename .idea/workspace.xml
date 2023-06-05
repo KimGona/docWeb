@@ -5,9 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="user endpoint fix">
+      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/exception/IdNotFoundException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/ScheduleTimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/ScheduleTimeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/DoctorDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Doctor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/FreeTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/FreeTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/ScheduleTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/ScheduleTime.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Time.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Time.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/TimeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/TimeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/ScheduleTimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/ScheduleTimeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/TimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/TimeService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/VisitTypesDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/VisitTypesDialog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/WorkScheduleDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/WorkScheduleDialog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/navigation/AdminNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/navigation/AdminNavbar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/Login.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/RegisterDoctor.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/RegisterDoctor.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

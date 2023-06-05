@@ -71,7 +71,6 @@ export default function Login({ onUserChange, onUserIdChange }) {
                     setAlert("error", "Could not login.");
                 }
 
-                // todo: change to get userIs based on role
                 let userId = await fetch('http://localhost:8080/users/user-id', {
                     method: 'GET',
                     credentials: 'include',

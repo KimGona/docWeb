@@ -24,7 +24,12 @@ public class Doctor {
     private String phone;
     private String gender;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "doctors_visit_types",
+            joinColumns = @JoinColumn(name = "doctor_id"),
+            inverseJoinColumns = @JoinColumn(name = "visit_type_id")
+    )
     private List<VisitType> visitTypes;
 
     public static DoctorDto toDto(Doctor doctor) {

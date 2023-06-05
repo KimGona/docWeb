@@ -28,13 +28,14 @@ public class TimeService {
         for (Time time : timeList) {
             result.add(saveTime(time));
         }
+        timeRepository.saveAll(result);
         return result;
     }
 
     private Time saveTime(Time time) {
-        if (timeRepository.existsById(time.getId()) || timeRepository.existsByHour(time.getHour())) {
-            throw new OperationFailedException();
-        }
+//        if (timeRepository.existsById(time.getId()) || timeRepository.existsByHour(time.getHour())) {
+//            throw new OperationFailedException();
+//        }
         return timeRepository.save(time);
     }
 }

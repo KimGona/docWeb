@@ -25,6 +25,7 @@ import DoctorWriteResult from './pages/DoctorWriteResult';
 import PatientHealthResult from './pages/PatientHealthResult';
 import DoctorHealthResult from './pages/DoctorHealthResult';
 import useLocalStorage, { userRoleKey, userIDKey} from './hooks/LocalStorageHook';
+import AdminAddVisitTypes from './pages/AdminAddVisitTypes';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -60,6 +61,7 @@ function App() {
   const userList = ['ROLE_PATIENT', 'ROLE_DOCTOR', 'ROLE_ADMIN'];
   
   const [user, setUser, removeUser] = useLocalStorage(userRoleKey, "");
+  // const [user, setUser] = useState("ROLE_ADMIN");
   const onUserChange = (usern) => setUser(usern);
   const onRemoveUser = () => removeUser();
   
@@ -87,7 +89,7 @@ function App() {
           {/*Logged in screens*/}
           <Route exact path='/' element={getScreen(user, <PatientDashboard />, <DoctorDashboard />, <AdminDashboard />) } />
           <Route exact path='/view_appointments' element={getScreen(user, <PatientAppointments />, <DoctorAppointments />, <Navigate to="/" replace/>) } />
-          <Route exact path='/account' element={getScreen(user, <PatientAccount onLogout={() => onLogout()}/>, <DoctorAccount />, <Navigate to="/" replace/>) } />
+          <Route exact path='/account' element={getScreen(user, <PatientAccount onLogout={() => onLogout()}/>, <DoctorAccount userId={userId} onLogout={() => onLogout()}/>, <Navigate to="/" replace/>) } />
           <Route exact path='/appointment_doctors' element={getScreen(user, <AppointmentDoctors />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_visit_types' element={getScreen(user, <AppointmentVisitTypes />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_time' element={getScreen(user, <AppointmentTime />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
@@ -105,7 +107,8 @@ function App() {
 
           {/*Admin only*/}
           <Route exact path='/register_admin' element={getSingleScreen("ROLE_ADMIN", user, <RegisterAdmin />)} />
-          <Route exact path="/register_doctor" element={getSingleScreen("ROLE_ADMIN", <RegisterDoctor />)} />
+          <Route exact path="/register_doctor" element={getSingleScreen("ROLE_ADMIN", user, <RegisterDoctor />)} />
+          <Route exact path="/add_visit_types" element={getSingleScreen("ROLE_ADMIN", user, <AdminAddVisitTypes />)} />
         </Route>
       </Routes>
     </Router>
