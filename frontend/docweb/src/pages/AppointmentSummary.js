@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import SummaryItem from "../components/SummaryItem";
 
+
 function getTimeDesc(hour) {
     if (hour < 12) return "am";
     else return "pm"
@@ -22,10 +23,50 @@ export default function AppointmentSummary() {
     } });
   };
 
-  const onConfirmAppointment = () => {
-    navigate('/appointment_confirmation');
-    window.location.reload();
-  };
+  const onConfirmAppointment = async (event) => {
+    event.preventDefault();
+
+    try{
+        let requestBody=JSON.stringify(data);
+
+        let res = await fetch('http://localhost:8080/appointments',{
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: requestBody,
+                        credentials: 'include',
+                        mode: 'cors',
+                        referrerPolicy: 'no-referrer',
+                        origin: "http://localhost:3000/",
+
+        });
+
+        if(res.status===200){
+        resetData()
+        setAlert("success", "Appointment confirmed successfully.");
+        } else{
+            console.log("appointment comfirmation failed")
+            setAlert("error","Could not confirm the appointment.");
+            }
+    }catch (error){
+        console.log(error);
+        setAlert("error","Could not confirm the appointment.")
+        }
+   }
+
+
+
+    let onAppointment = async (event) => {
+        console.log("Appointment confirmed")
+        event.preventDefault();
+        try{
+            let formDate= new FormDate();
+            formDate.append}
+
+
+        }
+
 
     return (
         <PageContainer title="Add appointment">
