@@ -120,7 +120,7 @@ export default function AppointmentTime() {
 
           <div>
             <p className="text-zinc-700 text-thin text-xl">Visit type</p>
-            <p className="text-black text-medium text-2xl">{appointment.visitType.name}</p>
+            <p className="text-black text-medium text-2xl">{appointment.visitType.description}</p>
           </div>
 
           <div>

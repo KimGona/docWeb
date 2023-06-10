@@ -182,7 +182,6 @@ export default function AppointmentDoctors() {
           <div className="w-[150px]">
             <SearchField title="Speciality" text={speciality} onTextChange={(e) => setSpeciality(e.target.value)}/>
           </div>
-          <Button color="green" label="Search" />
         </div>
         <RadioButtonDoctorList list={doctors} chosenButtonId={selectedDoctorId} onButtonChosen={onDoctorChosen} />
       </div>

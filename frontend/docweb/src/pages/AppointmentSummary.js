@@ -99,7 +99,7 @@ export default function AppointmentSummary() {
         />
         <SummaryItem
           topText="Type of visit"
-          middleText={appointment.visitType.name}
+          middleText={appointment.visitType.description}
           onClick={() => onChangeClick("/appointment_visit_types")}
         />
         <SummaryItem
