@@ -26,7 +26,7 @@ export default function RadioButtonVisitTypeList({
                 <div className=' flex flex-row space-x-4 items-center'>
                     <img src={getIcon(item.id, chosenButtonId)} alt="radio button" />
                     <div>
-                        <p className='font-medium text-2xl pb-2 pl-4'>{item.name}</p>
+                        <p className='font-medium text-2xl pb-2 pl-4'>{item.description}</p>
                     </div>
                 </div>
             </div>

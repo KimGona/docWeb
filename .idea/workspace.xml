@@ -4,25 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="user endpoint fix">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/exception/IdNotFoundException.java" afterDir="false" />
+    <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="fix adding doctor - many to many fixes">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/ScheduleTimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/ScheduleTimeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/DoctorDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/DoctorDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Doctor.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Doctor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/FreeTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/FreeTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/ScheduleTime.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/ScheduleTime.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Time.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Time.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/TimeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/TimeRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/AppointmentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/DoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/DoctorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/AppointmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/AppointmentDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/AppointmentService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/DoctorService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/ScheduleTimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/ScheduleTimeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/TimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/TimeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/VisitTypesDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/VisitTypesDialog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/WorkScheduleDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/WorkScheduleDialog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/navigation/AdminNavbar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/navigation/AdminNavbar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAccount.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/RegisterDoctor.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/RegisterDoctor.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/RadioButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/RadioButton.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/SearchField.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/SearchField.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentDoctors.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentDoctors.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentSummary.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentSummary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentTime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentVisitTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentVisitTypes.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1682278631100</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="fix adding doctor - many to many fixes">
+      <created>1686002889085</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1686002889086</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +125,7 @@
     <MESSAGE value="fixed dtos and addeed mappers" />
     <MESSAGE value="typo fix" />
     <MESSAGE value="added controller + fixed whole backend + login works" />
-    <option name="LAST_COMMIT_MESSAGE" value="added controller + fixed whole backend + login works" />
+    <MESSAGE value="fix adding doctor - many to many fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix adding doctor - many to many fixes" />
   </component>
 </project>

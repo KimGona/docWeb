@@ -1,21 +1,20 @@
 package com.example.docweb.services;
 
-import com.example.docweb.entity.Appointment;
-import com.example.docweb.entity.Doctor;
-import com.example.docweb.entity.ScheduleTime;
-import com.example.docweb.entity.Time;
+import com.example.docweb.entity.*;
 import com.example.docweb.exception.IdNotFoundException;
 import com.example.docweb.exception.OperationFailedException;
 import com.example.docweb.repository.DoctorRepository;
 import com.example.docweb.repository.FreeTimeRepository;
 import com.example.docweb.repository.ScheduleTimeRepository;
 import com.example.docweb.repository.TimeRepository;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -42,29 +41,37 @@ public class ScheduleTimeService {
     }
 
     public List<Integer> getAvailableHoursByDoctorIdAndDate(long id, String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(Locale.ENGLISH);
         LocalDate localDate;
         try {
-            localDate = LocalDate.parse(date);
+            localDate = LocalDate.parse(date, formatter);
         } catch (Exception exception){
+            exception.printStackTrace();
             throw new OperationFailedException();
         }
         int dayOfWeek = localDate.getDayOfWeek().getValue();
 
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         Date date2;
         try {
-            date2 = formatter.parse(date);
+            date2 = formatter2.parse(date);
         } catch (Exception exception){
+            System.out.println("Date 2 failed.");
+            exception.printStackTrace();
             throw new OperationFailedException();
-        };
+        }
 
         List<Time> schedule = scheduleTimeRepository.findByDoctorIdAndDay(id, dayOfWeek).getTimeList();
-        List<Time> freeTimes = freeTimeRepository.findByDoctorIdAndDate(id, date2).getTimeList();
+        FreeTime freeTime = freeTimeRepository.findByDoctorIdAndDate(id, date2);
+        List<Time> freeTimeList = Collections.emptyList();
+        if (freeTime != null) {
+            freeTimeList = freeTime.getTimeList();
+        }
 
         // Filter the schedule times list not to include any of the free times.
         return schedule.stream()
                 .distinct()
-                .filter(Predicate.not(freeTimes::contains))
+                .filter(Predicate.not(freeTimeList::contains))
                 .map(Time::getHour)
                 .collect(Collectors.toList());
     }

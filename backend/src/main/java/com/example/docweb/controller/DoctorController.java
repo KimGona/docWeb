@@ -1,6 +1,7 @@
 package com.example.docweb.controller;
 
 import com.example.docweb.dto.DoctorDto;
+import com.example.docweb.dto.VisitTypeDto;
 import com.example.docweb.entity.Doctor;
 import com.example.docweb.entity.VisitType;
 import com.example.docweb.services.DoctorService;
@@ -8,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,20 +36,38 @@ public class DoctorController {
         return new ResponseEntity<>(Doctor.toDto(doctor), HttpStatus.OK);
     }
 
-    @GetMapping("/name/{name}/surname/{surname}/specialty/{specialty}")
+    @GetMapping("/all")
+    @ResponseBody
     public ResponseEntity<List<DoctorDto>> getDoctorsByNameSurnameAndSpecialty(
-            @PathVariable String name,
-            @PathVariable String surname,
-            @PathVariable String specialty
+            @RequestParam String name,
+            @RequestParam String surname,
+            @RequestParam String specialty
     ) {
         List<Doctor> doctors = doctorService.getDoctorsByNameSurnameAndSpecialty(name, surname, specialty);
         return new ResponseEntity<>(doctors.stream().map(Doctor::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("visit-types/{id}")
-    public ResponseEntity<List<String>> getVisitTypesByDoctorId(@PathVariable long id) {
-        List<String> visitTypes = doctorService.getVisitTypesByDoctorId(id);
-        return new ResponseEntity<>(visitTypes, HttpStatus.OK);
+    @GetMapping("/name-surname")
+    @ResponseBody
+    public ResponseEntity<List<DoctorDto>> getDoctorsByNameAndSurname(
+            @RequestParam String name,
+            @RequestParam(required = false) String surname
+    ) {
+        List<Doctor> doctors = doctorService.getDoctorsByNameAndSurname(name, surname);
+        return new ResponseEntity<>(doctors.stream().map(Doctor::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/specialty")
+    @ResponseBody
+    public ResponseEntity<List<DoctorDto>> getDoctorsBySpecialty(@RequestParam String specialty) {
+        List<Doctor> doctors = doctorService.getDoctorsBySpecialty(specialty);
+        return new ResponseEntity<>(doctors.stream().map(Doctor::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/visit-types/{id}")
+    public ResponseEntity<List<VisitTypeDto>> getVisitTypesByDoctorId(@PathVariable long id) {
+        List<VisitType> visitTypes = doctorService.getVisitTypesByDoctorId(id);
+        return new ResponseEntity<>(visitTypes.stream().map(VisitType::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
 }

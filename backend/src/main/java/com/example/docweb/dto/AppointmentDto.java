@@ -24,8 +24,10 @@ public class AppointmentDto {
         appointment.setDate(appointmentDto.getDate());
         appointment.setHour(appointmentDto.getHour());
         appointment.setHasHealthResultWritten(appointmentDto.isHasHealthResultWritten());
-        appointment.setPatient(PatientDto.toPatient(appointmentDto.getPatient()));
-        appointment.setDoctor(DoctorDto.toDoctor(appointmentDto.getDoctor()));
+        if (appointmentDto.getPatient() != null)
+            appointment.setPatient(PatientDto.toPatient(appointmentDto.getPatient()));
+        if (appointmentDto.getDoctor() != null)
+            appointment.setDoctor(DoctorDto.toDoctor(appointmentDto.getDoctor()));
         appointment.setVisitType(VisitTypeDto.toVisitType(appointmentDto.getVisitType()));
         return appointment;
     }

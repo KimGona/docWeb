@@ -69,7 +69,7 @@ public class AppointmentController {
 
     @Transactional
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_DOCTOR')")
+    @PreAuthorize("hasRole('ROLE_PATIENT') or hasRole('ROLE_DOCTOR')")
     public ResponseEntity<AppointmentDto> saveAppointment(@RequestBody AppointmentDto appointmentDto) {
         Appointment appointment = appointmentService.saveAppointment(AppointmentDto.toAppointment(appointmentDto));
         return new ResponseEntity<>(Appointment.toDto(appointment), HttpStatus.OK);
@@ -77,7 +77,7 @@ public class AppointmentController {
 
     @Transactional
     @PostMapping("/delete")
-    @PreAuthorize("hasRole('ROLE_EMPLOYEE') or hasRole('ROLE_DOCTOR')")
+    @PreAuthorize("hasRole('ROLE_PATIENT') or hasRole('ROLE_DOCTOR')")
     public ResponseEntity<Void> deleteAppointment(@RequestBody AppointmentDto appointmentDto) {
         appointmentService.deleteAppointmentById(appointmentDto.getId());
         return new ResponseEntity<>(HttpStatus.OK);

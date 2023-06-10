@@ -27,7 +27,7 @@ export default function RadioButtonDoctorList({
                     <img src={getIcon(item.id, chosenButtonId)} alt="radio button" />
                     <div>
                         <p className='font-medium text-2xl pb-2 pl-4'>{item.name}</p>
-                        <p className='font-normal text-lg text-zinc-700 pl-4'>{item.specialty}</p>
+                        <p className='font-normal text-lg text-zinc-700 pl-4'>{item.speciality}</p>
                     </div>
                 </div>
             </div>
