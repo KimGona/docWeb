@@ -25,36 +25,72 @@ public class AppointmentController {
         this.appointmentService = appointmentService;
     }
 
-    @GetMapping("/doctor/{id}")
-    public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctorId(@PathVariable long id) {
-        List<Appointment> appointments = appointmentService.getAppointmentsByDoctorId(id);
+    @GetMapping("/doctor")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctorId() {
+        List<Appointment> appointments = appointmentService.getAppointmentsByDoctorId();
         return new ResponseEntity<>(
                 appointments.stream()
                         .map(Appointment::toDto)
                         .collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/doctor/{id}/date/{date}")
-    public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctorIdAndDate(@PathVariable long id, @PathVariable String date) {
-        List<Appointment> appointments = appointmentService.getAppointmentsByDoctorIdAndDate(id, date);
+    @GetMapping("/doctor/date/{date}")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctorIdAndDate(@PathVariable String date) {
+        List<Appointment> appointments = appointmentService.getAppointmentsByDoctorIdAndDate(date);
         return new ResponseEntity<>(
                 appointments.stream()
                         .map(Appointment::toDto)
                         .collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/patient/{id}")
-    public ResponseEntity<List<AppointmentDto>> getAppointmentsByPatientId(@PathVariable long id) {
-        List<Appointment> appointments = appointmentService.getAppointmentsByPatientId(id);
+    @GetMapping("/current-month")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctorIdAndCurrentMonth() {
+        List<Appointment> appointments = appointmentService.getAppointmentsByCurrentMonth();
         return new ResponseEntity<>(
                 appointments.stream()
                         .map(Appointment::toDto)
                         .collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/patient-date/{id}")
-    public ResponseEntity<List<AppointmentDto>> getAppointmentsByPatientIdAndCurrentDate(@PathVariable long id) {
-        List<Appointment> appointments = appointmentService.getAppointmentsByPatientIdAndCurrentDate(id);
+    @GetMapping("/doctor/date-from")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctorIdAndDateFrom() {
+        List<Appointment> appointments = appointmentService.getAppointmentsByDoctorIdAndDateFrom();
+        return new ResponseEntity<>(
+                appointments.stream()
+                        .map(Appointment::toDto)
+                        .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/doctor/current-date")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsDoctorCurrentDate() {
+        List<Appointment> appointments = appointmentService.getAppointmentsByDoctorIdAndCurrentDate();
+        return new ResponseEntity<>(
+                appointments.stream()
+                        .map(Appointment::toDto)
+                        .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/patient/current-date")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsPatientCurrentDate() {
+        List<Appointment> appointments = appointmentService.getAppointmentsByPatientIdAndCurrentDate();
+        return new ResponseEntity<>(
+                appointments.stream()
+                        .map(Appointment::toDto)
+                        .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/patient/date-from")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByPatientIdAndDateFrom() {
+        List<Appointment> appointments = appointmentService.getAppointmentsByPatientIdAndDateFrom();
+        return new ResponseEntity<>(
+                appointments.stream()
+                        .map(Appointment::toDto)
+                        .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/patient")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByPatientId() {
+        List<Appointment> appointments = appointmentService.getAppointmentsByPatientId();
         return new ResponseEntity<>(
                 appointments.stream()
                         .map(Appointment::toDto)

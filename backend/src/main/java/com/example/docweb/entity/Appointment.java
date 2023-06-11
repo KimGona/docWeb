@@ -7,7 +7,7 @@ import java.util.Date;
 
 @Entity
 @Data
-@Table(name="Appointment")
+@Table(name = "appointments")
 public class Appointment {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -31,7 +31,7 @@ public class Appointment {
     public static AppointmentDto toDto(Appointment appointment) {
         AppointmentDto appointmentDto = new AppointmentDto();
         appointmentDto.setId(appointment.getId());
-        appointmentDto.setDate(appointmentDto.getDate());
+        appointmentDto.setDate(appointment.getDate());
         appointmentDto.setHour(appointment.getHour());
         appointmentDto.setHasHealthResultWritten(appointment.isHasHealthResultWritten());
         appointmentDto.setPatient(Patient.toDto(appointment.getPatient()));

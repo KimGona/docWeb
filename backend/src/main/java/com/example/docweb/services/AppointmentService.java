@@ -11,8 +11,12 @@ import com.example.docweb.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
 @Service
@@ -36,25 +40,62 @@ public class AppointmentService {
         this.userService = userService;
     }
 
-    public List<Appointment> getAppointmentsByDoctorId(long id) {
+    public List<Appointment> getAppointmentsByDoctorId() {
+        Long id = userService.getUserId();
         return appointmentRepository.findByDoctorId(id);
     }
 
-    public List<Appointment> getAppointmentsByDoctorIdAndDate(long id, String date) {
-        return appointmentRepository.findByDoctorIdAndDate(id, date);
+    public List<Appointment> getAppointmentsByDoctorIdAndDate(String date) {
+        Long id = userService.getUserId();
+        SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date date2;
+        try {
+            date2 = formatter2.parse(date);
+        } catch (Exception exception){
+            System.out.println("Date 2 failed.");
+            exception.printStackTrace();
+            throw new OperationFailedException();
+        }
+        return appointmentRepository.findByDoctorIdAndDate(id, date2);
     }
 
-    public List<Appointment> getAppointmentsByPatientIdAndCurrentDate(long id) {
-        String currentDate = LocalDate.now().toString();
+    public List<Appointment> getAppointmentsByPatientIdAndCurrentDate() {
+        Long id = userService.getUserId();
+        Date currentDate = new Date(System.currentTimeMillis());
         return appointmentRepository.findByPatientIdAndDate(id, currentDate);
     }
 
-    public List<Appointment> getAppointmentsByPatientId(long id) {
+    public List<Appointment> getAppointmentsByDoctorIdAndCurrentDate() {
+        Long id = userService.getUserId();
+        Date currentDate = new Date(System.currentTimeMillis());
+        return appointmentRepository.findByDoctorIdAndDate(id, currentDate);
+    }
+
+    public List<Appointment> getAppointmentsByPatientId() {
+        Long id = userService.getUserId();
         return appointmentRepository.findByPatientId(id);
     }
 
     public Appointment getAppointmentsByAppointmentId(long id) {
         return appointmentRepository.findById(id).orElseThrow(ElementNotFoundException::new);
+    }
+
+    public List<Appointment> getAppointmentsByCurrentMonth() {
+        Long id = userService.getUserId();
+        LocalDate currentDate = LocalDate.now();
+        return appointmentRepository.findByDoctorIdAndMonth(id, currentDate.getMonthValue(), currentDate.getYear());
+    }
+
+    public List<Appointment> getAppointmentsByDoctorIdAndDateFrom() {
+        Date date = new Date(System.currentTimeMillis());
+        Long id = userService.getUserId();
+        return appointmentRepository.findByDoctorIdAndDateFrom(id, date);
+    }
+
+    public List<Appointment> getAppointmentsByPatientIdAndDateFrom() {
+        Date date = new Date(System.currentTimeMillis());
+        Long id = userService.getUserId();
+        return appointmentRepository.findByPatientIdAndDateFrom(id, date);
     }
 
     public Appointment saveAppointment(Appointment appointment) {
