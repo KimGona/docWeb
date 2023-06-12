@@ -15,7 +15,7 @@ export default function PatientAccount({  onLogout }) {
 
   const getAccountInfo = async () => {
     try {
-      const userIdResponse = await fetch('http://localhost:8080/users/user-id', {
+      const userIdResponse = await fetch('http://localhost:8080/patient/id', {
         method: 'GET',
         credentials: 'include',
         mode: 'cors',
