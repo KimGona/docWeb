@@ -8,13 +8,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class PatientService {
     private final PatientRepository patientRepository;
+    private final UserService userService;
 
     @Autowired
-    public PatientService(PatientRepository patientRepository) {
+    public PatientService(PatientRepository patientRepository, UserService userService) {
         this.patientRepository = patientRepository;
+        this.userService = userService;
     }
 
-    public Patient getPatientById(long id) {
+    public Patient getPatientById() {
+        long id = userService.getUserId();
         return patientRepository.findById(id).orElse(null);
     }
 }

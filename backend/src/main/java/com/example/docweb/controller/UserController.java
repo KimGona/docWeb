@@ -32,9 +32,9 @@ public class UserController {
         return new ResponseEntity<>(users.stream().map(User::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<UserDto>> getRegisteredUsersByUserId(@PathVariable long id) {
-        List<User> users = userService.getRegisteredUsersByUserId(id);
+    @GetMapping("/id")
+    public ResponseEntity<List<UserDto>> getRegisteredUsersByUserId() {
+        List<User> users = userService.getRegisteredUsersByUserId();
         return new ResponseEntity<>(users.stream().map(User::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 

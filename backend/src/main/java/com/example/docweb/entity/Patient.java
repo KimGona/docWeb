@@ -20,7 +20,7 @@ public class Patient {
     private Address address;
     private String gender;
 
-    static PatientDto toDto(Patient patient) {
+    public static PatientDto toDto(Patient patient) {
         PatientDto patientDto = new PatientDto();
         patientDto.setId(patient.getId());
         patientDto.setName(patient.getName());

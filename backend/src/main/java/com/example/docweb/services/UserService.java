@@ -30,8 +30,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public List<User> getRegisteredUsersByUserId(long createdById) {
-        return userRepository.findByCreatedBy(createdById);
+    public List<User> getRegisteredUsersByUserId() {
+        return userRepository.findByCreatedBy(getUserId());
     }
 
     public User addUserAdmin(User user) {

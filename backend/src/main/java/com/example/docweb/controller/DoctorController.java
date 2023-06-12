@@ -30,9 +30,9 @@ public class DoctorController {
         return new ResponseEntity<>(doctors.stream().map(Doctor::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DoctorDto> getDoctorById(@PathVariable long id) {
-        Doctor doctor = doctorService.getDoctorById(id);
+    @GetMapping("/id")
+    public ResponseEntity<DoctorDto> getDoctorById() {
+        Doctor doctor = doctorService.getDoctorById();
         return new ResponseEntity<>(Doctor.toDto(doctor), HttpStatus.OK);
     }
 

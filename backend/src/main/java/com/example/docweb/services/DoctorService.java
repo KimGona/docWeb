@@ -12,13 +12,16 @@ import java.util.stream.Collectors;
 @Service
 public class DoctorService {
     private final DoctorRepository doctorRepository;
+    private final UserService userService;
 
     @Autowired
-    public DoctorService(DoctorRepository doctorRepository) {
+    public DoctorService(DoctorRepository doctorRepository, UserService userService) {
         this.doctorRepository = doctorRepository;
+        this.userService = userService;
     }
 
-    public Doctor getDoctorById(long id) {
+    public Doctor getDoctorById() {
+        long id = userService.getUserId();
         return doctorRepository.findById(id).orElse(null);
     }
 
