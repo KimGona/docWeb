@@ -35,7 +35,6 @@ public class VisitTypeController {
 
     @Transactional
     @PostMapping
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
     ResponseEntity<VisitTypeDto> saveVisitType(@RequestBody VisitTypeDto visitTypeDto) {
         VisitType visitType = visitTypeService.saveVisitType(VisitTypeDto.toVisitType(visitTypeDto));
         return new ResponseEntity<>(VisitType.toDto(visitType), HttpStatus.OK);
