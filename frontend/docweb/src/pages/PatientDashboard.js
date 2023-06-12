@@ -10,6 +10,7 @@ import Button from "../components/Button";
 import LineChart from "../components/LineChart";
 import LineChartBloodSugar from "../components/LineChartBloodSugar";
 import LineChartBloodPressure from "../components/LineChartBloodPressure";
+import dayjs, { Dayjs } from 'dayjs';
 
 const data = {
   labels: ['Red', 'Orange', 'Blue'],
@@ -35,43 +36,50 @@ function Appointments({appointments, onClick}) {
   else 
       return (
         appointments.map( appointment =>
-          <AppointmentWidePatient date={appointment.date} hour={appointment.hour} name={appointment.doctor.name + " " + appointment.doctor.surname} visitType={appointment.visitType.name} onClick={() => onClick(appointment)} />
+          <AppointmentWidePatient date={appointment.date} hour={appointment.hour} name={appointment.doctor.name + " " + appointment.doctor.surname} visitType={appointment.visitType.description} onClick={() => onClick(appointment)} />
         )
       );
 }
 
 export default function PatientDashboard({}) {
   
-  const [appointments, setAppointments] = useState([{
-    "doctor": {
-      "id": 1,
-      "name": "Allen",
-      "surname": "Walker",
-      "specialty": "Endocrinologist",
-    },
-    "visitType": {
-      "id": 1,
-      "name": "RegularCheckup",
-    },
-    "date": "2023-05-10",
-    "hour": 9,
-  }, 
-  {
-    "doctor": {
-      "id": 1,
-      "name": "Allen",
-      "surname": "Walker",
-      "specialty": "Endocrinologist",
-    },
-    "visitType": {
-      "id": 1,
-      "name": "RegularCheckup",
-    },
-    "date": "2023-05-10",
-    "hour": 9,
-  }]);
+  const [appointments, setAppointments] = useState([]);
   const [chosenDate, setChosenDate] = useState();
   const [highlightedDays, setHighlightedDays] = React.useState([0, 2, 4, 15, 16, 17]);
+
+ const [isShown, setIsShown] = useState(false);
+
+  useEffect(() => {
+    getAppointments();
+    setIsShown(true);
+  }, [isShown])
+
+  let getAppointments = async () => {
+    try {
+      let res = await fetch('http://localhost:8080/appointments/patient/date-from', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        mode: 'cors',
+        referrerPolicy: 'no-referrer',
+        origin: "http://localhost:3000/",
+      });
+
+      if (res.status === 200) {
+        console.log("get appointments succeeded");
+        let list = await res.json();
+        console.log(list);
+        setAppointments(list);
+      } else {
+        console.log("get appointments failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
 
   const navigate = useNavigate();
   

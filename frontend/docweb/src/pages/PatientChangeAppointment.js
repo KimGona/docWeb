@@ -65,7 +65,7 @@ export default function PatientChangeAppointment() {
             />
             <SummaryItem 
                 topText="Type of visit" 
-                middleText={appointment.visitType.name}
+                middleText={appointment.visitType.description}
                 isButtonVisible={false}
             />
             <div className="pt-10 w-full grid grid-cols-2 gap-x-10 justify-items-start">
