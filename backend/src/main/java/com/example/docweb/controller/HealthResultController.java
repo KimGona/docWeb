@@ -27,15 +27,15 @@ public class HealthResultController {
         this.healthResultService = healthResultService;
     }
 
-    @GetMapping("/patient/{id}")
-    ResponseEntity<List<HealthResultDto>> getHealthResultsByPatientId(@PathVariable long id) {
-        List<HealthResult> healthResults = healthResultService.getHealthResultsByPatientId(id);
+    @GetMapping("/patient")
+    ResponseEntity<List<HealthResultDto>> getHealthResultsByPatientId() {
+        List<HealthResult> healthResults = healthResultService.getHealthResultsByPatientId();
         return new ResponseEntity<>(healthResults.stream().map(HealthResult::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/doctor/{id}")
-    ResponseEntity<List<HealthResultDto>> getHealthResultsByDoctorId(@PathVariable long id) {
-        List<HealthResult> healthResults = healthResultService.getHealthResultsByDoctorId(id);
+    @GetMapping("/doctor")
+    ResponseEntity<List<HealthResultDto>> getHealthResultsByDoctorId() {
+        List<HealthResult> healthResults = healthResultService.getHealthResultsByDoctorId();
         return new ResponseEntity<>(healthResults.stream().map(HealthResult::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 

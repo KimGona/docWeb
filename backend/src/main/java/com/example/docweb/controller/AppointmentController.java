@@ -43,9 +43,9 @@ public class AppointmentController {
                         .collect(Collectors.toList()), HttpStatus.OK);
     }
 
-    @GetMapping("/current-month")
+    @GetMapping("/doctor/current-month")
     public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctorIdAndCurrentMonth() {
-        List<Appointment> appointments = appointmentService.getAppointmentsByCurrentMonth();
+        List<Appointment> appointments = appointmentService.getAppointmentsDoctorCurrentMonth();
         return new ResponseEntity<>(
                 appointments.stream()
                         .map(Appointment::toDto)
@@ -64,6 +64,15 @@ public class AppointmentController {
     @GetMapping("/doctor/current-date")
     public ResponseEntity<List<AppointmentDto>> getAppointmentsDoctorCurrentDate() {
         List<Appointment> appointments = appointmentService.getAppointmentsByDoctorIdAndCurrentDate();
+        return new ResponseEntity<>(
+                appointments.stream()
+                        .map(Appointment::toDto)
+                        .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @GetMapping("/patient/current-month")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByPatientIdAndCurrentMonth() {
+        List<Appointment> appointments = appointmentService.getAppointmentsPatientCurrentMonth();
         return new ResponseEntity<>(
                 appointments.stream()
                         .map(Appointment::toDto)

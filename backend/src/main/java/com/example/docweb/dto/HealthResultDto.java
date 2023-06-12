@@ -17,14 +17,17 @@ public class HealthResultDto {
     public static HealthResult toHealthResult(HealthResultDto healthResultDto) {
         HealthResult healthResult = new HealthResult();
         healthResult.setId(healthResultDto.getId());
-        healthResult.setDateAdded(healthResult.getDateAdded());
+        if (healthResultDto.getDateAdded() != null)
+            healthResult.setDateAdded(healthResultDto.getDateAdded());
         healthResult.setHeartRate(healthResultDto.getHeartRate());
         healthResult.setBloodPressure(healthResultDto.getBloodPressure());
         healthResult.setBloodSugar(healthResultDto.getBloodSugar());
         healthResult.setDescription(healthResultDto.getDescription());
         healthResult.setAppointment(AppointmentDto.toAppointment(healthResultDto.getAppointment()));
-        healthResult.setPatient(PatientDto.toPatient(healthResultDto.getPatient()));
-        healthResult.setDoctor(DoctorDto.toDoctor(healthResultDto.getDoctor()));
+        if (healthResultDto.getPatient() != null)
+            healthResult.setPatient(PatientDto.toPatient(healthResultDto.getPatient()));
+        if (healthResultDto.getDoctor() != null)
+            healthResult.setDoctor(DoctorDto.toDoctor(healthResultDto.getDoctor()));
         return healthResult;
     }
 }

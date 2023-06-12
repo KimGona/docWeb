@@ -8,7 +8,7 @@ export default function DoctorDashboard() {
   const [appointments, setAppointments] = useState([]);
   const [chosenDate, setChosenDate] = useState();
   const [monthAppointments, setMonthAppointments] = useState([]);
-  const [highlightedDays, setHighlightedDays] = React.useState([0, 2, 4, 15, 16, 17]);  // first number not rendered, put always first as 0
+  const [highlightedDays, setHighlightedDays] = React.useState([]);  // first number not rendered, put always first as 0
 
   const [isShown, setIsShown] = useState(false);
 
@@ -46,7 +46,7 @@ export default function DoctorDashboard() {
 
   let getAppointmentsForMonth = async () => {
     try {
-      let res = await fetch('http://localhost:8080/appointments/current-month', {
+      let res = await fetch('http://localhost:8080/appointments/doctor/current-month', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

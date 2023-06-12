@@ -80,10 +80,16 @@ public class AppointmentService {
         return appointmentRepository.findById(id).orElseThrow(ElementNotFoundException::new);
     }
 
-    public List<Appointment> getAppointmentsByCurrentMonth() {
+    public List<Appointment> getAppointmentsDoctorCurrentMonth() {
         Long id = userService.getUserId();
         LocalDate currentDate = LocalDate.now();
         return appointmentRepository.findByDoctorIdAndMonth(id, currentDate.getMonthValue(), currentDate.getYear());
+    }
+
+    public List<Appointment> getAppointmentsPatientCurrentMonth() {
+        Long id = userService.getUserId();
+        LocalDate currentDate = LocalDate.now();
+        return appointmentRepository.findByPatientIdAndMonth(id, currentDate.getMonthValue(), currentDate.getYear());
     }
 
     public List<Appointment> getAppointmentsByDoctorIdAndDateFrom() {

@@ -14,17 +14,12 @@ export default function DoctorAddResult({ }) {
     const navigate = useNavigate();
 
     const [data, setData] = useState({
-        appointmentId: 1,
+        appointment: appointment,
         bloodSugar: 0,
         heartRate: 0,
         bloodPressure: 0,
         description: ""
     })
-
-    const onAddClick = () => {
-        // TODO: send data
-        navigate(-1);
-    };
 
     const onDataChange = (e, type) => {
         let newData = {...data}
@@ -48,6 +43,38 @@ export default function DoctorAddResult({ }) {
         newData.description = e.target.value
         setData(newData);
     }
+
+    const onConfirm = async (event) => {
+        event.preventDefault();
+    
+        try {
+          let requestBody = JSON.stringify(data);
+    
+          let res = await fetch('http://localhost:8080/health-results', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: requestBody,
+            credentials: 'include',
+            mode: 'cors',
+            referrerPolicy: 'no-referrer',
+            origin: "http://localhost:3000/",
+    
+          });
+    
+          if (res.status === 200) {
+            navigate(-1);
+            window.location.reload();
+          } else {
+            console.log("health result confirmation failed")
+            // setAlert("error", "Could not add health result.");
+          }
+        } catch (error) {
+          console.log(error);
+        //   setAlert("error", "Could not add health result.")
+        }
+      }
 
     return (
 
@@ -81,7 +108,7 @@ export default function DoctorAddResult({ }) {
                         </div>
                     </div>
                     <div className="pt-10">
-                        <Button color="pink big" label="Add health result" onClick={onAddClick} />
+                        <Button color="pink big" label="Add health result" onClick={onConfirm} />
                     </div>
                 </div>
             </div>

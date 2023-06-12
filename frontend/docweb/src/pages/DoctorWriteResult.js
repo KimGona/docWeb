@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import GreenBackground from "../resources/green-background.png";
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import Calendar from "../components/Calendar";
 import { useNavigate } from "react-router-dom";
 import AppointmentWideResult from "../components/AppointmentWideResult";
+import dayjs, { Dayjs } from 'dayjs';
 
 function Appointments({ appointments, onClick }) {
   if (appointments.length <= 0)
@@ -24,47 +25,24 @@ function Appointment({ appointment, onClick }) {
   console.log(dateAppointment);
   console.log(date < dateAppointment);
 
-  return <AppointmentWideResult date={appointment.date} hour={appointment.hour} name={appointment.name.name} visitType={appointment.visitType.name} onClick={() => onClick(appointment)} />
+  return <AppointmentWideResult date={appointment.date} hour={appointment.hour} name={appointment.patient.name + " " + appointment.patient.surname} visitType={appointment.visitType.description} onClick={() => onClick(appointment)} />
 
 }
 
 export default function DoctorWriteResult({ }) {
 
-  const [appointments, setAppointments] = useState([{
-    "name": {
-      "id": 1,
-      "name": "Allen",
-    },
-    "visitType": {
-      "id": 1,
-      "name": "RegularCheckup",
-    },
-    "date": "2023-05-26",
-    "hour": 9,
-  },
-  {
-    "name": {
-      "id": 1,
-      "name": "Walker",
-    },
-    "visitType": {
-      "id": 1,
-      "name": "RegularCheckup",
-    },
-    "date": "2023-05-10",
-    "hour": 9,
-  }]);
+  const [appointments, setAppointments] = useState([]);
 
   const navigate = useNavigate();
 
   const onDateChosen = (event) => {
-    let date = event.$y + "-" + event.$M + "-" + event.$D
+    let date = event.format('YYYY-MM-DD');
     console.log(date);
     setChosenDate(date)
   };
 
   const [chosenDate, setChosenDate] = useState();
-  const [highlightedDays, setHighlightedDays] = React.useState([0, 2, 4, 15, 16, 17]);
+  const [highlightedDays, setHighlightedDays] = React.useState([]);
 
   const onAddClick = (app) => {
     navigate('/add_result', {
@@ -74,6 +52,74 @@ export default function DoctorWriteResult({ }) {
     });
     window.location.reload();
   };
+
+  const [isShown, setIsShown] = useState(false);
+
+  useEffect(() => {
+    if (typeof chosenDate !== "undefined")
+      getAppointments();
+    setIsShown(true);
+  }, [chosenDate])
+
+  useEffect(() => {
+    getAppointmentsForMonth();
+    setIsShown(true);
+  }, [isShown])
+
+  let getAppointments = async () => {
+    try {
+      let res = await fetch('http://localhost:8080/appointments/doctor/date/' + chosenDate, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        mode: 'cors',
+        referrerPolicy: 'no-referrer',
+        origin: "http://localhost:3000/",
+      });
+
+      if (res.status === 200) {
+        console.log("get appointments succeeded");
+        let list = await res.json();
+        console.log(list);
+        setAppointments(list);
+      } else {
+        console.log("get appointments failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  let getAppointmentsForMonth = async () => {
+    try {
+      let res = await fetch('http://localhost:8080/appointments/doctor/current-month', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        mode: 'cors',
+        referrerPolicy: 'no-referrer',
+        origin: "http://localhost:3000/",
+      });
+
+      if (res.status === 200) {
+        console.log("get appointments succeeded");
+        let list = await res.json();
+        console.log(list);
+        let days = list.map(d => dayjs(d.date).date());
+        console.log("days");
+        console.log(days);
+        setHighlightedDays([0].concat(days));
+      } else {
+        console.log("get appointments failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>

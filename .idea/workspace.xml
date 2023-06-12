@@ -5,15 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="fix adding doctor - many to many fixes">
-      <change afterPath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/YesNoDialog.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/AppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Appointment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/HealthResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/HealthResultController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/HealthResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/HealthResultDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/AppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/AppointmentRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/AppointmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/AppointmentWideDoctor.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/AppointmentWideDoctor.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/CalendarWithVisits.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/CalendarWithVisits.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAppointments.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAppointments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/HealthResultService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/HealthResultService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorDashboard.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

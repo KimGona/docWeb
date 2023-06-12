@@ -26,4 +26,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment,Long> {
             "FROM appointments a " +
             "WHERE a.doctor_id = ?1 AND MONTH(a.date) = ?2 AND YEAR(a.date) = ?3", nativeQuery = true)
     List<Appointment> findByDoctorIdAndMonth(Long doctorId, int month, int year);
+
+    @Query(value = "SELECT * " +
+            "FROM appointments a " +
+            "WHERE a.patient_id = ?1 AND MONTH(a.date) = ?2 AND YEAR(a.date) = ?3", nativeQuery = true)
+    List<Appointment> findByPatientIdAndMonth(Long patientId, int month, int year);
 }
