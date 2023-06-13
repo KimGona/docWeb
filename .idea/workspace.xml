@@ -4,14 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="connect patient Account page-401 error not solved">
+    <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="appointment in 'patient dashboard' and 'view appointment page' works&#10;&#10;graph, healthResults-not yet">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/runConfigurations.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/VisitTypeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/VisitTypeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAccount.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAppointments.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAppointments.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientChangeAppointment.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientChangeAppointment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientHealthResult.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientHealthResult.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -37,11 +35,11 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;
   }
-}]]></component>
+}</component>
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
@@ -68,6 +66,9 @@
         <entry key="com.haulmont.jpb.jpaStructure" value="false" />
       </map>
     </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
@@ -123,7 +124,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686571327442</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="appointment in 'patient dashboard' and 'view appointment page' works&#10;&#10;graph, healthResults-not yet">
+      <created>1686605930565</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1686605930566</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,7 +151,8 @@
     <MESSAGE value="added controller + fixed whole backend + login works" />
     <MESSAGE value="fix adding doctor - many to many fixes" />
     <MESSAGE value="connect patient Account page-401 error not solved" />
-    <option name="LAST_COMMIT_MESSAGE" value="connect patient Account page-401 error not solved" />
+    <MESSAGE value="appointment in 'patient dashboard' and 'view appointment page' works&#10;&#10;graph, healthResults-not yet" />
+    <option name="LAST_COMMIT_MESSAGE" value="appointment in 'patient dashboard' and 'view appointment page' works&#10;&#10;graph, healthResults-not yet" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
