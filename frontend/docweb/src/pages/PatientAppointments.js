@@ -53,7 +53,7 @@ export default function PatientAppointments() {
 
   let showAppointments = async () => {
     try {
-      let res = await fetch('http://localhost:8080/appointments/patient/', {
+      let res = await fetch('http://localhost:8080/appointments/patient', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

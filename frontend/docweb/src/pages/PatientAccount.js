@@ -5,7 +5,18 @@ import Button from "../components/Button";
 
 export default function PatientAccount({ onLogout }) {
     const [isShown, setIsShown] = useState(false);
-    const [user, setUser] = useState();
+    const [user, setUser] = useState({
+        name: "",
+        surname: "",
+        gender: "",
+        dateOfBirth: "",
+        address: {
+            street: "",
+            streetNumber: 0,
+            city: "",
+            code: ""
+        }
+    });
 
     useEffect(() => {
         getUser();
