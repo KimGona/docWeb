@@ -26,18 +26,26 @@ public class ScheduleTimeService {
     private final FreeTimeRepository freeTimeRepository;
     private final DoctorRepository doctorRepository;
     private final TimeRepository timeRepository;
+    private final UserService userService;
 
     @Autowired
     public ScheduleTimeService(
             ScheduleTimeRepository scheduleTimeRepository,
             FreeTimeRepository freeTimeRepository,
             DoctorRepository doctorRepository,
-            TimeRepository timeRepository
+            TimeRepository timeRepository,
+            UserService userService
     ) {
         this.scheduleTimeRepository = scheduleTimeRepository;
         this.freeTimeRepository = freeTimeRepository;
         this.doctorRepository = doctorRepository;
         this.timeRepository = timeRepository;
+        this.userService = userService;
+    }
+
+    public List<Integer> getAvailableHoursByLoggedInUserAndDate(String date) {
+        long id = userService.getUserId();
+        return getAvailableHoursByDoctorIdAndDate(id, date);
     }
 
     public List<Integer> getAvailableHoursByDoctorIdAndDate(long id, String date) {

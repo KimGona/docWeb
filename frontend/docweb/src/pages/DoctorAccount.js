@@ -15,51 +15,23 @@ function VisitTypes({visitTypes, onClick}) {
 }
 
 export default function DoctorAccount({userId, onLogout}) {
+    const [doctor, setDoctor] = useState({
+        name: "",
+        surname: "",
+        gender: "",
+        phone: "",
+        speciality: ""
+    });
     const [addedVisitTypes, setAddedVisitTypes] = useState([]);
-    const [allVisitTypes, setAllVisitTypes] = useState(["regular checkup", "blood tests", "allergy tests", "dentist consultation"]);
+    const [allVisitTypes, setAllVisitTypes] = useState([]);
 
     const [openVisitTypes, setOpenVisitTypes] = useState(false)
     const handleOpenVisitTypes = (value) => setOpenVisitTypes(value);
 
-    const [schedule, setSchedule] = useState([
-        {
-            "day": 1,
-            "dayName": "Monday",
-            "start": "9",
-            "end": "15",
-        },
-        {
-            "day": 2,
-            "dayName": "Tuesday",
-            "start": "9",
-            "end": "15",
-        },
-        {
-            "day": 3,
-            "dayName": "Wednesday",
-            "start": "9",
-            "end": "15",
-        },
-        {
-            "day": 4,
-            "dayName": "Thursday",
-            "start": "9",
-            "end": "15",
-        },
-        {
-            "day": 5,
-            "dayName": "Friday",
-            "start": "9",
-            "end": "15",
-        },
-    ])
+    const [schedule, setSchedule] = useState([])
 
     const [openWorkSchedule, setOpenWorkSchedule] = useState(false)
     const handleOpenWorkSchedules = (value) => setOpenWorkSchedule(value);
-
-    const onConfirmVisitType = (newVisitTypes) => {
-        setAddedVisitTypes(newVisitTypes);
-    };
 
     const removeVisitType = (visitType) => {
         console.log("remove visit type")
@@ -95,8 +67,37 @@ export default function DoctorAccount({userId, onLogout}) {
 
     useEffect(()=>{
         getSchedule();
+        getVisitTypes();
+        getDoctor();
         setIsShown(true);
     },[isShown])
+
+    const getDoctor = async () => {
+        try {
+            let res = await fetch('http://localhost:8080/doctors/id', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include',
+                mode: 'cors',
+                referrerPolicy: 'no-referrer',
+                origin: "http://localhost:3000/",
+            });
+            console.log("res code: " + res.status.toString());
+
+            if (res.status === 200) {
+                console.log("success - addidng time schedule")
+                let obj = await res.text();
+                console.log(obj)
+                setDoctor(obj);
+            } else {
+                console.log("adding time schedule failed")
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const getSchedule = async () => {
         try {
@@ -114,7 +115,6 @@ export default function DoctorAccount({userId, onLogout}) {
 
             if (res.status === 200) {
                 console.log("success - addidng time schedule")
-                console.log(await res.text())
                 let obj = await res.json();
                 console.log(obj)
                 setSchedule(getMappedSchedule(obj));
@@ -126,6 +126,30 @@ export default function DoctorAccount({userId, onLogout}) {
         }
     }
 
+    let getVisitTypes = async () => {
+        try {
+          let res = await fetch('http://localhost:8080/doctors/visit-types/' + userId, {
+            method: 'GET',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            credentials: 'include',
+            mode: 'cors',
+            referrerPolicy: 'no-referrer',
+            origin: "http://localhost:3000/",
+          });
+    
+          if (res.status === 200) {
+            console.log("get visit types succeeded");
+            console.log(list);
+            setAllVisitTypes(list);
+          } else {
+            console.log("get visit types failed");
+          }
+        } catch (error) {
+          console.log(error);
+        }
+      }    
 
     return (
         <PageContainer title="Your account details">
@@ -136,14 +160,14 @@ export default function DoctorAccount({userId, onLogout}) {
                 <div>
                 <p className="text-2xl font-medium pb-4">Personal details</p>
                 <div className="grid grid-cols-2 gap-x-8 gap-y-6">
-                    <TextWithTitle title="Name" content="Simon"/>
-                    <TextWithTitle title="Surname" content="Mat" />
-                    <TextWithTitle title="Username" content="Mat11" />
+                    <TextWithTitle title="Name" content={doctor.name}/>
+                    <TextWithTitle title="Surname" content={doctor.surname} />
+                    {/* <TextWithTitle title="Username" content="Mat11" /> */}
                     <div></div>
 
-                    <TextWithTitle title="Gender" content="Male" />
-                    <TextWithTitle title="Phone number" content="+48 123 456 789"/>
-                    <TextWithTitle title="Specialty" content="Surgery" />
+                    <TextWithTitle title="Gender" content={doctor.gender} />
+                    <TextWithTitle title="Phone number" content={doctor.phone}/>
+                    <TextWithTitle title="Specialty" content={doctor.speciality} />
                 </div>
                 </div>
 
@@ -170,10 +194,10 @@ export default function DoctorAccount({userId, onLogout}) {
                     </div>
                     <VisitTypes visitTypes={addedVisitTypes} onClick={(visitType) => removeVisitType(visitType)} />
                     <VisitTypesDialog 
-                        title="hello" 
+                        title="Change visit types" 
                         open={openVisitTypes} 
                         onClose={() => handleOpenVisitTypes(false)} 
-                        onConfirm={(newVisitTypes) => onConfirmVisitType(newVisitTypes)} 
+                        setIsShown={setIsShown}
                         visitTypes={allVisitTypes} 
                         selected={addedVisitTypes}
                     />

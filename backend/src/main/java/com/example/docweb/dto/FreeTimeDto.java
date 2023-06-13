@@ -23,7 +23,8 @@ public class FreeTimeDto {
         freeTime.setId(freeTimeDto.getId());
         freeTime.setDate(freeTimeDto.getDate());
         freeTime.setTimeList(freeTimeDto.getTimeList().stream().map(TimeDto::toTime).collect(Collectors.toList()));
-        freeTime.setDoctor(DoctorDto.toDoctor(freeTimeDto.getDoctor()));
+        if (freeTimeDto.getDoctor() != null)
+            freeTime.setDoctor(DoctorDto.toDoctor(freeTimeDto.getDoctor()));
         return freeTime;
     }
 }

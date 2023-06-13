@@ -1,10 +1,15 @@
 package com.example.docweb.services;
 
 import com.example.docweb.entity.Doctor;
+import com.example.docweb.entity.FreeTime;
 import com.example.docweb.entity.VisitType;
+import com.example.docweb.exception.OperationFailedException;
 import com.example.docweb.repository.DoctorRepository;
+import com.example.docweb.repository.VisitTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -12,11 +17,13 @@ import java.util.stream.Collectors;
 @Service
 public class DoctorService {
     private final DoctorRepository doctorRepository;
+    private final VisitTypeRepository visitTypeRepository;
     private final UserService userService;
 
     @Autowired
-    public DoctorService(DoctorRepository doctorRepository, UserService userService) {
+    public DoctorService(DoctorRepository doctorRepository, VisitTypeRepository visitTypeRepository, UserService userService) {
         this.doctorRepository = doctorRepository;
+        this.visitTypeRepository = visitTypeRepository;
         this.userService = userService;
     }
 
@@ -71,6 +78,19 @@ public class DoctorService {
             return doctor.getVisitTypes();
         else
             return null;
+    }
+
+    public Doctor updateVisitTypes(List<VisitType> visitTypes) {
+        Doctor doctor = getDoctorById();
+        if (doctor == null) throw new OperationFailedException();
+
+//        List<VisitType> result = new ArrayList<>();
+//        for (VisitType visitType : visitTypes) {
+//            VisitType v2 = visitTypeRepository.findByDescription(visitType.getDescription());
+//            result.add(v2);
+//        }
+        doctor.setVisitTypes(visitTypes);
+        return doctorRepository.save(doctor);
     }
 
     public Doctor saveDoctor(Doctor doctor) {

@@ -1,29 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PageContainer from "../components/PageContainer";
 import ClosableHealthResult from "../components/ClosableHealthResult";
 
 
 export default function DoctorHealthResult() {
-  const healthResults = [
-    {
-      num: 1,
-      date: '2023-05-29',
-      patientName: 'Alan Walker',
-      bloodSugar: 120,
-      bloodPressure: '120/80',
-      heartRate: 75,
-      description: '-Cetirizine 10mg, take one tablet daily at bedtime for allergies.'
-    },
-    {
-      num: 2,
-      date: '2023-06-01',
-      patientName: 'Jane Smith',
-      bloodSugar: 110,
-      bloodPressure: '130/90',
-      heartRate: 68,
-      description: "-Ibuprofen 400mg, take one tablet every 6 hours for pain relief."
-    },
-  ];
+  const [healthResults, setHealthResults] = useState([]);
+
+  const [isShown, setIsShown] = useState(false);
+
+  useEffect(() => {
+    getHealthResults();
+    setIsShown(true);
+  }, [isShown])
+
+  let getHealthResults = async () => {
+    try {
+      let res = await fetch('http://localhost:8080/health-results/doctor', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        mode: 'cors',
+        referrerPolicy: 'no-referrer',
+        origin: "http://localhost:3000/",
+      });
+
+      if (res.status === 200) {
+        console.log("get health results succeeded");
+        let list = await res.json();
+        console.log(list);
+        setHealthResults(list);
+      } else {
+        console.log("get health results failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   return (
     <PageContainer title="Your health results">
@@ -33,8 +47,8 @@ export default function DoctorHealthResult() {
                 <ClosableHealthResult
                     key={index}
                     num={result.num}
-                    date={result.date}
-                    name = {result.patientName}
+                    date={result.dateAdded}
+                    name = {result.patient.name + " " + result.patient.surname}
                     bloodSugar = {result.bloodSugar}
                     bloodPressure = {result.bloodPressure}
                     heartRate = {result.heartRate}

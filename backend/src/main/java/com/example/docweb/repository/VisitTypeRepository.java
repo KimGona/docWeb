@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VisitTypeRepository extends JpaRepository<VisitType,Long> {
     Boolean existsByDescription(String description);
+    VisitType findByDescription(String description);
 }

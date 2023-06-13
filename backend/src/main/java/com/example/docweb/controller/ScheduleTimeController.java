@@ -35,6 +35,13 @@ public class ScheduleTimeController {
         return new ResponseEntity<>(scheduleTimes, HttpStatus.OK);
     }
 
+    @GetMapping("/current-doctor/date/{date}")
+    @PreAuthorize("permitAll()")
+    ResponseEntity<List<Integer>> getAvailableHoursByLoggedInUserAndDate(@PathVariable String date) {
+        List<Integer> scheduleTimes = scheduleTimeService.getAvailableHoursByLoggedInUserAndDate(date);
+        return new ResponseEntity<>(scheduleTimes, HttpStatus.OK);
+    }
+
     @GetMapping("/doctor/{id}")
     @PreAuthorize("permitAll()")
     ResponseEntity<List<ScheduleTimeDto>> getScheduleTimesByDoctorId(@PathVariable long id) {

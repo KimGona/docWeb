@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class TimeService {
@@ -33,9 +35,23 @@ public class TimeService {
     }
 
     private Time saveTime(Time time) {
-//        if (timeRepository.existsById(time.getId()) || timeRepository.existsByHour(time.getHour())) {
-//            throw new OperationFailedException();
-//        }
-        return timeRepository.save(time);
+        Optional<Time> foundTime;
+        if (time.getId() != null)
+            foundTime = timeRepository.findById(time.getId());
+        else
+            foundTime = Optional.empty();
+        Time newTime;
+
+        if (foundTime.isEmpty()) {
+            // There must be only one ScheduleTIme for a given doctorId and day combination.
+            Time foundTime2 = timeRepository.findByHour(time.getHour());
+            newTime = Objects.requireNonNullElseGet(foundTime2, Time::new);
+        } else {
+            // Update schedule time with given id.
+            newTime = foundTime.get();
+        }
+
+        newTime.setHour(time.getHour());
+        return newTime;
     }
 }

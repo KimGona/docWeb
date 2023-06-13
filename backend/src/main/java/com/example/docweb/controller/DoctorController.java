@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.print.Doc;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -68,6 +69,12 @@ public class DoctorController {
     public ResponseEntity<List<VisitTypeDto>> getVisitTypesByDoctorId(@PathVariable long id) {
         List<VisitType> visitTypes = doctorService.getVisitTypesByDoctorId(id);
         return new ResponseEntity<>(visitTypes.stream().map(VisitType::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
+    @PostMapping("/visit-types")
+    public ResponseEntity<List<VisitTypeDto>> getVisitTypesByDoctorId(@RequestBody List<VisitTypeDto> visitTypes) {
+        Doctor doctor = doctorService.updateVisitTypes(visitTypes.stream().map(VisitTypeDto::toVisitType).collect(Collectors.toList()));
+        return new ResponseEntity<>(visitTypes, HttpStatus.OK);
     }
 
 }

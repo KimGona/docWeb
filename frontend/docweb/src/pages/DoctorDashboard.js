@@ -80,7 +80,7 @@ export default function DoctorDashboard() {
             <div className="justify-self-stretch space-y-8">
               {
                 appointments.map( appointment =>
-                  <AppointmentWideDoctor date={appointment.date} hour={appointment.hour} name={appointment.patient.name + " " + appointment.patient.surname} visitType={appointment.visitType.description} />
+                  <AppointmentWideDoctor setIsShown={setIsShown} appointment={appointment} date={appointment.date} hour={appointment.hour} name={appointment.patient.name + " " + appointment.patient.surname} visitType={appointment.visitType.description} />
                 )
               }
             </div>
