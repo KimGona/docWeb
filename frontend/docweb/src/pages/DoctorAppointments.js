@@ -78,7 +78,7 @@ export default function DoctorAppointments() {
         <div className="justify-self-stretch space-y-8">
           {
             appointments.map( appointment =>
-              <AppointmentWideDoctor setIsShown={setIsShown} appointment={appointment} date={appointment.date} hour={appointment.hour} name={appointment.patient.name + " " + appointment.patient.surname} visitType={appointment.visitType.description} />
+              <AppointmentWideDoctor appointment={appointment} date={appointment.date} hour={appointment.hour} name={appointment.patient.name + " " + appointment.patient.surname} visitType={appointment.visitType.description} />
             )
           }
         </div>

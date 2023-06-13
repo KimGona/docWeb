@@ -121,7 +121,7 @@ export default function AdminAddVisitTypes() {
                     description: "",
                 });
                 setIsShown(false);
-                setAlert("error", "Successfully added new visit type.");
+                setAlert("success", "Successfully added new visit type.");
             } else {
                 console.log("post visit types failed");
                 setAlert("error", "Could not save new visit type.");

@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import AvailableHours from "../components/AvailableHours";
 import Calendar from "../components/Calendar";
+import dayjs, { Dayjs } from 'dayjs';
 
 const getCurrentDate = () => {
   const date = new Date();
@@ -101,6 +102,42 @@ export default function AppointmentTime() {
         setHours(list);
       } else {
         console.log("get times failed");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  const [isShownMonth, setIsShownMonth] = useState(false);
+
+    useEffect(() => {
+        getAppointmentsForMonth();
+        setIsShownMonth(true);
+    }, [isShownMonth])
+
+  let getAppointmentsForMonth = async () => {
+    try {
+      let res = await fetch('http://localhost:8080/appointments/doctor/current-month', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        credentials: 'include',
+        mode: 'cors',
+        referrerPolicy: 'no-referrer',
+        origin: "http://localhost:3000/",
+      });
+
+      if (res.status === 200) {
+        console.log("get appointments succeeded");
+        let list = await res.json();
+        console.log(list);
+        let days = list.map(d => dayjs(d.date).date());
+        console.log("days");
+        console.log(days);
+        setHighlightedDays([0].concat(days));
+      } else {
+        console.log("get appointments failed");
       }
     } catch (error) {
       console.log(error);

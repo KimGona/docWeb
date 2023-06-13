@@ -46,7 +46,7 @@ export default function DoctorHealthResult() {
             {healthResults.map((result, index) => (
                 <ClosableHealthResult
                     key={index}
-                    num={result.num}
+                    num={index + 1}
                     date={result.dateAdded}
                     name = {result.patient.name + " " + result.patient.surname}
                     bloodSugar = {result.bloodSugar}

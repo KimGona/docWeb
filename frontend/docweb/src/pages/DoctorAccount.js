@@ -171,6 +171,7 @@ export default function DoctorAccount({userId, onLogout}) {
     
           if (res.status === 200) {
             console.log("get visit types succeeded");
+            let list = await res.json();
             console.log(list);
             setAllVisitTypes(list);
           } else {

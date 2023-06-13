@@ -5,20 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="fix get users by id">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/DoctorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/DoctorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/ScheduleTimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/ScheduleTimeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/FreeTimeDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/FreeTimeDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/VisitTypeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/VisitTypeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/DoctorService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/DoctorService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/FreeTimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/FreeTimeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/ScheduleTimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/ScheduleTimeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/TimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/TimeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/VisitTypesDialog.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/dialogs/VisitTypesDialog.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAccount.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAppointments.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAppointments.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorHealthResult.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorHealthResult.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorOffTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorOffTime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAccount.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAppointments.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientAppointments.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientHealthResult.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientHealthResult.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

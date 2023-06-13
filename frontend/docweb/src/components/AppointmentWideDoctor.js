@@ -1,41 +1,12 @@
 import React, { useState, useEffect } from "react";
 import YesNoDialog from "./dialogs/YesNoDialog";
 
-export default function AppointmentWideDoctor({ appointment, setIsShown, date, hour, name, visitType, onCancel }) {
+export default function AppointmentWideDoctor({ appointment, date, hour, name, visitType }) {
     const [isDialogShown, setIsDialogShown] = useState(false);
-
-    const deleteAppointment = async () => {
-        try {
-            let requestBody = JSON.stringify(appointment);
-
-            let res = await fetch('http://localhost:8080/appointments/delete', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: requestBody,
-                credentials: 'include',
-                mode: 'cors',
-                referrerPolicy: 'no-referrer',
-                origin: "http://localhost:3000/",
-            });
-            console.log("res code: " + res.status.toString());
-
-            if (res.status === 200) {
-                console.log("success - deleting appointment")
-                console.log(await res.text())
-                setIsShown(false);
-            } else {
-                console.log("deleting appointment failed")
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     return (
         <div>
-            <YesNoDialog opne={isDialogShown} onClose={() => setIsDialogShown(false)} onConfirm={onCancel} />
+            <YesNoDialog appointment={appointment} open={isDialogShown} onClose={() => setIsDialogShown(false)} />
             <div className="w-full border border-[3px] border-greenPrimary rounded-xl">
                 <div className="w-full h-[50px] border border-[3px] border-greenPrimary bg-greenPrimary rounded-t-md flex flex-row space-x-6 items-center">
                     <p className="pl-6 text-xl text-white font-bold">Appointment</p>
