@@ -337,11 +337,13 @@ export default function RegisterDoctor({ }) {
                                         <InputFieldWithTitle title="Username" value={data.username} onValueChange={(e) => onDataChange(e, "username")} />
                                         <div></div>
                                         <InputFieldWithTitle title="Password"
+                                            type="password"
                                             isError={isPasswordError}
                                             errorMessage="Password should be at least 4 characters."
                                             value={data.password}
                                             onValueChange={(e) => onDataChange(e, "password")} />
                                         <InputFieldWithTitle title="Confirm password"
+                                            type="password"
                                             isError={isConfirmPasswordError}
                                             errorMessage="Passwords don't match!"
                                             value={confirmPassword}

@@ -43,6 +43,36 @@ export default function DoctorAccount({userId, onLogout}) {
         setAddedVisitTypes(newArr);
     }
 
+    const onConfirm = async (v) => {
+        try {
+            let requestBody = JSON.stringify(v);
+
+            let res = await fetch('http://localhost:8080/doctors/visit-types', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: requestBody,
+                credentials: 'include',
+                mode: 'cors',
+                referrerPolicy: 'no-referrer',
+                origin: "http://localhost:3000/",
+            });
+            console.log("res code: " + res.status.toString());
+
+            if (res.status === 200) {
+                console.log("success - addidng time schedule")
+                console.log(await res.text())
+                setIsShown(false);
+            } else {
+                console.log("adding time schedule failed")
+            }
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
+
     function getScheduleObj(s) {
         let start = 0;
         let end = 0;
@@ -197,6 +227,7 @@ export default function DoctorAccount({userId, onLogout}) {
                         title="Change visit types" 
                         open={openVisitTypes} 
                         onClose={() => handleOpenVisitTypes(false)} 
+                        onConfirm={(v) => onConfirm(v)}
                         setIsShown={setIsShown}
                         visitTypes={allVisitTypes} 
                         selected={addedVisitTypes}

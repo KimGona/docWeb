@@ -14,41 +14,12 @@ function isEqual(object1, object2) {
     return object1.description === object2.description;
 }
 
-export default function VisitTypesDialog({ open, onClose, setIsShown, visitTypes, selected }) {
+export default function VisitTypesDialog({ open, onClose, onConfirm, visitTypes, selected }) {
     const [chosenArr, setChosenArr] = useState(selected);
-
+    
     useEffect(() => {
         setChosenArr(selected)
     }, [selected])
-
-    const setVisitTypes = async () => {
-        try {
-            let requestBody = JSON.stringify(chosenArr);
-
-            let res = await fetch('http://localhost:8080/doctors/visit-types', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: requestBody,
-                credentials: 'include',
-                mode: 'cors',
-                referrerPolicy: 'no-referrer',
-                origin: "http://localhost:3000/",
-            });
-            console.log("res code: " + res.status.toString());
-
-            if (res.status === 200) {
-                console.log("success - addidng time schedule")
-                console.log(await res.text())
-                setIsShown(false);
-            } else {
-                console.log("adding time schedule failed")
-            }
-        } catch (error) {
-            console.log(error);
-        }
-    }
 
     return (
         <SimpleDialog open={open} handleClose={onClose} title="Pick visit types">
@@ -82,7 +53,7 @@ export default function VisitTypesDialog({ open, onClose, setIsShown, visitTypes
                 <div className="flex flex-row space-x-4 pt-4">
                     <Button label="Close" color="pink outline" onClick={() => onClose()} />
                     <Button label="Confirm" onClick={() => {
-                        setVisitTypes();
+                        onConfirm(chosenArr);
                         onClose();
                     }} />
                 </div>
