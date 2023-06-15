@@ -8,7 +8,9 @@ import com.example.docweb.services.DoctorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.Doc;
@@ -77,4 +79,11 @@ public class DoctorController {
         return new ResponseEntity<>(visitTypes, HttpStatus.OK);
     }
 
+    @Transactional
+    @PostMapping("/delete/visit-type")
+    @PreAuthorize("hasRole('ROLE_DOCTOR') or hasRole('ROLE_DOCTOR')")
+    public ResponseEntity<Void> deleteVisitType(@RequestBody VisitTypeDto visitTypeDto) {
+        doctorService.deleteVisitType(visitTypeDto.getId());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

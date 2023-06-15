@@ -1,5 +1,6 @@
 package com.example.docweb.controller;
 
+import com.example.docweb.dto.AppointmentDto;
 import com.example.docweb.dto.VisitTypeDto;
 import com.example.docweb.entity.VisitType;
 import com.example.docweb.services.VisitTypeService;

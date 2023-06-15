@@ -113,7 +113,7 @@ export default function RegisterDoctor({ }) {
     function onGenderChange(e) {
         console.log(e);
         let newObject = { ...data };
-        newObject.patient.gender = e;
+        newObject.doctor.gender = e;
         setData(newObject);
     }
 
@@ -168,7 +168,9 @@ export default function RegisterDoctor({ }) {
         let startTime = parseInt(start, 10);
         let endTime = parseInt(end, 10);
         for (let step = startTime; step <= endTime; step++) {
-            list.push(step);
+            list.push({
+                hour: step,
+            });
         }
         return list;
     }
@@ -179,7 +181,13 @@ export default function RegisterDoctor({ }) {
             dayName: s.dayName,
             timeList: getTimeList(s.start, s.end),
             doctor: {
-                id: doctorId
+                id: parseInt(doctorId, 10),
+                name: "",
+                surname: "",
+                speciality: "",
+                phone: "",
+                gender: "",
+                visitTypes: [],
             }
         }
     }
@@ -192,9 +200,7 @@ export default function RegisterDoctor({ }) {
 
     const onSubmit = async (event) => {
         let user = await onCreateAccount(event);
-        console.log("user: ")
-        console.log(user)
-        // await setScheduleTimesReq(user.doctor.id);
+        setScheduleTimesReq(user.doctor.id);
     }
 
     const setScheduleTimesReq = async (doctorId) => {
@@ -217,7 +223,9 @@ export default function RegisterDoctor({ }) {
             if (res.status === 200) {
                 resetData()
                 console.log("success - addidng time schedule")
-                console.log(await res.text())
+                let obj = await res.json();
+                console.log(obj);
+                return obj;
             } else {
                 console.log("adding time schedule failed")
             }
@@ -261,6 +269,7 @@ export default function RegisterDoctor({ }) {
             if (res.status === 200) {
                 console.log("success adding account");
                 let obj = await res.json();
+                console.log("obj");
                 console.log(obj);
                 resetData()
                 setAlert("success", "Successfully created new account.");

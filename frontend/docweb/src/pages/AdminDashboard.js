@@ -6,7 +6,7 @@ import RegisteredAdminAccount from "../components/RegisteredAdminAccount";
 
 function Accounts({user}) {
   if (user.doctor !== 'undefined')
-    return <RegisteredDoctorAccount name={it.doctor.name + " " + it.doctor.surname} gender={it.doctor.gender} phoneNumber={it.doctor.phoneNumber} specialty={it.doctor.speciality}/>
+    return <RegisteredDoctorAccount name={user.doctor.name + " " + user.doctor.surname} gender={user.doctor.gender} phoneNumber={user.doctor.phoneNumber} specialty={user.doctor.speciality}/>
   else
     return <RegisteredAdminAccount user={user} />
 }

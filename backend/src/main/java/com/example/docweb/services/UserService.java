@@ -38,26 +38,42 @@ public class UserService {
         if (userRepository.existsByUsername(user.getUsername()) || (user.getId() != null && userRepository.existsById(user.getId())))
             throw new OperationFailedException();
 
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        User newUser = new User();
+        newUser.setUsername(user.getUsername());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setRole(user.getRole());
+        newUser.setCreatedBy(getUserId());
+
+        return userRepository.save(newUser);
     }
 
     public User addUserDoctor(User user, Doctor doctor) {
         if (userRepository.existsByUsername(user.getUsername()))
             throw new OperationFailedException();
 
-        user.setDoctor(doctor);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        // You have to create new user object, otherwise the id will be null.
+        User newUser = new User();
+        newUser.setUsername(user.getUsername());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setRole(user.getRole());
+        newUser.setCreatedBy(getUserId());
+        newUser.setDoctor(doctor);
+
+        return userRepository.save(newUser);
     }
 
     public User addUserPatient(User user, Patient patient) {
         if (userRepository.existsByUsername(user.getUsername()))
             throw new OperationFailedException();
 
-        user.setPatient(patient);
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return userRepository.save(user);
+        User newUser = new User();
+        newUser.setUsername(user.getUsername());
+        newUser.setPassword(passwordEncoder.encode(user.getPassword()));
+        newUser.setRole(user.getRole());
+        newUser.setCreatedBy(getUserId());
+        newUser.setPatient(patient);
+
+        return userRepository.save(newUser);
     }
 
     public String getRole(){

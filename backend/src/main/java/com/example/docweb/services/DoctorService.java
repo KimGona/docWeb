@@ -93,6 +93,13 @@ public class DoctorService {
         return doctorRepository.save(doctor);
     }
 
+    public void deleteVisitType(long id) {
+        Doctor doctor = doctorRepository.findById(userService.getUserId()).orElseThrow(OperationFailedException::new);
+        List<VisitType> newVisitTypes = doctor.getVisitTypes().stream().filter(v -> v.getId() != id).collect(Collectors.toList());
+        doctor.setVisitTypes(newVisitTypes);
+        doctorRepository.save(doctor);
+    }
+
     public Doctor saveDoctor(Doctor doctor) {
         return doctorRepository.save(doctor);
     }

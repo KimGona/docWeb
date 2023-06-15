@@ -22,7 +22,6 @@ export default function DoctorAccount({userId, onLogout}) {
         phone: "",
         speciality: ""
     });
-    const [addedVisitTypes, setAddedVisitTypes] = useState([]);
     const [allVisitTypes, setAllVisitTypes] = useState([]);
 
     const [openVisitTypes, setOpenVisitTypes] = useState(false)
@@ -33,14 +32,33 @@ export default function DoctorAccount({userId, onLogout}) {
     const [openWorkSchedule, setOpenWorkSchedule] = useState(false)
     const handleOpenWorkSchedules = (value) => setOpenWorkSchedule(value);
 
-    const removeVisitType = (visitType) => {
-        console.log("remove visit type")
-        const newArr = [...addedVisitTypes]
-        if (newArr.includes(visitType)) {
-            const index = newArr.indexOf(visitType);
-            newArr.splice(index, 1);
+    const removeVisitType = async (visitType) => {
+        try {
+            let requestBody = JSON.stringify(visitType);
+
+            let res = await fetch('http://localhost:8080/doctors/delete/visit-type', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: requestBody,
+                credentials: 'include',
+                mode: 'cors',
+                referrerPolicy: 'no-referrer',
+                origin: "http://localhost:3000/",
+            });
+            console.log("res code: " + res.status.toString());
+
+            if (res.status === 200) {
+                console.log("success - delete visit type")
+                console.log(await res.text())
+                setIsShown(false);
+            } else {
+                console.log("delete visit type failed")
+            }
+        } catch (error) {
+            console.log(error);
         }
-        setAddedVisitTypes(newArr);
     }
 
     const onConfirm = async (v) => {
@@ -77,8 +95,8 @@ export default function DoctorAccount({userId, onLogout}) {
         let start = 0;
         let end = 0;
         if (s.timeList.length > 1) {
-            start = s.timeList[0];
-            end = s.timeList[s.timeList.length - 1];
+            start = s.timeList[0].hour;
+            end = s.timeList[s.timeList.length - 1].hour;
         }
 
         return {
@@ -114,15 +132,14 @@ export default function DoctorAccount({userId, onLogout}) {
                 referrerPolicy: 'no-referrer',
                 origin: "http://localhost:3000/",
             });
-            console.log("res code: " + res.status.toString());
 
             if (res.status === 200) {
-                console.log("success - addidng time schedule")
-                let obj = await res.text();
+                console.log("success - getDoctor")
+                let obj = await res.json();
                 console.log(obj)
                 setDoctor(obj);
             } else {
-                console.log("adding time schedule failed")
+                console.log("getDoctor failed")
             }
         } catch (error) {
             console.log(error);
@@ -158,7 +175,7 @@ export default function DoctorAccount({userId, onLogout}) {
 
     let getVisitTypes = async () => {
         try {
-          let res = await fetch('http://localhost:8080/doctors/visit-types/' + userId, {
+          let res = await fetch('http://localhost:8080/visit-types', {
             method: 'GET',
             headers: {
               'Content-Type': 'application/json'
@@ -223,7 +240,7 @@ export default function DoctorAccount({userId, onLogout}) {
                         <p className="text-2xl font-medium">Visit types</p>
                         <Button color="green outline" label="Edit" onClick={() => handleOpenVisitTypes(true)} />
                     </div>
-                    <VisitTypes visitTypes={addedVisitTypes} onClick={(visitType) => removeVisitType(visitType)} />
+                    <VisitTypes visitTypes={doctor.visitTypes} onClick={(visitType) => removeVisitType(visitType)} />
                     <VisitTypesDialog 
                         title="Change visit types" 
                         open={openVisitTypes} 
@@ -231,7 +248,7 @@ export default function DoctorAccount({userId, onLogout}) {
                         onConfirm={(v) => onConfirm(v)}
                         setIsShown={setIsShown}
                         visitTypes={allVisitTypes} 
-                        selected={addedVisitTypes}
+                        selected={doctor.visitTypes}
                     />
                 </div>
             </div>
