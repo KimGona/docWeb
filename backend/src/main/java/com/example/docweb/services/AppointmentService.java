@@ -86,6 +86,11 @@ public class AppointmentService {
         return appointmentRepository.findByDoctorIdAndMonth(id, currentDate.getMonthValue(), currentDate.getYear());
     }
 
+    public List<Appointment> getAppointmentsDoctorIdCurrentMonth(long id) {
+        LocalDate currentDate = LocalDate.now();
+        return appointmentRepository.findByDoctorIdAndMonth(id, currentDate.getMonthValue(), currentDate.getYear());
+    }
+
     public List<Appointment> getAppointmentsPatientCurrentMonth() {
         Long id = userService.getUserId();
         LocalDate currentDate = LocalDate.now();

@@ -1,11 +1,15 @@
 package com.example.docweb.dto;
 import com.example.docweb.entity.HealthResult;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class HealthResultDto {
     private Long id;
-    private String dateAdded;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date dateAdded;
     private Long heartRate;
     private String bloodPressure;
     private Long bloodSugar;

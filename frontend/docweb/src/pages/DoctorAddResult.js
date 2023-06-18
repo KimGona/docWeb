@@ -65,7 +65,7 @@ export default function DoctorAddResult({ }) {
     
           if (res.status === 200) {
             navigate(-1);
-            window.location.reload();
+            // window.location.reload();
           } else {
             console.log("health result confirmation failed")
             // setAlert("error", "Could not add health result.");
@@ -84,8 +84,8 @@ export default function DoctorAddResult({ }) {
                 <div className="relative px-12 py-12 bg-white flex flex-col justify-center items-start space-y-10">
                     <p className="text-3xl font-bold">Add health result</p>
                     <div className="grid grid-cols-2 gap-x-8 gap-y-6">
-                        <TextWithTitle title="Patient's name" content="Allan" />
-                        <TextWithTitle title="Patient's surname" content="Matt" />
+                        <TextWithTitle title="Patient's name" content={appointment.patient.name} />
+                        <TextWithTitle title="Patient's surname" content={appointment.patient.surname} />
                     </div>
                     <div className="grid grid-cols-3 gap-y-40 gap-x-40 pt-8">
                         <div className="justify-self-stretch space-y-3">

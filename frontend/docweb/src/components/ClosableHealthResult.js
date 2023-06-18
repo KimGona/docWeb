@@ -55,7 +55,7 @@ export default function ClosableHealthResult({num,date, name,bloodSugar, bloodPr
                </div>
              </div>
              <div className="absolute top-[24px] left-[0px] text-10xl inline-block w-52">
-               {bloodPressure}71
+               {bloodPressure}
              </div>
            </div>
            <div className="absolute top-[96px] left-[220px] w-[480px] h-[299px]">

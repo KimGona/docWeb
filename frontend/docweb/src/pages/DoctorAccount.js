@@ -20,7 +20,8 @@ export default function DoctorAccount({userId, onLogout}) {
         surname: "",
         gender: "",
         phone: "",
-        speciality: ""
+        speciality: "",
+        visitTypes: []
     });
     const [allVisitTypes, setAllVisitTypes] = useState([]);
 

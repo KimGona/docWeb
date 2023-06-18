@@ -21,7 +21,7 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/schedule-times")
 public class ScheduleTimeController {
-    private ScheduleTimeService scheduleTimeService;
+    private final ScheduleTimeService scheduleTimeService;
 
     @Autowired
     public ScheduleTimeController(ScheduleTimeService scheduleTimeService) {
@@ -32,6 +32,13 @@ public class ScheduleTimeController {
     @PreAuthorize("permitAll()")
     ResponseEntity<List<Integer>> getAvailableHoursByDoctorIdAndDate(@PathVariable long doctorId, @PathVariable String date) {
         List<Integer> scheduleTimes = scheduleTimeService.getAvailableHoursByDoctorIdAndDate(doctorId, date);
+        return new ResponseEntity<>(scheduleTimes, HttpStatus.OK);
+    }
+
+    @GetMapping("/month/doctor/{doctorId}")
+    @PreAuthorize("permitAll()")
+    ResponseEntity<List<Integer>> getAvailableHoursByDoctorIdAndCurrentMonth(@PathVariable long doctorId) {
+        List<Integer> scheduleTimes = scheduleTimeService.getAvailableDaysByDoctorIdAndMonth(doctorId);
         return new ResponseEntity<>(scheduleTimes, HttpStatus.OK);
     }
 
