@@ -12,7 +12,7 @@ public class AppointmentDto {
     private Long id;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private Date date;
-    private Long hour;
+    private int hour;
     private boolean hasHealthResultWritten;
     private PatientDto patient;
     private DoctorDto doctor;

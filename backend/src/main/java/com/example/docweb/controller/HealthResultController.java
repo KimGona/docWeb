@@ -33,6 +33,12 @@ public class HealthResultController {
         return new ResponseEntity<>(healthResults.stream().map(HealthResult::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/patient/current-month")
+    ResponseEntity<List<HealthResultDto>> getHealthResultsByPatientIdAndCurrentMonth() {
+        List<HealthResult> healthResults = healthResultService.getHealthResultsByPatientIdAndCurrentMonth();
+        return new ResponseEntity<>(healthResults.stream().map(HealthResult::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @GetMapping("/doctor")
     ResponseEntity<List<HealthResultDto>> getHealthResultsByDoctorId() {
         List<HealthResult> healthResults = healthResultService.getHealthResultsByDoctorId();

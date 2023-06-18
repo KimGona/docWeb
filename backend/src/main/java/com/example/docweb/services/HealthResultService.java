@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,6 +32,12 @@ public class HealthResultService {
         return healthResultRepository.findByPatientId(id);
     }
 
+    public List<HealthResult> getHealthResultsByPatientIdAndCurrentMonth() {
+        Long id = userService.getUserId();
+        LocalDate currentDate = LocalDate.now();
+        return healthResultRepository.findByPatientIdAndMonth(id, currentDate.getMonthValue(), currentDate.getYear());
+    }
+
     public List<HealthResult> getHealthResultsByDoctorId() {
         Long id = userService.getUserId();
         return healthResultRepository.findByDoctorId(id);
@@ -47,12 +54,10 @@ public class HealthResultService {
         appointment.setHasHealthResultWritten(true);
         appointmentRepository.save(appointment);
 
-        LocalDate localDate = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        String formattedString = localDate.format(formatter);
+        Date currentDate = new Date(System.currentTimeMillis());
 
         HealthResult newHealthResult = new HealthResult();
-        newHealthResult.setDateAdded(formattedString);
+        newHealthResult.setDateAdded(currentDate);
         newHealthResult.setDescription(healthResult.getDescription());
         newHealthResult.setHeartRate(healthResult.getHeartRate());
         newHealthResult.setBloodSugar(healthResult.getBloodSugar());

@@ -117,7 +117,7 @@ export default function AppointmentTime() {
 
   let getAppointmentsForMonth = async () => {
     try {
-      let res = await fetch('http://localhost:8080/appointments/doctor/current-month', {
+      let res = await fetch('http://localhost:8080/schedule-times/month/doctor/' + appointment.doctor.id, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -132,10 +132,7 @@ export default function AppointmentTime() {
         console.log("get appointments succeeded");
         let list = await res.json();
         console.log(list);
-        let days = list.map(d => dayjs(d.date).date());
-        console.log("days");
-        console.log(days);
-        setHighlightedDays([0].concat(days));
+        setHighlightedDays([0].concat(list));
       } else {
         console.log("get appointments failed");
       }

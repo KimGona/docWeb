@@ -7,56 +7,56 @@ import { PickersDay, PickersDayProps } from '@mui/x-date-pickers/PickersDay';
 import Badge from '@mui/material/Badge';
 
 function ServerDay(props) {
-    const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
-  
-    const isSelected =
-      !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
-  
-    return (
-      <Badge
-        key={props.day.toString()}
-        overlap="circular"
-        badgeContent={isSelected ? <span className="text-pink-700 font-bold">•</span> : undefined}
-      >
-        <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
-      </Badge>
-    );
-  }
+  const { highlightedDays = [], day, outsideCurrentMonth, ...other } = props;
 
-export default function Calendar({highlightedDays, chosenDate, onChosenDate}) {
-    const requestAbortController = React.useRef<AbortController | null>(null);
-    const [isLoading, setIsLoading] = React.useState(false);
-    // const [highlightedDays, setHighlightedDays] = React.useState([0, 2, 4, 15, 16]);  // first number not rendered, put always first as 0
+  const isSelected =
+    !props.outsideCurrentMonth && highlightedDays.indexOf(props.day.date()) > 0;
 
-    const handleMonthChange = (date) => {
-        if (requestAbortController.current) {
-        requestAbortController.current.abort();
-        }
+  return (
+    <Badge
+      key={props.day.toString()}
+      overlap="circular"
+      badgeContent={isSelected ? <span className="text-pink-700 font-bold">•</span> : undefined}
+    >
+      <PickersDay {...other} outsideCurrentMonth={outsideCurrentMonth} day={day} />
+    </Badge>
+  );
+}
 
-        // setIsLoading(true); // in fetch set loading to false
-        // setHighlightedDays([]);
-        // fetchHighlightedDays(date); // TODO: implement own fetch
-    };
+export default function Calendar({ highlightedDays, chosenDate, onChosenDate, isGreen=false }) {
+  const requestAbortController = React.useRef < AbortController | null > (null);
+  const [isLoading, setIsLoading] = React.useState(false);
+  // const [highlightedDays, setHighlightedDays] = React.useState([0, 2, 4, 15, 16]);  // first number not rendered, put always first as 0
 
-    return (
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <div className="bg-white shadow-md">
-            <DateCalendar 
-            value={chosenDate} 
-            onChange={(newValue) => onChosenDate(newValue)} 
-            loading={isLoading}
-            onMonthChange={handleMonthChange}
-            renderLoading={() => <DayCalendarSkeleton />}
-            slots={{
-                day: ServerDay,
-            }}
-            slotProps={{
-                day: {
-                highlightedDays,
-                },
-            }}
-            />
-        </div>
-      </LocalizationProvider>
-    );
+  const handleMonthChange = (date) => {
+    if (requestAbortController.current) {
+      requestAbortController.current.abort();
+    }
+
+    // setIsLoading(true); // in fetch set loading to false
+    // setHighlightedDays([]);
+    // fetchHighlightedDays(date); // TODO: implement own fetch
+  };
+
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <div className="bg-white shadow-md">
+        <DateCalendar
+          value={chosenDate}
+          onChange={(newValue) => onChosenDate(newValue)}
+          loading={isLoading}
+          onMonthChange={handleMonthChange}
+          renderLoading={() => <DayCalendarSkeleton />}
+          slots={{
+            day: ServerDay,
+          }}
+          slotProps={{
+            day: {
+              highlightedDays,
+            },
+          }}
+        />
+      </div>
+    </LocalizationProvider>
+  );
 };

@@ -13,7 +13,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Date date;
-    private Long hour;
+    private int hour;
     private boolean hasHealthResultWritten;
 
     @OneToOne

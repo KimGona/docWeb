@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Calendar from "./Calendar";
 
-function AppointmentCompact({hour, visitType}) {
+function AppointmentCompact({date, hour, visitType}) {
     return (
         <div>
-            <p className="text-greenSecondary">at {hour}</p>
+            <p className="text-greenSecondary">{date} at {hour}</p>
             <p className="text-md font-medium">{visitType}</p>
         </div>
     );
@@ -17,7 +17,7 @@ export default function CalendarWithVisits({highlightedDays, chosenDate, onChose
             <Calendar highlightedDays={highlightedDays} chosenDate={chosenDate} onChosenDate={onChosenDate} />
             {
                 appointments.map( appointment =>
-                    <AppointmentCompact hour={appointment.hour} visitType={appointment.visitType.description}/>
+                    <AppointmentCompact date={appointment.date} hour={appointment.hour} visitType={appointment.visitType.description}/>
                 )
             }
         </div>

@@ -7,10 +7,8 @@ import AppointmentWidePatient from "../components/AppointmentWidePatient";
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import Button from "../components/Button";
-import LineChart from "../components/LineChart";
-import LineChartBloodSugar from "../components/LineChartBloodSugar";
-import LineChartBloodPressure from "../components/LineChartBloodPressure";
 import dayjs, { Dayjs } from 'dayjs';
+import { BarChartBloodSugar } from "../components/graphs/BarChartBloodSugar";
 
 const data = {
   labels: ['Red', 'Orange', 'Blue'],
@@ -159,8 +157,7 @@ export default function PatientDashboard({ }) {
               <Appointments appointments={appointments} onClick={onEditClick} />
               <Button color="pink" label="+ Add new appointment" onClick={onAddNewAppointement} />
               <h1 className="text-2xl font-semibold pt-10 pb-6">Your health</h1>
-              <LineChartBloodSugar />
-              <LineChartBloodPressure />
+              <BarChartBloodSugar />
             </div>
           </div>
           <div className="justify-self-center">
