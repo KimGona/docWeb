@@ -68,7 +68,7 @@ export const options = {
   }
 };
 
-const labels = get_all_dates();
+const labels = get_all_dates().map(t => t.slice(8,10));
 
 function getBloodSugars(list) {
   let days = get_all_dates();
@@ -83,7 +83,7 @@ function getBloodSugars(list) {
       newArr.push(0);
     }
   });
-  return newArr.map(t => t.slice(7,10));
+  return newArr;
 }
 
 export function BarChartBloodSugar() {

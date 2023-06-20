@@ -6,30 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="5fa2c3e7-3a15-4633-b48f-0809dd9b35bc" name="Changes" comment="fix get users by id">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/AppointmentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/AppointmentController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/HealthResultController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/HealthResultController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/ScheduleTimeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/controller/ScheduleTimeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/AppointmentDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/AppointmentDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/HealthResultDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/dto/HealthResultDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Appointment.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/Appointment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/HealthResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/entity/HealthResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/FreeTimeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/FreeTimeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/HealthResultRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/HealthResultRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/ScheduleTimeRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/ScheduleTimeRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/AppointmentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/AppointmentService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/HealthResultService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/HealthResultService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/ScheduleTimeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/services/ScheduleTimeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/CalendarWithVisits.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/CalendarWithVisits.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/LineChart.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/LineChartBloodPressure.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/LineChartBloodSugar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/RadioButton.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/RadioButton.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/VisitTypesGrid.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/VisitTypesGrid.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentTime.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/AppointmentTime.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAccount.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAccount.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAddResult.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/DoctorAddResult.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientChangeAppointment.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientChangeAppointment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/pages/PatientDashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/AppointmentRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/docweb/repository/AppointmentRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/docweb/src/components/graphs/BarChartBloodSugar.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/docweb/src/components/graphs/BarChartBloodSugar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

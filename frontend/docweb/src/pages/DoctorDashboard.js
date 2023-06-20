@@ -20,7 +20,7 @@ export default function DoctorDashboard() {
 
   let getAppointments = async () => {
     try {
-      let res = await fetch('http://localhost:8080/appointments/doctor/current-date', {
+      let res = await fetch('http://localhost:8080/appointments/doctor/date-from', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -75,7 +75,7 @@ export default function DoctorDashboard() {
   }
 
     return (
-        <PageContainer title="Today's appointments">
+        <PageContainer title="Upcoming appointments">
           <div className="w-full pt-10 grid grid-cols-2 place-start justify-items-start">
             <div className="justify-self-stretch space-y-8">
               {
