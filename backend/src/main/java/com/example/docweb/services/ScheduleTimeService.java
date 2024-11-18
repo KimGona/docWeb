@@ -220,8 +220,8 @@ public class ScheduleTimeService {
 
         if (foundScheduleTime.isEmpty()) {
             // There must be only one ScheduleTIme for a given doctorId and day combination.
-            ScheduleTime foundScheduleTime2 = scheduleTimeRepository.findByDoctorIdAndDay(scheduleTime.getDoctor().getId(), scheduleTime.getDay()).orElseThrow(OperationFailedException::new);
-            newScheduleTime = Objects.requireNonNullElseGet(foundScheduleTime2, ScheduleTime::new);
+            Optional<ScheduleTime> foundScheduleTime2 = scheduleTimeRepository.findByDoctorIdAndDay(scheduleTime.getDoctor().getId(), scheduleTime.getDay());
+            newScheduleTime = foundScheduleTime2.orElseGet(ScheduleTime::new);
         } else {
             // Update schedule time with given id.
             newScheduleTime = foundScheduleTime.get();

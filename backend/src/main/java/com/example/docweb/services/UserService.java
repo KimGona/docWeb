@@ -70,7 +70,7 @@ public class UserService {
         newUser.setUsername(user.getUsername());
         newUser.setPassword(passwordEncoder.encode(user.getPassword()));
         newUser.setRole(user.getRole());
-        newUser.setCreatedBy(getUserId());
+        newUser.setCreatedBy(null);
         newUser.setPatient(patient);
 
         return userRepository.save(newUser);
