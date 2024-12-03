@@ -6,6 +6,7 @@
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@faker-js/faker": "^8.0.2",
+    "@microsoft/clarity": "^1.0.0",
     "@mui/lab": "^5.0.0-alpha.127",
     "@mui/material": "^5.12.1",
     "@mui/x-date-pickers": "^6.2.1",

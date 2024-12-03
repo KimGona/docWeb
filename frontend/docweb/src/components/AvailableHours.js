@@ -22,11 +22,19 @@ function Hour({time, isSelected, setSelectedHour}) {
 }
 
 export default function AvailableHours({hours, selectedHour, setSelectedHour}) {
-    return (
-        <div className="grid grid-cols-3 gap-8">
-            {hours.map( hour =>
-                <Hour time={hour} isSelected={hour === selectedHour} setSelectedHour={setSelectedHour}/>
-            )}
-        </div>
-    );
+    if (hours.length > 0) {
+        return (
+            <div className="grid grid-cols-3 gap-8">
+                {hours.map( hour =>
+                    <Hour time={`${hour}:00`} isSelected={hour === selectedHour} setSelectedHour={setSelectedHour}/>
+                )}
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                There are no available hours for the selected day.
+            </div>
+        );
+    }
 }

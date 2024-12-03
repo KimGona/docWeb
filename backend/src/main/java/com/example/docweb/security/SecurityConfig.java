@@ -1,5 +1,6 @@
 package com.example.docweb.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
@@ -9,6 +10,7 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -27,6 +29,7 @@ public class SecurityConfig {
     private final AuthenticationFailureHandler authenticationFailureHandler;
     private final AuthenticationSuccessHandler authenticationSuccessHandler;
 
+    @Autowired
     public SecurityConfig(
             @Lazy UserDetailsService userDetailsService,
             AuthenticationFailureHandler authenticationFailureHandler,
@@ -74,7 +77,7 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000")
+                        .allowedOrigins("http://localhost:3000", "https://134b-80-68-231-40.ngrok-free.app")
                         .allowedMethods("*")
                         .allowCredentials(true);
             }

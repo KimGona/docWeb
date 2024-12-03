@@ -84,7 +84,7 @@ public class UserService {
     public long getUserId(){
         String role = getRole();
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        User user = userRepository.findById(((UserDetailsImpl)authentication.getPrincipal()).getId()).orElseThrow(ElementNotFoundException::new);
+        User user = userRepository.findById(((UserDetailsImpl) authentication.getPrincipal()).getId()).orElseThrow(ElementNotFoundException::new);
         return switch (role) {
             case "ROLE_PATIENT" -> user.getPatient().getId();
             case "ROLE_DOCTOR" -> user.getDoctor().getId();

@@ -1,5 +1,6 @@
 package com.example.docweb.controller;
 
+import com.example.docweb.dto.AvailableTime;
 import com.example.docweb.dto.ScheduleTimeDto;
 import com.example.docweb.entity.ScheduleTime;
 import com.example.docweb.entity.Time;
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,6 +34,14 @@ public class ScheduleTimeController {
     @PreAuthorize("permitAll()")
     ResponseEntity<List<Integer>> getAvailableHoursByDoctorIdAndDate(@PathVariable long doctorId, @PathVariable String date) {
         List<Integer> scheduleTimes = scheduleTimeService.getAvailableHoursByDoctorIdAndDate(doctorId, date);
+        return new ResponseEntity<>(scheduleTimes, HttpStatus.OK);
+    }
+
+    @GetMapping("/doctor/{doctorId}/dates/{dates}")
+    @PreAuthorize("permitAll()")
+    ResponseEntity<List<AvailableTime>> getAvailableHoursByDoctorIdAndDates(@PathVariable long doctorId, @PathVariable String dates) {
+        String[] datesSeparated = dates.split(",");
+        List<AvailableTime> scheduleTimes = scheduleTimeService.getAvailableHoursByDoctorIdAndDates(doctorId, datesSeparated);
         return new ResponseEntity<>(scheduleTimes, HttpStatus.OK);
     }
 

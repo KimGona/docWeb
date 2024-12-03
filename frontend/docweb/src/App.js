@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, redirect, Navigate } from 'react-router-dom';
 import PatientDashboard from './pages/PatientDashboard';
 import ProtectedRoutes from './navigation/ProtectedRoutes';
@@ -15,6 +15,7 @@ import DoctorAccount from './pages/DoctorAccount';
 import AppointmentDoctors from './pages/AppointmentDoctors';
 import AppointmentVisitTypes from './pages/AppointmentVisitTypes';
 import AppointmentTime from './pages/AppointmentTime';
+import AppointmentTimeAlternative from './pages/AppointmentTimeAlternative';
 import AppointmentConfirmation from './pages/AppointmentConfirmation';
 import AppointmentSummary from './pages/AppointmentSummary';
 import DoctorOffTime from './pages/DoctorOffTime';
@@ -26,6 +27,7 @@ import PatientHealthResult from './pages/PatientHealthResult';
 import DoctorHealthResult from './pages/DoctorHealthResult';
 import useLocalStorage, { userRoleKey, userIDKey} from './hooks/LocalStorageHook';
 import AdminAddVisitTypes from './pages/AdminAddVisitTypes';
+import Clarity from '@microsoft/clarity';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -76,6 +78,11 @@ function App() {
     onRemovedUserId();
     window.location.reload();
   }
+
+  const projectId = "p3n8rpk6nr"
+  useEffect(() => {
+    Clarity.init(projectId);
+  }, [])
   
   return (
     <Router>
@@ -92,7 +99,7 @@ function App() {
           <Route exact path='/account' element={getScreen(user, <PatientAccount onLogout={() => onLogout()}/>, <DoctorAccount userId={userId} onLogout={() => onLogout()}/>, <Navigate to="/" replace/>) } />
           <Route exact path='/appointment_doctors' element={getScreen(user, <AppointmentDoctors />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_visit_types' element={getScreen(user, <AppointmentVisitTypes />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
-          <Route exact path='/appointment_time' element={getScreen(user, <AppointmentTime />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
+          <Route exact path='/appointment_time' element={getScreen(user, <AppointmentTimeAlternative />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_summary' element={getScreen(user, <AppointmentSummary />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/appointment_confirmation' element={getScreen(user, <AppointmentConfirmation />, <Navigate to="/" replace/>, <Navigate to="/" replace/>)} />
           <Route exact path='/view_results' element={getScreen(user, <PatientHealthResult />,<DoctorHealthResult /> ,<Navigate to="/" replace/>) } />

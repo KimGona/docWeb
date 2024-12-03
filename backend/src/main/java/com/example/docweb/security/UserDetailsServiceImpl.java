@@ -29,6 +29,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public void init() {
         initAdmin("admin1", "pass", Role.ADMIN);
         initAdmin("admin2", "pass", Role.ADMIN);
+        initAdmin("agata", "pass", Role.PATIENT);
+        initAdmin("doctor", "pass", Role.DOCTOR);
     }
 
     private void initAdmin(String username, String password, Role role) {

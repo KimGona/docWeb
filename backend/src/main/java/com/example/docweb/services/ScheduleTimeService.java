@@ -1,6 +1,7 @@
 package com.example.docweb.services;
 
 import ch.qos.logback.core.joran.sanity.Pair;
+import com.example.docweb.dto.AvailableTime;
 import com.example.docweb.entity.*;
 import com.example.docweb.exception.IdNotFoundException;
 import com.example.docweb.exception.OperationFailedException;
@@ -13,6 +14,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -71,6 +73,14 @@ public class ScheduleTimeService {
     public List<Integer> getAvailableHoursByLoggedInUserAndDate(String date) {
         long id = userService.getUserId();
         return getAvailableHoursByDoctorIdAndDate(id, date);
+    }
+
+    public List<AvailableTime> getAvailableHoursByDoctorIdAndDates(long id, String[] dates) {
+        return Arrays.stream(dates).map( date -> {
+            List<Integer> available = getAvailableHoursByDoctorIdAndDate(id, date);
+            String dayName = LocalDate.parse(date).getDayOfWeek().getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+            return new AvailableTime(dayName, date, available);
+        }).collect(Collectors.toList());
     }
 
     public List<Integer> getAvailableHoursByDoctorIdAndDate(long id, String date) {
