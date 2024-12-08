@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import PageContainer from "../components/PageContainer";
 import Button from "../components/Button";
-import RadioButtonVisitTypeList from "../components/RadioButtonVisitTypeList";
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import AvailableHours from "../components/AvailableHours";
-import Calendar from "../components/Calendar";
-import dayjs, { Dayjs } from 'dayjs';
+import { getWeekDatesString } from "../helper/helper";
 
 const getCurrentDate = () => {
   const date = new Date();
@@ -69,39 +66,10 @@ export default function AppointmentTimeAlternative() {
     setChosenDate(date)
   };
 
-  function getWeekDates() {
-    const today = new Date();
-    const dayOfWeek = today.getDay();
-    const diffToMonday = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
-    const monday = new Date(today);  
-    monday.setDate(today.getDate() + weekOffset*7 + diffToMonday);
-  
-    const weekDates = Array.from({ length: 7 }, (_, i) => {
-      const date = new Date(monday);
-      date.setDate(monday.getDate() + i);
-      return date;
-    });
-  
-    return weekDates;
-  }
-
-  function formatDateToString(date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, '0');
-    const day = String(date.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
-  }
-  
-  function getWeekDatesString() {
-    const weekDates = getWeekDates();
-    const formattedDates = weekDates.map(formatDateToString);
-    return formattedDates.join(',');
-  }
-
   let getTimes = async () => {
     console.log("getTimes called")
     try {
-      let res = await fetch('http://localhost:8080/schedule-times/doctor/' + appointment.doctor.id + '/dates/' + getWeekDatesString(), {
+      let res = await fetch('http://localhost:8080/schedule-times/doctor/' + appointment.doctor.id + '/dates/' + getWeekDatesString(weekOffset), {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -161,7 +129,7 @@ export default function AppointmentTimeAlternative() {
 
           <div>
             <p className="text-zinc-700 text-thin text-xl">Hour</p>
-            <p className="text-black text-medium text-2xl">{`${selectedHour}:00`}</p>
+            <p className="text-black text-medium text-2xl">{selectedHour ? `${selectedHour.hour}:00` : ""}</p>
           </div>
         </div>
 

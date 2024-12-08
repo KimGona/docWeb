@@ -7,7 +7,7 @@ const navRow = (
         <NavItemDiv path="/write_results" text="Write health results" />
         <NavItemDiv path="/view_appointments" text="View appointments" />
         <NavItemDiv path="/view_results" text="View health results" />
-        <NavItemDiv path="/check_off_time" text="Check-off time" />
+        <NavItemDiv path="/check_schedule" text="Check schedule" />
         <NavItemDiv path="/account" text="Account" />
     </div>
 );

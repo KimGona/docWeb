@@ -28,6 +28,8 @@ import DoctorHealthResult from './pages/DoctorHealthResult';
 import useLocalStorage, { userRoleKey, userIDKey} from './hooks/LocalStorageHook';
 import AdminAddVisitTypes from './pages/AdminAddVisitTypes';
 import Clarity from '@microsoft/clarity';
+import DoctorCheckSchedule from './pages/DoctorCheckSchedule';
+import DoctorOffTimeAlternative from './pages/DoctorOffTimeAlternative';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -71,7 +73,7 @@ function App() {
   const onUserIdChange = (id) => setUserId(id);
   const onRemovedUserId = () => removeUserId();
   
-  const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time", "/edit_appointment"]
+  const hiddenNavbarRoutes = ["/appointment_doctors", "/appointment_visit_types", "/appointment_time", "/edit_appointment", "/check_off_time_alternative"]
 
   const onLogout = () => {
     onRemoveUser();
@@ -108,6 +110,8 @@ function App() {
           <Route exact path='/check_off_time' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorOffTime />)} />
           <Route exact path='/write_results' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorWriteResult />)} />
           <Route exact path='/add_result' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorAddResult />)} />
+          <Route exact path='/check_schedule' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorCheckSchedule />)} />
+          <Route exact path='/check_off_time_alternative' element={getSingleScreen("ROLE_DOCTOR", user, <DoctorOffTimeAlternative />)} />
           
           {/*Patient only*/}
           <Route exact path='/edit_appointment' element={getSingleScreen("ROLE_PATIENT", user, <PatientChangeAppointment />)} />
