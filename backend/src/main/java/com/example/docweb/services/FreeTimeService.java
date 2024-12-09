@@ -46,6 +46,7 @@ public class FreeTimeService {
         for (FreeTime freeTime : freeTimeList) {
             freeTime.setTimeList(timeService.saveTimeList(freeTime.getTimeList()));
             freeTime.setDoctor(doctor);
+            freeTime.setDate(freeTime.getDate());
             result.add(saveFreeTime(freeTime));
         }
         freeTimeRepository.saveAll(result);
