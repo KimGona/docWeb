@@ -15,7 +15,7 @@ const emptyDoctor = {
 
 function getSummaryDoctor(doctor) {
   if (doctor === undefined) return;
-  else return <p className="text-black text-medium text-2xl">{doctor.name}</p>;
+  else return <p className="text-black text-medium text-2xl">{`${doctor.name} ${doctor.surname}`}</p>;
 }
 
 export default function AppointmentDoctors() {

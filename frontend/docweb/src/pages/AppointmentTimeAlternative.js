@@ -114,7 +114,7 @@ export default function AppointmentTimeAlternative() {
           <p className="text-zinc-700 font-semibold text-3xl">Summary</p>
           <div>
             <p className="text-zinc-700 text-thin text-xl">Chosen doctor</p>
-            <p className="text-black text-medium text-2xl">{appointment.doctor.name}</p>
+            <p className="text-black text-medium text-2xl">{`${appointment.doctor.name} ${appointment.doctor.surname}`}</p>
           </div>
 
           <div>
@@ -129,7 +129,7 @@ export default function AppointmentTimeAlternative() {
 
           <div>
             <p className="text-zinc-700 text-thin text-xl">Hour</p>
-            <p className="text-black text-medium text-2xl">{selectedHour ? `${selectedHour.hour}:00` : ""}</p>
+            <p className="text-black text-medium text-2xl">{selectedHour ? `${selectedHour}:00` : ""}</p>
           </div>
         </div>
 

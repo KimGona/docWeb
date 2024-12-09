@@ -149,7 +149,7 @@ export default function AppointmentTime() {
           <p className="text-zinc-700 font-semibold text-3xl">Summary</p>
           <div>
             <p className="text-zinc-700 text-thin text-xl">Chosen doctor</p>
-            <p className="text-black text-medium text-2xl">{appointment.doctor.name}</p>
+            <p className="text-black text-medium text-2xl">{`${appointment.doctor.name} ${appointment.doctor.surname}`}</p>
           </div>
 
           <div>

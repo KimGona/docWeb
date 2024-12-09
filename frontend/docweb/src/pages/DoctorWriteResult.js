@@ -6,6 +6,10 @@ import Calendar from "../components/Calendar";
 import { useNavigate } from "react-router-dom";
 import AppointmentWideResult from "../components/AppointmentWideResult";
 import dayjs, { Dayjs } from 'dayjs';
+import AppointmentRepository from "../repository/AppointmentRepository";
+import DateSelector from "../components/DateSelector";
+import { getTodaysMonth, getTodaysYear } from "../helper/helper";
+import Spacer from "../components/Spacer";
 
 function Appointments({ appointments, onClick }) {
   if (appointments.length <= 0)
@@ -13,36 +17,40 @@ function Appointments({ appointments, onClick }) {
   else
     return (
       appointments.map(appointment =>
-        <Appointment appointment={appointment} onClick={onClick} />
+        <AppointmentNew appointment={appointment} onClick={onClick} />
+        // <Appointment appointment={appointment} onClick={onClick} />
       )
     );
 }
 
 function Appointment({ appointment, onClick }) {
-  const date = new Date().toISOString().slice(0, 10)
-  const dateAppointment = new Date(appointment.date).toISOString().slice(0, 10)
-  console.log(date);
-  console.log(dateAppointment);
-  console.log(date < dateAppointment);
-
   return <AppointmentWideResult date={appointment.date} hour={appointment.hour} name={appointment.patient.name + " " + appointment.patient.surname} visitType={appointment.visitType.description} onClick={() => onClick(appointment)} />
+}
 
+function AppointmentNew({ appointment, onClick }) {
+  return (
+    <div className="flex flex-col gap-2 w-screen w-[30vw]" onClick={() => onClick(appointment)}>
+      <p className="text-lg font-bold">{`${appointment.patient.name} ${appointment.patient.surname}`}</p>
+      <p className="text-lg">{`Appointment was on ${appointment.date} at ${appointment.hour}:00`}</p>
+      <div className="flex items-end justify-between">
+          <p className="text-md">{`Visit type: ${appointment.visitType.description}`}</p>
+          <button className="bg-violet-500 whitespace-nowrap text-white font-semibold py-2 px-4 rounded hover:bg-violet-600">
+              Add health result
+          </button>
+      </div>
+      <hr className="w-full border-t border-gray-300 my-4" />
+    </div>
+
+  );
 }
 
 export default function DoctorWriteResult({ }) {
 
   const [appointments, setAppointments] = useState([]);
+  const [selectedMonth, setSelectedMonth] = useState(getTodaysMonth());
+  const [selectedYear, setSelectedYear] = useState(getTodaysYear());
 
   const navigate = useNavigate();
-
-  const onDateChosen = (event) => {
-    let date = event.format('YYYY-MM-DD');
-    console.log(date);
-    setChosenDate(date)
-  };
-
-  const [chosenDate, setChosenDate] = useState();
-  const [highlightedDays, setHighlightedDays] = React.useState([]);
 
   const onAddClick = (app) => {
     navigate('/add_result', {
@@ -53,76 +61,21 @@ export default function DoctorWriteResult({ }) {
     window.location.reload();
   };
 
-  const [isShown, setIsShown] = useState(false);
-
   useEffect(() => {
-    if (typeof chosenDate !== "undefined")
-      getAppointments();
-    setIsShown(true);
-  }, [chosenDate])
-
-  useEffect(() => {
-    getAppointmentsForMonth();
-    setIsShown(true);
-  }, [isShown])
+    getAppointments();
+  }, [selectedMonth, selectedYear])
 
   let getAppointments = async () => {
-    try {
-      let res = await fetch('http://localhost:8080/appointments/doctor/date/' + chosenDate, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        mode: 'cors',
-        referrerPolicy: 'no-referrer',
-        origin: "http://localhost:3000/",
-      });
-
-      if (res.status === 200) {
-        console.log("get appointments succeeded");
-        let list = await res.json();
-        console.log(list);
-        setAppointments(list);
-      } else {
-        console.log("get appointments failed");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    let list = await AppointmentRepository.getAppointments(selectedMonth, selectedYear);
+    setAppointments(list);
   }
 
-  let getAppointmentsForMonth = async () => {
-    try {
-      let res = await fetch('http://localhost:8080/appointments/doctor/current-month', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        mode: 'cors',
-        referrerPolicy: 'no-referrer',
-        origin: "http://localhost:3000/",
-      });
-
-      if (res.status === 200) {
-        console.log("get appointments succeeded");
-        let list = await res.json();
-        console.log(list);
-        let days = list.map(d => dayjs(d.date).date());
-        console.log("days");
-        console.log(days);
-        setHighlightedDays([0].concat(days));
-      } else {
-        console.log("get appointments failed");
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  }
+  const handleDateChange = (month, year) => {
+    setSelectedMonth(month);
+    setSelectedYear(year);
+  };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
       <div className="w-full flex flex-col items-start ">
         <img className="absolute object-contain" src={GreenBackground} />
         <div className="relative w-full h-screen flex justify-center align-middle items-center">
@@ -130,12 +83,9 @@ export default function DoctorWriteResult({ }) {
             <p className="text-3xl font-bold">Write your patient`s health result!</p>
             <p className="text-2xl font-medium">Pick a date</p>
 
+            <DateSelector onDateChange={handleDateChange} />
+
             <div className="w-full grid grid-cols-3 gap-x-20 justify-items-start">
-              <div>
-                <div className="justify-self-center bg-greenLight border border-2 border-greenPrimary space-y-6">
-                  <Calendar highlightedDays={highlightedDays} chosenDate={chosenDate} onChosenDate={onDateChosen} />
-                </div>
-              </div>
               <div className="col-span-2 justify-self-stretch space-y-8">
                 <Appointments appointments={appointments} onClick={onAddClick} />
               </div>
@@ -143,6 +93,5 @@ export default function DoctorWriteResult({ }) {
           </div>
         </div>
       </div>
-    </LocalizationProvider>
   );
 }

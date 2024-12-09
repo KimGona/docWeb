@@ -52,6 +52,15 @@ public class AppointmentController {
                         .collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/doctor/month/{month}/year/{year}")
+    public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctorAndMonth(@PathVariable int month, @PathVariable int year) {
+        List<Appointment> appointments = appointmentService.getAppointmentsDoctorByMonthAndYear(month, year);
+        return new ResponseEntity<>(
+                appointments.stream()
+                        .map(Appointment::toDto)
+                        .collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @GetMapping("/current-month/doctor/{id}")
     public ResponseEntity<List<AppointmentDto>> getAppointmentsByDoctorIdAndCurrentMonth(@PathVariable long id) {
         List<Appointment> appointments = appointmentService.getAppointmentsDoctorIdCurrentMonth(id);
