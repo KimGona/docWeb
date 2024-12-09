@@ -13,6 +13,7 @@ export default function DoctorAddResult({ }) {
 
     const navigate = useNavigate();
 
+    const [isEditing, setIsEditing] = useState(true);
     const [data, setData] = useState({
         appointment: appointment,
         bloodSugar: 0,
@@ -64,23 +65,40 @@ export default function DoctorAddResult({ }) {
           });
     
           if (res.status === 200) {
-            navigate(-1);
-            // window.location.reload();
+            setIsEditing(false);
           } else {
             console.log("health result confirmation failed")
-            // setAlert("error", "Could not add health result.");
           }
         } catch (error) {
           console.log(error);
-        //   setAlert("error", "Could not add health result.")
         }
       }
+
+    
+    const onShowAll = () => {
+        navigate("/view_results");
+    }
+
+      
+    const onAddNext = () => {
+        navigate("/write_results");
+    }
 
     return (
 
         <div className="w-full flex flex-col items-start ">
             <img className="absolute object-contain" src={GreenBackground} />
-            <div className="relative w-full h-screen flex justify-center align-middle items-center">
+            {isEditing ? 
+                <EditScreen appointment={appointment} data={data} onConfirm={onConfirm} onDataChange={onDataChange} onDescriptionChange={onDescriptionChange} />
+                : <SuccessScreen onShowAll={onShowAll} onAddNext={onAddNext} />}
+        </div>
+    );
+}
+
+
+function EditScreen({appointment, data, onConfirm, onDataChange, onDescriptionChange}) {
+    return (
+        <div className="relative w-full h-screen flex justify-center align-middle items-center">
                 <div className="relative px-12 py-12 bg-white flex flex-col justify-center items-start space-y-10">
                     <p className="text-3xl font-bold">Add health result</p>
                     <div className="grid grid-cols-2 gap-x-8 gap-y-6">
@@ -111,6 +129,26 @@ export default function DoctorAddResult({ }) {
                         <Button color="pink big" label="Add health result" onClick={onConfirm} />
                     </div>
                 </div>
+            </div>
+    );
+}
+
+function SuccessScreen({onShowAll, onAddNext}) {
+    return (
+        <div className="relative w-full h-screen flex flex-col justify-center align-middle items-center gap-4">
+            <div className="py-40 px-80 bg-white flex flex-col justify-center align-middle items-center gap-4">
+            <p className="text-3xl font-bold">Health result added!</p>
+            <p className="text-lg font-normal">View all added health results</p>
+            <button className="bg-violet-500 whitespace-nowrap text-white font-semibold py-2 px-4 rounded hover:bg-violet-600" onClick={onShowAll}>
+              Show all added
+            </button>
+            
+            <hr className="w-[10vw] border-t border-gray-300 my-4" />
+            <p className="text-lg font-normal">or</p>
+            <p className="text-lg font-normal">Add next health result</p>
+            <button className="bg-white border-violet-500 border-4 whitespace-nowrap text-black font-semibold py-2 px-4 rounded hover:bg-violet-200"  onClick={onAddNext}>
+              Add next
+            </button>
             </div>
         </div>
     );
