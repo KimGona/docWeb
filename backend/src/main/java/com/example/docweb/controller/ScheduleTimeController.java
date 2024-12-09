@@ -1,5 +1,6 @@
 package com.example.docweb.controller;
 
+import com.example.docweb.dto.AvailableScheduleTime;
 import com.example.docweb.dto.AvailableTime;
 import com.example.docweb.dto.ScheduleTimeDto;
 import com.example.docweb.entity.ScheduleTime;
@@ -56,6 +57,14 @@ public class ScheduleTimeController {
     @PreAuthorize("permitAll()")
     ResponseEntity<List<Integer>> getAvailableHoursByLoggedInUserAndDate(@PathVariable String date) {
         List<Integer> scheduleTimes = scheduleTimeService.getAvailableHoursByLoggedInUserAndDate(date);
+        return new ResponseEntity<>(scheduleTimes, HttpStatus.OK);
+    }
+
+    @GetMapping("/current-doctor/dates/{dates}")
+    @PreAuthorize("permitAll()")
+    ResponseEntity<List<AvailableScheduleTime>> getAvailableHoursByLoggedInUserAndDates(@PathVariable String dates) {
+        String[] datesSeparated = dates.split(",");
+        List<AvailableScheduleTime> scheduleTimes = scheduleTimeService.getAvailableHoursByLoggedInUserAndDates(datesSeparated);
         return new ResponseEntity<>(scheduleTimes, HttpStatus.OK);
     }
 

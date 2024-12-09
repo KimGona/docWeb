@@ -14,7 +14,7 @@ const navRow = (
 
 export default function DoctorNavbar({}) {
     return (
-        <div className="w-screen flex justify-between pr-4">
+        <div className="fixed top-0 z-10 bg-white h-20 w-screen flex justify-between pr-4">
             <NavItemDocapp path="/" text="Docapp" />
             <div>{navRow}</div>
         </div>

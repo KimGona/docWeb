@@ -3,7 +3,7 @@ export default function PageContainer({
     children
 }) {
     return (
-        <div className="px-16 py-10 w-full h-screen flex flex-col items-start">
+        <div className="px-16 py-10 pt-20 w-full h-screen flex flex-col items-start">
             <div className="text-4xl font-medium flex flex-row pb-5">
                 {title} 
             </div>

@@ -16,7 +16,7 @@ function NavRow({onLogout}) {
 
 export default function AdminNavbar({ onLogout }) {
     return (
-        <div className="w-screen flex justify-between pr-4">
+        <div className="fixed top-0 z-10 bg-white h-20 w-screen flex justify-between pr-4">
             <NavItemDocapp path="/" text="Docapp" />
             <NavRow onLogout={onLogout} />
         </div>

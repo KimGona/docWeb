@@ -1,6 +1,8 @@
 package com.example.docweb.services;
 
 import ch.qos.logback.core.joran.sanity.Pair;
+import com.example.docweb.dto.AvailableScheduleTime;
+import com.example.docweb.dto.AvailableScheduleTimeHour;
 import com.example.docweb.dto.AvailableTime;
 import com.example.docweb.entity.*;
 import com.example.docweb.exception.IdNotFoundException;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.ZoneId;
@@ -68,6 +71,19 @@ public class ScheduleTimeService {
         this.timeRepository = timeRepository;
         this.appointmentRepository = appointmentRepository;
         this.userService = userService;
+    }
+
+    public List<AvailableScheduleTime> getAvailableHoursByLoggedInUserAndDates(String[] dates) {
+        long id = userService.getUserId();
+        return Arrays.stream(dates).map( date -> {
+            DayOfWeek dayOfWeek = LocalDate.parse(date).getDayOfWeek();
+            String dayName = dayOfWeek.getDisplayName(TextStyle.FULL, Locale.ENGLISH);
+            Integer day = dayOfWeek.getValue();
+
+            List<AvailableScheduleTimeHour> hours = getAvailableHoursWithTaken(id, date);
+            String schedule = getDoctorSchedule(id, day);
+            return new AvailableScheduleTime(dayName, date, schedule, hours);
+        }).collect(Collectors.toList());
     }
 
     public List<Integer> getAvailableHoursByLoggedInUserAndDate(String date) {
@@ -169,6 +185,23 @@ public class ScheduleTimeService {
         return scheduleTimeRepository.findByDoctorId(id);
     }
 
+    public ScheduleTime getScheduleTimesByDoctorId(long id, Integer day) {
+        Optional<ScheduleTime> time = scheduleTimeRepository.findByDoctorIdAndDay(id, day);
+        return time.orElse(null);
+    }
+
+    public String getDoctorSchedule(long id, Integer day) {
+        ScheduleTime scheduleTime = getScheduleTimesByDoctorId(id, day);
+        if (scheduleTime != null) {
+            List<Time> timeList = scheduleTime.getTimeList();
+            Integer firstHour = timeList.get(0).getHour();
+            Integer lastHour = timeList.get(timeList.size() - 1).getHour();
+            return firstHour + ":00 - " + lastHour + ":00";
+        } else {
+            return "";
+        }
+    }
+
     public List<ScheduleTime> saveScheduleList(List<ScheduleTime> scheduleTimeList) {
         if (scheduleTimeList.isEmpty()) throw new OperationFailedException();
         Long doctorId = scheduleTimeList.get(0).getDoctor().getId();
@@ -241,5 +274,49 @@ public class ScheduleTimeService {
         newScheduleTime.setTimeList(scheduleTime.getTimeList());
         newScheduleTime.setDoctor(scheduleTime.getDoctor());
         return newScheduleTime;
+    }
+
+    private List<AvailableScheduleTimeHour> getAvailableHoursWithTaken(long id, String date) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd").withLocale(Locale.ENGLISH);
+        LocalDate localDate;
+        try {
+            localDate = LocalDate.parse(date, formatter);
+        } catch (Exception exception){
+            exception.printStackTrace();
+            throw new OperationFailedException();
+        }
+        int dayOfWeek = localDate.getDayOfWeek().getValue();
+
+        SimpleDateFormat formatter2 = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        Date date2;
+        try {
+            date2 = formatter2.parse(date);
+        } catch (Exception exception){
+            System.out.println("Date 2 failed.");
+            exception.printStackTrace();
+            throw new OperationFailedException();
+        }
+
+        ScheduleTime schedule = scheduleTimeRepository.findByDoctorIdAndDay(id, dayOfWeek).orElse(null);
+        List<Time> scheduleTimeList = Collections.emptyList();
+        if (schedule != null) {
+            scheduleTimeList = schedule.getTimeList();
+        }
+        FreeTime freeTime = freeTimeRepository.findByDoctorIdAndDate(id, date2);
+        List<Time> freeTimeList = Collections.emptyList();
+        if (freeTime != null) {
+            freeTimeList = freeTime.getTimeList();
+        }
+        List<Appointment> appointments = appointmentRepository.findByDoctorIdAndDate(id, date2);
+        List<Integer> appointmentTimes = appointments.stream().map(Appointment::getHour).collect(Collectors.toList());
+
+        List<Time> finalFreeTimeList = freeTimeList;
+        return scheduleTimeList.stream()
+                .distinct()
+                .map(it -> {
+                    boolean isTaken = appointmentTimes.contains(it.getHour());
+                    boolean isFree = finalFreeTimeList.contains(it);
+                    return new AvailableScheduleTimeHour(it.getHour(), isTaken, isFree);
+                }).collect(Collectors.toList());
     }
 }

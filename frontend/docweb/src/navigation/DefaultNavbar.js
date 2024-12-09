@@ -11,7 +11,7 @@ const navRow = (
 
 export default function DefaultNavbar({}) {
     return (
-        <div className=" flex justify-between pb-2 pr-4">
+        <div className="flex justify-between pb-2 pr-4">
             <NavItemDocapp path="/" text="Docapp" />
             <div>{navRow}</div>
         </div>

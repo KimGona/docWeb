@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { getWeekDatesString } from "../helper/helper";
 import ColoredText from "../components/ColoredText";
 import Spacer from "../components/Spacer";
+import FreeTimeRepository from "../repository/FreeTimeRepository";
+import ScheduleTimeRepository from "../repository/ScheduleTimeRepository";
 
 export default function DoctorOffTimeAlternative() {
   const [availableTimes, setAvailableTimes] = useState([]);
@@ -15,9 +17,8 @@ export default function DoctorOffTimeAlternative() {
   
   const [weekOffset, setWeekOffset] = useState(0);
 
-
   const scheduleOffTime = [
-    { name: "Monday", date: "2024-12-04", schedule: "9:00 - 15:00", hours: [{value: 9, isTaken: false}, {value: 10, isTaken: true}] }, // isTaken - either free or taken by appointment
+    { name: "Monday", date: "2024-12-04", schedule: "9:00 - 15:00", hours: [{value: 9, isTaken: false}, {value: 10, isTaken: true, isFree: true}] }, // isTaken - either free or taken by appointment
     { name: "Tuesday", date: "2024-12-05", schedule: "9:00 - 15:00", hours: [{value: 9, isTaken: false}, {value: 10, isTaken: true}] },
     { name: "Wednesday", date: "2024-12-06", schedule: "9:00 - 15:00", hours: [{value: 9, isTaken: false}, {value: 10, isTaken: false}, {value: 11, isTaken: false}, {value: 12, isTaken: false}, {value: 13, isTaken: false}, {value: 14, isTaken: false}, {value: 15, isTaken: false}] },
     { name: "Thursday", date: "2024-12-07", schedule: "9:00 - 15:00", hours: [{value: 9, isTaken: false}, {value: 10, isTaken: true}] },
@@ -27,7 +28,7 @@ export default function DoctorOffTimeAlternative() {
 ];
     
   useEffect(() => {
-    // getTimes();
+    getTimes();
   }, [weekOffset])
 
   const navigate = useNavigate();
@@ -35,6 +36,35 @@ export default function DoctorOffTimeAlternative() {
   const onReturnClick = () => {
     navigate(-1);
   };
+
+  const getTimes = async () => {
+    let result = await ScheduleTimeRepository.getAvailableTimesForCurrentDoctor(weekOffset);
+    setAvailableTimes(result);
+  }
+
+  const setOffTime = async (event) => {
+    event.preventDefault();
+    let data = selectedHours.map(s => {
+        return {
+            date: s.date,
+            timeList: s.hours.map(t => getTimeMapped(t)),
+        }
+    })
+    let result = await FreeTimeRepository.setOffTime(data);
+    if (result === true) {
+        // alert
+        navigate(-1);
+    } else {
+        // also alert
+    }
+  }
+
+    function getTimeMapped(time) {
+        let obj = {
+            hour: time
+        }
+        return obj;
+    }
 
   const toggleHour = (date, hour) => {
     setSelectedHours((prevSelected) => {
@@ -116,7 +146,7 @@ export default function DoctorOffTimeAlternative() {
         <div className="fixed right-20 bottom-10">
           <div className="relative">
             <div className="flex flex-col items-center gap-y-4">
-              <Button color="pink big" label="Confirm" onClick={() => {}} /> {/* TODO: send request and go back*/}
+              <Button color="pink big" label="Confirm" onClick={setOffTime} />
             </div>
             <a className="pt-6 underline text-sm text-medium" href="/check_schedule">Cancel</a>
           </div>
@@ -144,7 +174,7 @@ export default function DoctorOffTimeAlternative() {
       </div>
 
       <div className="grid grid-rows-7 divide-y">
-        {scheduleOffTime.map((day, index) => (
+        {availableTimes.map((day, index) => (
           <div
             key={index}
             className="flex flex-row items-center gap-2 p-2 sm:p-4 bg-gray-50 even:bg-gray-100"
@@ -168,13 +198,13 @@ export default function DoctorOffTimeAlternative() {
                       key={idx}
                       className={`py-2 px-4 text-center border rounded text-sm
                         ${
-                          hour.isTaken
+                          hour.taken || hour.free
                           ? "bg-gray-300 cursor-not-allowed"
                           : isHourSelected(day.date, hour.value)
                           ? "bg-blue-200 border-blue-500 cursor-pointer hover:bg-gray-200"
                           : "bg-white hover:bg-gray-200 cursor-pointer hover:bg-gray-200"
                         }`}
-                      onClick={() => toggleHour(day.date, hour.value)}
+                      onClick={!hour.free && !hour.taken ? () => toggleHour(day.date, hour.value) : null}
                     >
                       {`${hour.value}:00`}
                     </div>

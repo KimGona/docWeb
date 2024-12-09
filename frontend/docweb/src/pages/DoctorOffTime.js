@@ -6,6 +6,7 @@ import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Calendar from "../components/Calendar";
 import dayjs, { Dayjs } from 'dayjs';
+import FreeTimeRepository from "../repository/FreeTimeRepository";
 
 function isChecked(elem, chosen) {
     if (chosen.includes(elem)) return true;
@@ -80,37 +81,13 @@ export default function DoctorOffTime() {
 
     const setOffTime = async (event) => {
         event.preventDefault();
-        try {
-            let data = {
-                date: chosenDate,
-                timeList: chosenArr.map(t => getTimeMapped(t)),
-            }
-            console.log("data");
-            console.log(data);
-            let requestBody = JSON.stringify([data]);
-
-            let res = await fetch('http://localhost:8080/free-times', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: requestBody,
-                credentials: 'include',
-                mode: 'cors',
-                referrerPolicy: 'no-referrer',
-                origin: "http://localhost:3000/",
-            });
-            console.log("res code: " + res.status.toString());
-
-            if (res.status === 200) {
-                console.log("success - addidng free time")
-                console.log(await res.text())
-                setIsShown(false);
-            } else {
-                console.log("adding free time failed")
-            }
-        } catch (error) {
-            console.log(error);
+        let data = {
+            date: chosenDate,
+            timeList: chosenArr.map(t => getTimeMapped(t)),
+        }
+        let result = await FreeTimeRepository.setOffTime([data]);
+        if (result === true) {
+            setIsShown(false);
         }
     }
 
