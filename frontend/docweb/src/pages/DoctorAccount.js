@@ -11,7 +11,7 @@ function VisitTypes({visitTypes, onClick}) {
     if (visitTypes.length <= 0)
         return <p className="text-zinc-500">Please input at least 1 visit type.</p>
     else 
-        return <VisitTypesGrid visitTypes={visitTypes} onClick={onClick}/>
+        return <VisitTypesGrid visitTypes={visitTypes} onClick={onClick} hasDescription={true}/>
 }
 
 export default function DoctorAccount({userId, onLogout}) {
