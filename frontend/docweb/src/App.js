@@ -30,6 +30,7 @@ import AdminAddVisitTypes from './pages/AdminAddVisitTypes';
 import Clarity from '@microsoft/clarity';
 import DoctorCheckSchedule from './pages/DoctorCheckSchedule';
 import DoctorOffTimeAlternative from './pages/DoctorOffTimeAlternative';
+import RegisterDoctorAlternative from './pages/RegisterDoctorAlternative';
 
 function getScreen (user, patientScreen, doctorScreen, adminScreen){
   switch(user) {
@@ -118,7 +119,7 @@ function App() {
 
           {/*Admin only*/}
           <Route exact path='/register_admin' element={getSingleScreen("ROLE_ADMIN", user, <RegisterAdmin />)} />
-          <Route exact path="/register_doctor" element={getSingleScreen("ROLE_ADMIN", user, <RegisterDoctor />)} />
+          <Route exact path="/register_doctor" element={getSingleScreen("ROLE_ADMIN", user, <RegisterDoctorAlternative />)} />
           <Route exact path="/add_visit_types" element={getSingleScreen("ROLE_ADMIN", user, <AdminAddVisitTypes />)} />
         </Route>
       </Routes>
