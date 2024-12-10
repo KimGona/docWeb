@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import GreenBackground from "../resources/green-background.png";
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import Calendar from "../components/Calendar";
 import { useNavigate } from "react-router-dom";
 import AppointmentWideResult from "../components/AppointmentWideResult";
-import dayjs, { Dayjs } from 'dayjs';
 import AppointmentRepository from "../repository/AppointmentRepository";
 import DateSelector from "../components/DateSelector";
 import { getTodaysMonth, getTodaysYear } from "../helper/helper";
@@ -29,7 +25,7 @@ function Appointment({ appointment, onClick }) {
 
 function AppointmentNew({ appointment, onClick }) {
   return (
-    <div className="flex flex-col gap-2 w-screen w-[30vw]" onClick={() => onClick(appointment)}>
+    <div className="flex flex-col gap-2 w-screen w-[40vw]" onClick={() => onClick(appointment)}>
       <p className="text-lg font-bold">{`${appointment.patient.name} ${appointment.patient.surname}`}</p>
       <p className="text-lg">{`Appointment was on ${appointment.date} at ${appointment.hour}:00`}</p>
       <div className="flex items-end justify-between">

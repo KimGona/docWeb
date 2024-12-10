@@ -45,6 +45,12 @@ public class HealthResultController {
         return new ResponseEntity<>(healthResults.stream().map(HealthResult::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
+    @GetMapping("/doctor/month/{month}/year/{year}")
+    ResponseEntity<List<HealthResultDto>> getHealthResultsByDoctorIdAndMonth(@PathVariable int month, @PathVariable int year) {
+        List<HealthResult> healthResults = healthResultService.getHealthResultsByDoctorIdAndMonth(month, year);
+        return new ResponseEntity<>(healthResults.stream().map(HealthResult::toDto).collect(Collectors.toList()), HttpStatus.OK);
+    }
+
     @Transactional
     @PostMapping
     @PreAuthorize("hasRole('ROLE_DOCTOR')")

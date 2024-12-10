@@ -14,4 +14,10 @@ public interface HealthResultRepository extends JpaRepository<HealthResult,Long>
             "FROM health_results a " +
             "WHERE a.patient_id = ?1 AND MONTH(a.date_added) = ?2 AND YEAR(a.date_added) = ?3", nativeQuery = true)
     List<HealthResult> findByPatientIdAndMonth(Long patientId, int month, int year);
+
+
+    @Query(value = "SELECT * " +
+            "FROM health_results a " +
+            "WHERE a.doctor_id = ?1 AND MONTH(a.date_added) = ?2 AND YEAR(a.date_added) = ?3", nativeQuery = true)
+    List<HealthResult> findByDoctorIdAndMonth(Long doctorId, int month, int year);
 }

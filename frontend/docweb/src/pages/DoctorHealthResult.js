@@ -1,47 +1,36 @@
 import React, { useState, useEffect } from "react";
 import PageContainer from "../components/PageContainer";
 import ClosableHealthResult from "../components/ClosableHealthResult";
+import HealthResultRepository from "../repository/HealthResultRepository";
+import DateSelector from "../components/DateSelector";
+import { getTodaysMonth, getTodaysYear } from "../helper/helper";
 
 
 export default function DoctorHealthResult() {
   const [healthResults, setHealthResults] = useState([]);
-
-  const [isShown, setIsShown] = useState(false);
+  
+  const [selectedMonth, setSelectedMonth] = useState(getTodaysMonth());
+  const [selectedYear, setSelectedYear] = useState(getTodaysYear());
 
   useEffect(() => {
     getHealthResults();
-    setIsShown(true);
-  }, [isShown])
+  }, [selectedMonth, selectedYear])
 
   let getHealthResults = async () => {
-    try {
-      let res = await fetch('http://localhost:8080/health-results/doctor', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        credentials: 'include',
-        mode: 'cors',
-        referrerPolicy: 'no-referrer',
-        origin: "http://localhost:3000/",
-      });
-
-      if (res.status === 200) {
-        console.log("get health results succeeded");
-        let list = await res.json();
-        console.log(list);
-        setHealthResults(list);
-      } else {
-        console.log("get health results failed");
-      }
-    } catch (error) {
-      console.log(error);
-    }
+    let list = await HealthResultRepository.getHealthResults(selectedMonth, selectedYear);
+    setHealthResults(list);
   }
+
+  const handleDateChange = (month, year) => {
+    setSelectedMonth(month);
+    setSelectedYear(year);
+  };
 
   return (
     <PageContainer title="Your health results">
-      <div className="w-full pt-10 grid grid-cols-2 place-start justify-items-start">
+      <div className="w-full pt-10 flex flex-col gap-4">
+          <p className="text-xl font-semibold">Select month</p>
+          <DateSelector onDateChange={handleDateChange} />
           <div className="justify-self-stretch space-y-8 pb-10">
             {healthResults.map((result, index) => (
                 <ClosableHealthResult

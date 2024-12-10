@@ -2,17 +2,13 @@ package com.example.docweb.services;
 
 import com.example.docweb.entity.Appointment;
 import com.example.docweb.entity.HealthResult;
-import com.example.docweb.exception.OperationFailedException;
 import com.example.docweb.repository.AppointmentRepository;
 import com.example.docweb.repository.HealthResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 @Service
 public class HealthResultService {
@@ -38,6 +34,11 @@ public class HealthResultService {
         return healthResultRepository.findByPatientIdAndMonth(id, currentDate.getMonthValue(), currentDate.getYear());
     }
 
+    public List<HealthResult> getHealthResultsByDoctorIdAndMonth(int month, int year) {
+        Long id = userService.getUserId();
+        return healthResultRepository.findByDoctorIdAndMonth(id, month, year);
+    }
+
     public List<HealthResult> getHealthResultsByDoctorId() {
         Long id = userService.getUserId();
         return healthResultRepository.findByDoctorId(id);
@@ -46,9 +47,9 @@ public class HealthResultService {
     public HealthResult saveHealthResult(HealthResult healthResult) {
         Appointment appointment = healthResult.getAppointment();
         // No update allowed.
-        if (appointment.isHasHealthResultWritten()) {
-            throw new OperationFailedException();
-        }
+//        if (appointment.isHasHealthResultWritten()) {
+//            throw new OperationFailedException();
+//        }
 
         // Mark that related appointment has health result
         appointment.setHasHealthResultWritten(true);
