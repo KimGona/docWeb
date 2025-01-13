@@ -190,7 +190,9 @@ export default function AppointmentTime() {
         </div>
         <div>
           <p className="text-2xl font-medium pb-10">Available hours</p>
+          {hours.length > 0 ? 
           <AvailableHours hours={hours} selectedHour={selectedHour} setSelectedHour={onHourChosen} />
+          : <p className="text-lg font-normal">No hours - please select a different date</p>}
         </div>
       </div>
     </PageContainer>

@@ -13,7 +13,7 @@ import DoctorScheduleInput from "../components/DoctorScheduleInput";
 
 function VisitTypes({ visitTypes, onClick }) {
     if (visitTypes.length <= 0)
-        return <p className="text-lg text-zinc-500">Please input at least 1 visit type.</p>
+        return <p className="text-lg text-zinc-500">Please select at least 1 visit type.</p>
     else
         return <VisitTypesGrid visitTypes={visitTypes} onClick={onClick} />
 }
@@ -200,6 +200,7 @@ export default function RegisterDoctorAlternative({ }) {
     }
 
     const onSubmit = async (event) => {
+        if (isPasswordError || isConfirmPasswordError) return;
         let user = await onCreateAccount(event);
         setScheduleTimesReq(user.doctor.id);
     }
@@ -318,75 +319,79 @@ export default function RegisterDoctorAlternative({ }) {
     const isConfirmPasswordError = confirmPassword.length > 0 && confirmPassword !== data.password;
 
     return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <div className="w-full flex flex-col items-start ">
-                <img className="absolute object-contain" src={GreenBackground} />
-                <div className="relative w-full h-screen flex justify-center align-middle items-center">
-                    <div className="flex flex-col justify-center items-center space-y-6">
-                        <TranslateAlert isVisible={result.isVisible} type={result.value} message={result.message} onClose={resetResult} />
-                        <div className="relative px-12 pt-32 pb-12 bg-white flex flex-col justify-center items-start space-y-10">
-                            <p className="text-3xl font-bold text-greenPrimary">Register a new doctor account</p>
+        <div className="w-full flex flex-col items-start">
+            <img className="fixed object-contain" src={GreenBackground} />
+            <div className="relative w-full h-screen flex flex-col justify-center items-center px-20 ">
+                <div className="flex flex-col justify-center items-center space-y-6 pt-64 px-40">
+                    <TranslateAlert isVisible={result.isVisible} type={result.value} message={result.message} onClose={resetResult} />
+                    <div className="px-12 pb-12 bg-white flex flex-col justify-center items-start space-y-10">
+                        <p className="text-3xl font-bold text-greenPrimary">Register a new doctor account</p>
 
-                                <div>
-                                    <p className="text-xl font-medium pb-4">Fill in personal details</p>
-                                    <div className="grid grid-cols-2 gap-4 items-top">
-                                        <InputFieldWithTitle title="Name" value={data.doctor.name} onValueChange={(e) => onDoctorChange(e, "name")} />
-                                        <InputFieldWithTitle title="Surname" value={data.doctor.surname} onValueChange={(e) => onDoctorChange(e, "surname")} />
-                                        <InputFieldWithTitle title="Specialty" value={data.doctor.speciality} onValueChange={(e) => onDoctorChange(e, "speciality")} />
-                                        <InputFieldWithTitle title="Phone" value={data.doctor.phone} onValueChange={(e) => onDoctorChange(e, "phone")} />
-                                        <div className="flex flex-row gap-x-4 items-start justify-start">
-                                            <div className="">
-                                                <p className="pb-2">Gender</p>
-                                                <RadioButtonGenderList chosenValue={data.doctor.gender} onButtonChosen={(e) => onGenderChange(e)} />
-                                            </div>
-                                        </div>
-                                        <div></div>
-                                        <InputFieldWithTitle title="Username" value={data.username} onValueChange={(e) => onDataChange(e, "username")} />
-                                        <div></div>
-                                        <InputFieldWithTitle title="Password"
-                                            type="password"
-                                            isError={isPasswordError}
-                                            errorMessage="Password should be at least 4 characters."
-                                            value={data.password}
-                                            onValueChange={(e) => onDataChange(e, "password")} />
-                                        <InputFieldWithTitle title="Confirm password"
-                                            type="password"
-                                            isError={isConfirmPasswordError}
-                                            errorMessage="Passwords don't match!"
-                                            value={confirmPassword}
-                                            onValueChange={(e) => setConfirmPassword(e.target.value)} />
+                        <div className="space-y-4">
+                            <div >
+                            <p className="text-xl font-medium pt-60">Fill in personal details</p>
+                            <p className="text-lg font-normal text-gray-500">Enter the personal data of the user for the new doctor account.</p>
+                            </div>
+                            <div className="grid grid-cols-2 gap-4 items-top">
+                                <InputFieldWithTitle title="Name" value={data.doctor.name} onValueChange={(e) => onDoctorChange(e, "name")} />
+                                <InputFieldWithTitle title="Surname" value={data.doctor.surname} onValueChange={(e) => onDoctorChange(e, "surname")} />
+                                <InputFieldWithTitle title="Specialty" value={data.doctor.speciality} onValueChange={(e) => onDoctorChange(e, "speciality")} />
+                                <InputFieldWithTitle title="Phone" value={data.doctor.phone} onValueChange={(e) => onDoctorChange(e, "phone")} />
+                                <div className="flex flex-row gap-x-4 items-start justify-start">
+                                    <div className="">
+                                        <p className="pb-2">Gender</p>
+                                        <RadioButtonGenderList chosenValue={data.doctor.gender} onButtonChosen={(e) => onGenderChange(e)} />
                                     </div>
                                 </div>
-
-                                <div className="gap-2">
-                                    <p className="text-xl font-semibold">Fill in work schedule</p>
-                                    <p className="text-lg font-normal">Choose the regular starting and ending times on each day.</p>
-                                    <DoctorScheduleInput schedule={schedule} setSchedule={(v) => setSchedule(v)} />
-                                </div>
-
-                            {/* Visit types */}
-                                <div className="space-y-6">
-                                    <p className="text-xl font-medium">Select visit types</p>
-                                    <VisitTypes visitTypes={data.doctor.visitTypes.map(l => l.description)} onClick={(visitType) => removeItem(visitType)} />
-                                    <Button color="pink outline" label="+ Add visit type" onClick={() => handleOpen(true)} />
-                                    <VisitTypesDialog
-                                        open={open}
-                                        onClose={() => handleOpen(false)}
-                                        onConfirm={(newVisitTypes) => onConfirmVisitTypes(newVisitTypes)}
-                                        visitTypes={allVisitTypes}
-                                        selected={data.doctor.visitTypes} />
-                                </div>
-
-                                <div className="w-full px-20">
-                                <button onClick={onSubmit}  className="bg-violet-500 w-full whitespace-nowrap text-white text-xl font-semibold py-4 px-4 rounded hover:bg-violet-600">
-                                    Create account
-                                </button>
-                                </div>
-                            {/* <Button color="pink xl" label="Create account" onClick={onSubmit} /> */}
+                                <div></div>
+                                <InputFieldWithTitle title="Username" value={data.username} onValueChange={(e) => onDataChange(e, "username")} />
+                                <div></div>
+                                <InputFieldWithTitle title="Password"
+                                    type="password"
+                                    isError={isPasswordError}
+                                    errorMessage="Password should be at least 4 characters."
+                                    value={data.password}
+                                    onValueChange={(e) => onDataChange(e, "password")} />
+                                <InputFieldWithTitle title="Confirm password"
+                                    type="password"
+                                    isError={isConfirmPasswordError}
+                                    errorMessage="Passwords don't match!"
+                                    value={confirmPassword}
+                                    onValueChange={(e) => setConfirmPassword(e.target.value)} />
                             </div>
-                    </div>
+                        </div>
+
+                        <div className="gap-2">
+                            <p className="text-xl font-semibold">Fill in work schedule</p>
+                            <p className="text-lg font-normal text-gray-500">Enter the schedule for the new doctor. Select the starting and ending hours of work for each day.</p>
+                            <DoctorScheduleInput schedule={schedule} setSchedule={(v) => setSchedule(v)} />
+                        </div>
+
+                        {/* Visit types */}
+                            <div className="space-y-6">
+                                <div>
+                                <p className="text-xl font-medium">Select visit types</p>
+                                <p className="text-lg font-normal text-gray-500">Select the appropriate visit types for the doctor's specialization. At least 1 visit type has to be selected.</p>
+                                </div>
+                                <VisitTypes visitTypes={data.doctor.visitTypes.map(l => l.description)} onClick={(visitType) => removeItem(visitType)} />
+                                <Button color="pink outline" label="+ Add visit type" onClick={() => handleOpen(true)} />
+                                <VisitTypesDialog
+                                    open={open}
+                                    onClose={() => handleOpen(false)}
+                                    onConfirm={(newVisitTypes) => onConfirmVisitTypes(newVisitTypes)}
+                                    visitTypes={allVisitTypes}
+                                    selected={data.doctor.visitTypes} />
+                            </div>
+
+                            <div className="w-full px-20">
+                            <button onClick={onSubmit}  className="bg-violet-500 w-full whitespace-nowrap text-white text-xl font-semibold py-4 px-4 rounded hover:bg-violet-600">
+                                Create account
+                            </button>
+                            </div>
+                        {/* <Button color="pink xl" label="Create account" onClick={onSubmit} /> */}
+                        </div>
                 </div>
             </div>
-        </LocalizationProvider>
+        </div>
     );
 }

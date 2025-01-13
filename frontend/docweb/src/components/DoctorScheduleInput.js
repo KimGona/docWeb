@@ -18,7 +18,7 @@ export default function DoctorScheduleInput({schedule, setSchedule}) {
     }
 
     return (
-        <div className="pt-4 w-full grid grid-cols-2 gap-x-60 justify-items-start">
+        <div className="pt-4 grid grid-cols-2 gap-x-60 justify-items-start">
                 <div className="flex flex-row gap-4">
                     {schedule.map((day, index) => (
                     <div className="flex flex-col gap-2 sm:p-4 bg-gray-50 even:bg-gray-100">

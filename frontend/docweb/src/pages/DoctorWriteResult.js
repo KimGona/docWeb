@@ -25,7 +25,7 @@ function Appointment({ appointment, onClick }) {
 
 function AppointmentNew({ appointment, onClick }) {
   return (
-    <div className="flex flex-col gap-2 w-screen w-[40vw]" onClick={() => onClick(appointment)}>
+    <div className="relative flex flex-col gap-2" onClick={() => onClick(appointment)}>
       <p className="text-lg font-bold">{`${appointment.patient.name} ${appointment.patient.surname}`}</p>
       <p className="text-lg">{`Appointment was on ${appointment.date} at ${appointment.hour}:00`}</p>
       <div className="flex items-end justify-between">
@@ -74,15 +74,19 @@ export default function DoctorWriteResult({ }) {
   return (
       <div className="w-full flex flex-col items-start ">
         <img className="absolute object-contain" src={GreenBackground} />
-        <div className="relative w-full h-screen flex justify-center align-middle items-center">
-          <div className="relative px-12 py-12 bg-white flex flex-col justify-center items-start space-y-10">
+        <div className="relative w-full h-screen flex justify-center align-middle items-center px-20">
+          <div className="relative px-12 py-12 w-full bg-white flex flex-col justify-center items-start space-y-6">
             <p className="text-3xl font-bold">Write your patient`s health result!</p>
+            <p className="text-md font-normal text-gray-500 pb-2">View appointments for the given month and select to which you want add health results.</p>
+            <div>
             <p className="text-2xl font-medium">Pick a date</p>
-
+            <p className="text-md font-normal text-gray-500">Select the month and year to view the appointments which took place in that time.</p>
+            </div>
+            
             <DateSelector onDateChange={handleDateChange} />
 
-            <div className="w-full grid grid-cols-3 gap-x-20 justify-items-start">
-              <div className="col-span-2 justify-self-stretch space-y-8">
+            <div className="relative w-full grid grid-cols-3 gap-x-20 justify-items-start">
+              <div className="relative col-span-2 justify-self-stretch space-y-8">
                 <Appointments appointments={appointments} onClick={onAddClick} />
               </div>
             </div>

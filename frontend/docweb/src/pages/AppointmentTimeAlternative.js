@@ -106,6 +106,19 @@ export default function AppointmentTimeAlternative() {
     onHourChosen(hour);
   };
 
+  function isDateBeforeToday(dateText) {
+    const date = new Date(dateText);
+    date.setHours(0, 0, 0, 0);
+    console.log("dateText: " + date)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    console.log("dateText tod: " + today)
+
+    
+    console.log("is date before?: " +  date < today)
+    return date < today;
+}
+
   return (
     <PageContainer title="Add appointment">
       {/* Summary bar */}
@@ -144,8 +157,10 @@ export default function AppointmentTimeAlternative() {
         </div>
       </div>
 
+      <p className="text-lg font-normal">Select the date and hour for the appointment</p>
+      <p className="text-md font-normal text-gray-500">Navigate through the weeks using Next and Previous buttons</p>
         {/* Screen content */}
-        <div className="pr-80 pt-10 w-full bg-gray-100">
+        <div className="pr-80 pt-4 w-full bg-gray-100">
       {/* Navigation Buttons */}
       <div className="flex justify-between items-center mb-4">
         {weekOffset > 0 ? (
@@ -181,10 +196,9 @@ export default function AppointmentTimeAlternative() {
                     <div
                       key={idx}
                       className={`py-2 px-4 text-center border rounded bg-white hover:bg-gray-200 cursor-pointer text-sm
-                        ${
-                          chosenDate === day.date &&
-                          selectedHour === hour
-                            ? "bg-blue-200 border-blue-500"
+                        ${isDateBeforeToday(day.date) ? <p className="text-lg font-normal text-gray-500">No hours available</p>
+                          : chosenDate === day.date && selectedHour === hour
+                            ? "bg-blue-200 border-blue-500 border-2"
                             : "bg-white hover:bg-gray-200"
                         }`}
                       onClick={() => handleHourClick(day.date, hour)}

@@ -28,11 +28,15 @@ export default function DoctorHealthResult() {
 
   return (
     <PageContainer title="Your health results">
+      <p className="text-lg font-normal text-gray-500">View all of the health results you have filled out.</p>
       <div className="w-full pt-10 flex flex-col gap-4">
+        <div>
           <p className="text-xl font-semibold">Select month</p>
+          <p className="text-md font-normal text-gray-500">Select the month and year to view the appointments which took place in that time.</p>
+        </div> 
           <DateSelector onDateChange={handleDateChange} />
           <div className="justify-self-stretch space-y-8 pb-10">
-            {healthResults.map((result, index) => (
+            {healthResults.length > 0 ? healthResults.map((result, index) => (
                 <ClosableHealthResult
                     key={index}
                     num={index + 1}
@@ -44,7 +48,7 @@ export default function DoctorHealthResult() {
                     description = {result.description}
                     isForPatient = {false}
                  />
-            ))}
+            )) : <p className="text-lg font-normal">There are no health results yet. You can fill out the health results for each appointment in the <i>Write health results</i> tab.</p>}
           </div>
       </div>
     </PageContainer>

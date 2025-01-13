@@ -33,7 +33,7 @@ export default function DoctorAddResult({ }) {
                 newData.heartRate = value;
                 break;
             case 2: 
-                newData.bloodPressure = value;
+                newData.bloodPressure = e.target.value;
                 break;
         }
         setData(newData);
@@ -98,21 +98,26 @@ export default function DoctorAddResult({ }) {
 
 function EditScreen({appointment, data, onConfirm, onDataChange, onDescriptionChange}) {
     return (
-        <div className="relative w-full h-screen flex justify-center align-middle items-center">
-                <div className="relative px-12 py-12 bg-white flex flex-col justify-center items-start space-y-10">
+        <div className="relative w-full h-screen flex justify-center align-middle items-center px-20 pt-20">
+                <div className="relative px-12 py-12 bg-white flex flex-col justify-center items-start space-y-4">
+                    <div className="space-y-4">
                     <p className="text-3xl font-bold">Add health result</p>
-                    <div className="grid grid-cols-2 gap-x-8 gap-y-6">
-                        <TextWithTitle title="Patient's name" content={appointment.patient.name} />
-                        <TextWithTitle title="Patient's surname" content={appointment.patient.surname} />
+                    <p className="text-lg font-normal text-gray-500">Enter the required data and confirm the health results of your patient.</p>
                     </div>
-                    <div className="grid grid-cols-3 gap-y-40 gap-x-40 pt-8">
+                    <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+                        <TextWithTitle title="Patient's name:" content={`${appointment.patient.name} ${appointment.patient.surname}`} />
+                    </div>
+                    <div className="grid grid-cols-3 gap-y-40 gap-x-20 pt-8">
                         <div className="justify-self-stretch space-y-3">
-                            <InputFieldWithTitle value={data.bloodSugar} onValueChange={(e) => onDataChange(e, 0)} title="Blood sugar" />
-                            <InputFieldWithTitle value={data.heartRate} onValueChange={(e) => onDataChange(e, 1)} title="Heart rate" />
-                            <InputFieldWithTitle value={data.bloodPressure} onValueChange={(e) => onDataChange(e, 2)} title="Blood pressure" />
+                            <InputFieldWithTitle value={data.bloodSugar} onValueChange={(e) => onDataChange(e, 0)} title="Blood sugar" description="Enter the value in mg/dL." type="number" />
+                            <InputFieldWithTitle value={data.heartRate} onValueChange={(e) => onDataChange(e, 1)} title="Heart rate" description="Enter the value of beats per minute." type="number" />
+                            <InputFieldWithTitle value={data.bloodPressure} onValueChange={(e) => onDataChange(e, 2)} title="Blood pressure" description="Enter the systolic and diastolic values of the blood pressure, e.g.: 120/80." type="text" pattern="\d{2}/\d{3}"/>
                         </div>
-                        <div className="col-span-2">
-                            <p>Overall description</p>
+                        <div className="col-span-2 px-20 space-y-4">
+                            <div>
+                            <p className="text-lg font-semibold">Additional notes</p>
+                            <p className="text-md font-normal text-gray-500">Enter any additional information about the patient of the appointment. Enter the diagnosis for the patient and the further steps he/she should take.</p>
+                            </div>
                             <div>
                                 <textarea
                                 id="textarea1"

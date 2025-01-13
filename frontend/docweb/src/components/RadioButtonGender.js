@@ -25,7 +25,7 @@ function RadioItem({id, value, chosenValue, onButtonChosen}) {
             className={getStyle(value, chosenValue)}
             onClick={() => onButtonChosen(value)} 
         >
-            <div className=' flex flex-row space-x-4 items-center'>
+            <div className=' flex flex-row space-x-4 items-center pr-4'>
                 <img src={getIcon(value, chosenValue)} alt="radio button" width={20} />
                 <div>
                     <p className='font-normal text-lg '>{value}</p>

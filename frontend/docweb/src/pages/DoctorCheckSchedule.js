@@ -64,10 +64,13 @@ export default function DoctorCheckSchedule() {
     };
 
     return (
-        <PageContainer title="My schedule">
+        <PageContainer title="Your weekly schedule">
             
             <div className="pt-10">
-            <p className="text-lg font-bold">Your schedule</p>
+                
+
+            <p className="text-lg font-normal">View your weekly work schedule and manage the time when you're available</p>
+            <p className="text-md font-normal text-gray-500">Navigate through the weeks using Next and Previous buttons</p>
             <Spacer />
             <div className="flex flex-row justify-between items-center gap-10 mb-4">
                 {weekOffset > 0 ? (
@@ -117,7 +120,6 @@ export default function DoctorCheckSchedule() {
                         <div>
                         { day.takenHours && day.takenHours.length > 0 ? 
                             <div>
-                            <Spacer />
                             <ColoredText text="Taken time" bgColor="bg-orange-600" />
                             {day.takenHours.map((taken, indexFree) => (
                                 <div>
@@ -133,12 +135,11 @@ export default function DoctorCheckSchedule() {
                 </div>
             </div>
             
-            <Spacer />
-            <Spacer />
-            
-            <p className="text-lg font-bold pt-10">Manage schedule</p>
-            <Spacer />
+            <p className="text-xl font-bold pt-14 pb-4">Manage schedule</p>
+            <div className="pb-10">
+            <p className="text-md font-normal text-gray-500 pb-2">Select time when you won't be available for appointments</p>
             <Button label="Select time off" onClick={openSelectTimeOff} />
+            </div>
         </PageContainer>
     );
 }

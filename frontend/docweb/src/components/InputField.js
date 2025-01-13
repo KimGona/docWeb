@@ -13,7 +13,7 @@ function ErrorMessage({isError, errorMessage}) {
   }
 };
 
-export default function InputField({ id, label, value, width="w-[300px]", type="text", isError=false, errorMessage="", onValueChange }) {
+export default function InputField({ id, label, value, width="w-[300px]", type="text", pattern="", isError=false, errorMessage="", onValueChange }) {
     return (
       <div className={width}>
         <input
@@ -22,6 +22,7 @@ export default function InputField({ id, label, value, width="w-[300px]", type="
           value={value}
           onChange={onValueChange}
           placeholder={label}
+          pattern={pattern}
           className={getErrorStyle(isError)}
           required
         />
