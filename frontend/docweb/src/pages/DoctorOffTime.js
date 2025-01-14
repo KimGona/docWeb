@@ -7,6 +7,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Calendar from "../components/Calendar";
 import dayjs, { Dayjs } from 'dayjs';
 import FreeTimeRepository from "../repository/FreeTimeRepository";
+import { getTodaysDateString, formatDate } from "../helper/helper";
 
 function isChecked(elem, chosen) {
     if (chosen.includes(elem)) return true;
@@ -36,6 +37,10 @@ export default function DoctorOffTime() {
     const [isShownMonth, setIsShownMonth] = useState(false);
 
     useEffect(() => {
+        setChosenDate(getTodaysDateString());
+    }, [])
+
+    useEffect(() => {
         getAppointmentsForMonth();
         setIsShownMonth(true);
     }, [isShownMonth])
@@ -44,6 +49,7 @@ export default function DoctorOffTime() {
         if (typeof chosenArr !== "undefined")
             getTimes();
         setIsShown(true);
+        setChosenArr([]);
     }, [isShown, chosenDate])
 
     let getTimes = async () => {
@@ -122,46 +128,61 @@ export default function DoctorOffTime() {
 
     return (
         <PageContainer title="My schedule">
-            <div className="pt-10 w-full grid grid-cols-2 gap-x-60 justify-items-start">
+            <div className="py-10 border-2 p-10">
+                <div className="w-full grid grid-cols-2 gap-x-36 justify-items-start">
                 <div className="flex flex-col gap-4">
-                    <p className="text-xl font-normal pb-10">Choose a day</p>
-                    <div className="justify-self-center px-20 py-14 bg-greenLight border border-2 border-greenPrimary space-y-6">
+                    <p className="text-xl font-semibold">Choose a single day</p>
+                    <p className="text-lg font-normal text-gray-500 pb-6">Select a day for which you want to write time off. The days marked with red dots are the days on which you have some appointment scheduled.</p>
+                    <div className="justify-self-center px-20 py-10 bg-greenLight border border-2 border-greenPrimary space-y-6">
                         <p className="text-3xl font-bold text-greenPrimary">Calendar</p>
                         <Calendar highlightedDays={highlightedDays} chosenDate={chosenDate} onChosenDate={(value) => onDateChosen(value)} />
-                    </div>
-                    <div className="pt-10">
-                        <Button color="pink big" label="Confirm off time" onClick={setOffTime} />
                     </div>
                 </div>
 
                 <div className="justify-self-start">
-                    <p className="text-xl font-normal pb-10">Schedule for {chosenDate}</p>
-                    <p className="text-lg font-medium pb-6">Select hours to check off</p>
-                    <FormGroup>
-                        {
-                            schedule.map(hour =>
-                                <FormControlLabel
-                                    key={hour}
-                                    control={<Checkbox value={hour} onClick={(event) => {
-                                        const newElem = parseInt(event.target.value, 10)
-                                        let newArr = [...chosenArr];
-                                        if (newArr.includes(newElem)) {
-                                            const index = chosenArr.indexOf(newElem);
-                                            newArr.splice(index, 1);
-                                        } else {
-                                            newArr.push(newElem);
-                                        }
-                                        setChosenArr(newArr);
-                                    }}
-                                        name={hour.toString()}
-                                        checked={isChecked(hour, chosenArr)}
-                                    // disabled={isDisabled(hour, freeTimes)}
-                                    />}
-                                    label={hour}
+                    <p className="text-xl font-semibold pb-4">{`Schedule for ${formatDate(chosenDate)}`}</p>
+                    <p className="text-lg font-normal text-gray-500 pb-6">Select the hours which you want to mark as off from work.</p>
+                    <div className="p-4 bg-gray-50 rounded-lg shadow-md">
+                    <FormGroup className="space-y-2">
+                        {schedule.map((hour) => (
+                        <div
+                            key={hour}
+                            className="flex items-center justify-between p-3 bg-white rounded-md shadow-sm hover:bg-gray-100"
+                        >
+                            <FormControlLabel
+                            control={
+                                <Checkbox
+                                className="text-blue-500"
+                                value={hour}
+                                onClick={(event) => {
+                                    const newElem = parseInt(event.target.value, 10);
+                                    let newArr = [...chosenArr];
+                                    if (newArr.includes(newElem)) {
+                                    const index = chosenArr.indexOf(newElem);
+                                    newArr.splice(index, 1);
+                                    } else {
+                                    newArr.push(newElem);
+                                    }
+                                    setChosenArr(newArr);
+                                }}
+                                name={`${hour}:00`}
+                                checked={isChecked(hour, chosenArr)}
+                                // disabled={isDisabled(hour, freeTimes)}
                                 />
-                            )
-                        }
+                            }
+                            label={`${hour}:00`}
+                            />
+                        </div>
+                        ))}
                     </FormGroup>
+                    </div>
+
+                </div>
+                
+                </div>
+                
+                <div className="pt-10 w-full flex justify-center items-center">
+                    <Button color="pink big" label="Confirm off time" onClick={setOffTime} />
                 </div>
             </div>
         </PageContainer>

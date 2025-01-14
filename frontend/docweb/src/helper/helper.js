@@ -36,3 +36,20 @@ export function getTodaysYear() {
     const today = new Date();
     return today.getFullYear();
 }
+
+export function getTodaysDateString() {
+    const today = new Date();
+    const formattedDate = today.toISOString().split('T')[0];
+    return formattedDate;
+}
+
+export function formatDate(dateString) {
+    const date = new Date(dateString);
+
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = date.toLocaleString('en-US', { month: 'long' });
+    const year = date.getFullYear();
+
+    const formattedDate = `${day} ${month} ${year}`;
+    return formattedDate;
+}

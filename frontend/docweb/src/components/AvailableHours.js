@@ -13,9 +13,9 @@ function getTextStyle(isSelected) {
         return "font-semibold text-lg text-sky-400";
 }
 
-function Hour({time, isSelected, setSelectedHour}) {
+function Hour({time, hour, isSelected, setSelectedHour}) {
     return (
-        <div key={time} className={getColor(isSelected)} onClick={() => setSelectedHour(time)}>
+        <div key={time} className={getColor(isSelected)} onClick={() => setSelectedHour(hour)}>
             <p className={getTextStyle(isSelected)}>{time}</p>
         </div>
     );
@@ -26,7 +26,7 @@ export default function AvailableHours({hours, selectedHour, setSelectedHour}) {
         return (
             <div className="grid grid-cols-3 gap-8">
                 {hours.map( hour =>
-                    <Hour time={`${hour}:00`} isSelected={hour === selectedHour} setSelectedHour={setSelectedHour}/>
+                    <Hour time={`${hour}:00`} hour={hour} isSelected={hour === selectedHour} setSelectedHour={setSelectedHour}/>
                 )}
             </div>
         );

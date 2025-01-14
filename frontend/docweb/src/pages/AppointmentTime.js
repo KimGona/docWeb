@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import AvailableHours from "../components/AvailableHours";
 import Calendar from "../components/Calendar";
 import dayjs, { Dayjs } from 'dayjs';
+import { getTodaysDateString, formatDate } from "../helper/helper";
 
 const getCurrentDate = () => {
   const date = new Date();
@@ -46,6 +47,10 @@ export default function AppointmentTime() {
   const [highlightedDays, setHighlightedDays] = React.useState([]);
   
   const [isShown, setIsShown] = useState(false);
+  
+  useEffect(() => {
+      setChosenDate(getTodaysDateString());
+  }, [])
 
   useEffect(() => {
     getTimes();
@@ -159,12 +164,12 @@ export default function AppointmentTime() {
 
           <div>
             <p className="text-zinc-700 text-thin text-xl">Date</p>
-            <p className="text-black text-medium text-2xl">{chosenDate}</p>
+            <p className="text-black text-medium text-2xl">{`${formatDate(chosenDate)}`}</p>
           </div>
 
           <div>
             <p className="text-zinc-700 text-thin text-xl">Hour</p>
-            <p className="text-black text-medium text-2xl">{selectedHour}</p>
+            <p className="text-black text-medium text-2xl">{`${selectedHour}:00`}</p>
           </div>
         </div>
 
@@ -180,16 +185,19 @@ export default function AppointmentTime() {
 
         {/* Screen content */}
       </div>
+      <p className="text-lg font-normal text-gray-500">Select a date for your appointment.</p>
       <div className="pr-80 pt-10 w-full grid grid-cols-2 gap-x-10 justify-items-start">
         <div>
-          <p className="text-2xl font-medium pb-10">Pick a date</p>
+          <p className="text-2xl font-medium">Pick a date</p>
+          <p className="text-lg font-normal text-gray-500 pb-10">Select a single date. Each day marked with a red dot has available times for your appointment.</p>
           <div className="justify-self-center px-20 py-14 bg-greenLight border border-2 border-greenPrimary space-y-6">
             <p className="text-3xl font-bold text-greenPrimary">Calendar</p>
             <Calendar highlightedDays={highlightedDays} chosenDate={chosenDate} onChosenDate={onDateChosen} />
           </div>
         </div>
         <div>
-          <p className="text-2xl font-medium pb-10">Available hours</p>
+          <p className="text-2xl font-medium">{`Available hours for ${formatDate(chosenDate)}`}</p>
+          <p className="text-lg font-normal text-gray-500 pb-10">Select an hour on which you will schedule your appointment.</p>
           {hours.length > 0 ? 
           <AvailableHours hours={hours} selectedHour={selectedHour} setSelectedHour={onHourChosen} />
           : <p className="text-lg font-normal">No hours - please select a different date</p>}
