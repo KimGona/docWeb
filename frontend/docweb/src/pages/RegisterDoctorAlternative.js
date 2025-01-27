@@ -324,9 +324,7 @@ export default function RegisterDoctorAlternative({ }) {
             <div className="relative w-full h-screen flex flex-col justify-center items-center px-20 ">
                 <div className="flex flex-col justify-center items-center space-y-6 pt-64 px-40">
                     <TranslateAlert isVisible={result.isVisible} type={result.value} message={result.message} onClose={resetResult} />
-                    <div className="px-12 pb-12 bg-white flex flex-col justify-center items-start space-y-10">
-                        <p className="text-3xl font-bold text-greenPrimary">Register a new doctor account</p>
-
+                    <div className="px-12 pb-12 bg-white flex flex-col justify-center items-start space-y-10 pt-40">
                         <div className="space-y-4">
                             <div >
                             <p className="text-xl font-medium pt-60">Fill in personal details</p>

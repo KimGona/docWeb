@@ -180,7 +180,7 @@ export default function AppointmentDoctors() {
         <div className="flex flex-row space-x-10 items-center pb-10">
           <SearchField title="Name and surname" text={nameAndSurname} onTextChange={(e) => setNameAndSurname(e.target.value)}/>
           <div className="w-[150px]">
-            <SearchField title="Speciality" text={speciality} onTextChange={(e) => setSpeciality(e.target.value)}/>
+            <SearchField title="Specialization" text={speciality} onTextChange={(e) => setSpeciality(e.target.value)}/>
           </div>
         </div>
         <RadioButtonDoctorList list={doctors} chosenButtonId={selectedDoctorId} onButtonChosen={onDoctorChosen} />

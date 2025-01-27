@@ -334,7 +334,7 @@ export default function RegisterDoctor({ }) {
                                     <div className="grid grid-cols-2 gap-x-8 gap-y-4 items-top">
                                         <InputFieldWithTitle title="Name" value={data.doctor.name} onValueChange={(e) => onDoctorChange(e, "name")} />
                                         <InputFieldWithTitle title="Surname" value={data.doctor.surname} onValueChange={(e) => onDoctorChange(e, "surname")} />
-                                        <InputFieldWithTitle title="Specialty" value={data.doctor.speciality} onValueChange={(e) => onDoctorChange(e, "speciality")} />
+                                        <InputFieldWithTitle title="Specialization" value={data.doctor.speciality} onValueChange={(e) => onDoctorChange(e, "speciality")} />
                                         <InputFieldWithTitle title="Phone" value={data.doctor.phone} onValueChange={(e) => onDoctorChange(e, "phone")} />
                                         <div className="flex flex-row gap-x-4 items-center justify-center">
                                             <div className="grow">
